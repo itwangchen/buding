@@ -1,0 +1,4 @@
+export default {
+    MAP_API_KEY: '5EOBZ-JGBKX-SXY4O-TY2WO-E3X3H-IVFXX',
+    WEATHER_API_KEY: 'dbcd0bce164347c89de825bf1c1ecc03'
+}
