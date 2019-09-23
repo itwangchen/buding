@@ -1,6 +1,6 @@
 <template>
 	<view class="container">
-		<view style='margin-top: -150rpx; padding-top: 150rpx;background: rgba(52,73,94, {{apl}})'>
+		<view style='margin-top: -150rpx; padding-top: 150rpx;'>
 			<view class='animation-view'>
 				<view class='location' @click="chooseLocation">
 					<myicon class="icon" type="dingwei"></myicon>
@@ -8,11 +8,7 @@
 				</view>
 				<canvas canvas-id='animation' style='width:100%;height:920rpx;position: absolute;top:100rpx'></canvas>
 				<view class="center-container">
-					<view class="flex-content-left">
-						<!-- <view class="pm-number-view">
-		              <text style="display:inline-block;width: 8rpx;border:8rpx solid {{airQuality.color}};border-radius: 6rpx;height: 22rpx;margin-right:12rpx;box-sizing:border-box"></text>
-		              <text style="line-height: 60rpx;font-size:26rpx;color:white">{{airQuality.airText}} {{airQuality.aqi}}</text>
-		            </view> -->
+					<view class="flex-content-left">					
 						<view class="today-weather-view">
 							<text style="text-align:center;font-size:32rpx;color:white;height:50rpx">
 								今 天
@@ -21,7 +17,7 @@
 								{{todayData.dateTxt}}
 							</text>
 							<view style="text-align:center;color:white">
-								<myicon class="icon" style="color: white; font-size:32rpx" type="{{todayData.iconTypeBai}}"></myicon>
+								<myicon class="icon" style="color: white; font-size:32rpx" :type="todayData.iconTypeBai"></myicon>
 								<text style='font-size:32rpx'>{{todayData.tmp_min}}/{{todayData.tmp_max}}</text>
 							</view>
 						</view>
@@ -31,7 +27,7 @@
 							<text class="today-temp">{{liveWeather.fl}}</text>
 							<text class="temp-symbol">℃</text>
 						</view>
-						<myicon class="icon" type="{{liveWeather.iconType}}"></myicon>
+						<myicon class="icon" :type="liveWeather.iconType"></myicon>
 						<text class="today-temp-bottom">{{liveWeather.cond_txt}}</text>
 						<view class="temp-out-content__bottom">
 							<view class="flex-center__left">
@@ -55,7 +51,7 @@
 								{{tomorrowData.dateTxt}}
 							</text>
 							<view style="text-align:center;color:white">
-								<myicon class="icon" style="color: white;font-size:32rpx" type="{{tomorrowData.iconTypeBai}}"></myicon>
+								<myicon class="icon" style="color: white;font-size:32rpx" type="tomorrowData.iconTypeBai"></myicon>
 								<text style='font-size:32rpx'>{{tomorrowData.tmp_min}}/{{tomorrowData.tmp_max}}</text>
 							</view>
 						</view>
@@ -63,10 +59,10 @@
 				</view>
 				<view class="all-day-list">
 					<scroll-view class="scroll-view_x" scroll-x style="overflow:hidden;width:auto;height:100%">
-						<view class="all-day-list-item" wx:for="{{everyHourData}}" wx:key="item.time">
+						<view class="all-day-list-item" v-for="everyHourData" :key="item.time">
 							<view class="day-list-item">{{item.time}}点</view>
 							<view class="day-list-item">
-								<myicon style="color:white;font-size:36rpx" type="{{item.iconType}}"></myicon>
+								<myicon style="color:white;font-size:36rpx" :type="item.iconType"></myicon>
 							</view>
 							<view class="day-list-item">{{item.tmp}}°</view>
 						</view>
@@ -75,18 +71,18 @@
 			</view>
 
 			<view class="one-week-list">
-				<view class="one-week-list-item" wx:for="{{everyWeekData}}" wx:key="item.weekday">
+				<view class="one-week-list-item" v-for="everyWeekData" :key="item.weekday">
 					<view class="week-list-item" style="font-size: 28rpx">
 						<view>{{item.weekday}}</view>
 						<view>{{item.date}}</view>
 					</view>
 					<view class="week-list-item">{{item.cond_txt_d}}</view>
 					<view class="week-list-item">
-						<myicon style="color:white;font-size:44rpx" type="{{item.iconTypeBai}}"></myicon>
+						<myicon style="color:white;font-size:44rpx" :type="item.iconTypeBai"></myicon>
 					</view>
 					<view class="week-list-item">{{item.tmp_min}}~{{item.tmp_max}}°</view>
 					<view class="week-list-item">
-						<myicon style="color:white;font-size:44rpx" type="{{item.iconTypeYe}}"></myicon>
+						<myicon style="color:white;font-size:44rpx" :type="item.iconTypeYe"></myicon>
 					</view>
 					<view class="week-list-item">{{item.cond_txt_n}}</view>
 					<view class="week-list-item" style="font-size: 28rpx">
@@ -173,7 +169,7 @@
 			</view>
 
 			<view class='last-view'>
-				<view class='last-view-item' wx:for="{{lifeStyle}}" wx:key="item.type">
+				<view class='last-view-item' v-for="lifeStyle" key="item.type">
 					<view class='last-view-item-top'>{{lifeEnum[item.type]}}</view>
 					<view class='last-view-item-bottom'>{{item.brf}}</view>
 				</view>
@@ -483,7 +479,7 @@
 		display: flex;
 		flex-direction: column;
 		justify-content: flex-start;
-		background: #f6f6f6;
+		background: url(/static/images/cloud.jpg);
 		width: 100%;
 		height: 100%;
 		font-family: -apple-system-font, Helvetica Neue, Helvetica, sans-serif;

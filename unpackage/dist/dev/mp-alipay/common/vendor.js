@@ -1,4 +1,4 @@
-(global["webpackJsonp"] = global["webpackJsonp"] || []).push([["common/vendor"],[
+(my["webpackJsonp"] = my["webpackJsonp"] || []).push([["common/vendor"],[
 /* 0 */
 /*!*******************************************!*\
   !*** D:/code/uniappdev/uniappdev/main.js ***!
@@ -19,12 +19,12 @@ var app = new _vue.default(_objectSpread({},
 _App.default));
 
 createApp(app).$mount();
-/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["createApp"]))
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-alipay/dist/index.js */ 1)["createApp"]))
 
 /***/ }),
 /* 1 */
 /*!************************************************************!*\
-  !*** ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js ***!
+  !*** ./node_modules/@dcloudio/uni-mp-alipay/dist/index.js ***!
   \************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
@@ -333,12 +333,12 @@ var isIOS = false;
 var deviceWidth = 0;
 var deviceDPR = 0;
 
-function checkDeviceWidth() {var _wx$getSystemInfoSync =
+function checkDeviceWidth() {var _my$getSystemInfoSync =
 
 
 
 
-  wx.getSystemInfoSync(),platform = _wx$getSystemInfoSync.platform,pixelRatio = _wx$getSystemInfoSync.pixelRatio,windowWidth = _wx$getSystemInfoSync.windowWidth; // uni=>wx runtime 编译目标是 uni 对象，内部不允许直接使用 uni
+  my.getSystemInfoSync(),platform = _my$getSystemInfoSync.platform,pixelRatio = _my$getSystemInfoSync.pixelRatio,windowWidth = _my$getSystemInfoSync.windowWidth; // uni=>my runtime 编译目标是 uni 对象，内部不允许直接使用 uni
 
   deviceWidth = windowWidth;
   deviceDPR = pixelRatio;
@@ -382,45 +382,375 @@ var baseApi = /*#__PURE__*/Object.freeze({
   removeInterceptor: removeInterceptor });
 
 
-var previewImage = {
-  args: function args(fromArgs) {
-    var currentIndex = parseInt(fromArgs.current);
-    if (isNaN(currentIndex)) {
-      return;
-    }
-    var urls = fromArgs.urls;
-    if (!Array.isArray(urls)) {
-      return;
-    }
-    var len = urls.length;
-    if (!len) {
-      return;
-    }
-    if (currentIndex < 0) {
-      currentIndex = 0;
-    } else if (currentIndex >= len) {
-      currentIndex = len - 1;
-    }
-    if (currentIndex > 0) {
-      fromArgs.current = urls[currentIndex];
-      fromArgs.urls = urls.filter(
-      function (item, index) {return index < currentIndex ? item !== urls[currentIndex] : true;});
+// 不支持的 API 列表
+var todos = [
+'saveImageToPhotosAlbum',
+'getRecorderManager',
+'getBackgroundAudioManager',
+'createInnerAudioContext',
+'chooseVideo',
+'saveVideoToPhotosAlbum',
+'createVideoContext',
+'createCameraContext',
+'createLivePlayerContext',
+'openDocument',
+'onMemoryWarning',
+'startAccelerometer',
+'startCompass',
+'addPhoneContact',
+'setBackgroundColor',
+'setBackgroundTextStyle',
+'createIntersectionObserver',
+'authorize',
+'openSetting',
+'getSetting',
+'chooseAddress',
+'chooseInvoiceTitle',
+'addTemplate',
+'deleteTemplate',
+'getTemplateLibraryById',
+'getTemplateLibraryList',
+'getTemplateList',
+'sendTemplateMessage',
+'getUpdateManager',
+'setEnableDebug',
+'getExtConfig',
+'getExtConfigSync',
+'onWindowResize',
+'offWindowResize'];
 
+
+// 存在兼容性的 API 列表
+var canIUses = [
+'startPullDownRefresh',
+'setTabBarItem',
+'setTabBarStyle',
+'hideTabBar',
+'showTabBar',
+'setTabBarBadge',
+'removeTabBarBadge',
+'showTabBarRedDot',
+'hideTabBarRedDot'];
+
+
+function _handleNetworkInfo(result) {
+  switch (result.networkType) {
+    case 'NOTREACHABLE':
+      result.networkType = 'none';
+      break;
+    case 'WWAN':
+      // TODO ?
+      result.networkType = '3g';
+      break;
+    default:
+      result.networkType = result.networkType.toLowerCase();
+      break;}
+
+  return {};
+}
+
+function _handleSystemInfo(result) {
+  var platform = result.platform ? result.platform.toLowerCase() : 'devtools';
+  if (!~['android', 'ios'].indexOf(platform)) {
+    platform = 'devtools';
+  }
+  result.platform = platform;
+}
+
+var protocols = { // 需要做转换的 API 列表
+  returnValue: function returnValue(methodName) {var res = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {}; // 通用 returnValue 解析
+    if (res.error || res.errorMessage) {
+      res.errMsg = "".concat(methodName, ":fail ").concat(res.errorMessage || res.error);
+      delete res.error;
+      delete res.errorMessage;
     } else {
-      fromArgs.current = urls[0];
+      res.errMsg = "".concat(methodName, ":ok");
+    }
+    return res;
+  },
+  request: {
+    name: my.canIUse('request') ? 'request' : 'httpRequest',
+    args: function args(fromArgs) {
+      if (!fromArgs.header) {// 默认增加 header 参数，方便格式化 content-type
+        fromArgs.header = {};
+      }
+      return {
+        header: function header() {var _header = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};var toArgs = arguments.length > 1 ? arguments[1] : undefined;
+          var headers = {
+            'content-type': 'application/json' };
+
+          Object.keys(_header).forEach(function (key) {
+            headers[key.toLocaleLowerCase()] = _header[key];
+          });
+          return {
+            name: 'headers',
+            value: headers };
+
+        },
+        method: 'method', // TODO 支付宝小程序仅支持 get,post
+        responseType: false };
+
+    },
+    returnValue: {
+      status: 'statusCode',
+      headers: 'header' } },
+
+
+  setNavigationBarColor: {
+    name: 'setNavigationBar',
+    args: {
+      frontColor: false,
+      animation: false } },
+
+
+  setNavigationBarTitle: {
+    name: 'setNavigationBar' },
+
+  showModal: function showModal()
+
+  {var _ref = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {},_ref$showCancel = _ref.showCancel,showCancel = _ref$showCancel === void 0 ? true : _ref$showCancel;
+    if (showCancel) {
+      return {
+        name: 'confirm',
+        args: {
+          cancelColor: false,
+          confirmColor: false,
+          cancelText: 'cancelButtonText',
+          confirmText: 'confirmButtonText' },
+
+        returnValue: function returnValue(fromRes, toRes) {
+          toRes.confirm = fromRes.confirm;
+          toRes.cancel = !fromRes.confirm;
+        } };
+
     }
     return {
-      indicator: false,
-      loop: false };
+      name: 'alert',
+      args: {
+        confirmColor: false,
+        confirmText: 'buttonText' },
 
-  } };
+      returnValue: function returnValue(fromRes, toRes) {
+        toRes.confirm = true;
+        toRes.cancel = false;
+      } };
+
+  },
+  showToast: function showToast()
+
+  {var _ref2 = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {},_ref2$icon = _ref2.icon,icon = _ref2$icon === void 0 ? 'success' : _ref2$icon;
+    var args = {
+      title: 'content',
+      icon: 'type',
+      duration: false,
+      image: false,
+      mask: false };
+
+    if (icon === 'loading') {
+      return {
+        name: 'showLoading',
+        args: args };
+
+    }
+    return {
+      name: 'showToast',
+      args: args };
+
+  },
+  showActionSheet: {
+    name: 'showActionSheet',
+    args: {
+      itemList: 'items',
+      itemColor: false },
+
+    returnValue: {
+      index: 'tapIndex' } },
 
 
-var protocols = {
-  previewImage: previewImage };
+  showLoading: {
+    args: {
+      title: 'content',
+      mask: false } },
 
-var todos = [];
-var canIUses = [];
+
+  uploadFile: {
+    args: {
+      name: 'fileName'
+
+      // 从测试结果看，是有返回对象的，文档上没有说明。
+    } },
+  downloadFile: {
+    returnValue: {
+      apFilePath: 'tempFilePath' } },
+
+
+  connectSocket: {
+    args: {
+      method: false,
+      protocols: false
+
+      // TODO 有没有返回值还需要测试下
+    } },
+  chooseImage: {
+    returnValue: {
+      apFilePaths: 'tempFilePaths' } },
+
+
+  previewImage: {
+    args: function args(fromArgs) {
+      // 支付宝小程序的 current 是索引值，而非图片地址。
+      var currentIndex = Number(fromArgs.current);
+      if (isNaN(currentIndex)) {
+        if (fromArgs.current && Array.isArray(fromArgs.urls)) {
+          var index = fromArgs.urls.indexOf(fromArgs.current);
+          fromArgs.current = ~index ? index : 0;
+        }
+      } else {
+        fromArgs.current = currentIndex;
+      }
+      return {
+        indicator: false,
+        loop: false };
+
+    } },
+
+  saveFile: {
+    args: {
+      tempFilePath: 'apFilePath' },
+
+    returnValue: {
+      apFilePath: 'savedFilePath' } },
+
+
+  getSavedFileInfo: {
+    args: {
+      filePath: 'apFilePath' },
+
+    returnValue: function returnValue(result) {
+      if (result.fileList && result.fileList.length) {
+        result.fileList.forEach(function (file) {
+          file.filePath = file.apFilePath;
+          delete file.apFilePath;
+        });
+      }
+      return {};
+    } },
+
+  removeSavedFile: {
+    args: {
+      filePath: 'apFilePath' } },
+
+
+  getLocation: {
+    args: {
+      type: false,
+      altitude: false } },
+
+
+  openLocation: {
+    args: {
+      // TODO address 参数在阿里上是必传的
+    } },
+
+  getNetworkType: {
+    returnValue: _handleNetworkInfo },
+
+  onNetworkStatusChange: {
+    returnValue: _handleNetworkInfo },
+
+  stopAccelerometer: {
+    name: 'offAccelerometerChange' },
+
+  stopCompass: {
+    name: 'offCompassChange' },
+
+  scanCode: {
+    name: 'scan',
+    args: {
+      onlyFromCamera: 'hideAlbum',
+      scanType: false },
+
+    returnValue: {
+      code: 'result' } },
+
+
+  setClipboardData: {
+    name: 'setClipboard',
+    args: {
+      data: 'text' } },
+
+
+  getClipboardData: {
+    name: 'getClipboard',
+    returnValue: {
+      text: 'data' } },
+
+
+  pageScrollTo: {
+    args: {
+      duration: false } },
+
+
+  login: {
+    name: 'getAuthCode',
+    returnValue: function returnValue(result) {
+      result.code = result.authCode;
+    } },
+
+  getUserInfo: {
+    name: 'getAuthUserInfo',
+    returnValue: function returnValue(result) {
+      result.userInfo = {
+        nickName: result.nickName,
+        avatarUrl: result.avatar };
+
+    } },
+
+  requestPayment: {
+    name: 'tradePay',
+    args: {
+      orderInfo: 'tradeNO' } },
+
+
+  getBLEDeviceServices: {
+    returnValue: function returnValue(result) {
+      result.services.forEach(function (item) {
+        item.uuid = item.serviceId;
+      });
+    } },
+
+  makePhoneCall: {
+    args: {
+      phoneNumber: 'number' } },
+
+
+  stopGyroscope: {
+    name: 'offGyroscopeChange' },
+
+  getSystemInfo: {
+    returnValue: _handleSystemInfo },
+
+  getSystemInfoSync: {
+    returnValue: _handleSystemInfo },
+
+  // 文档没提到，但是实测可用。
+  canvasToTempFilePath: {
+    returnValue: function returnValue(result) {
+      // 真机的情况下会有 tempFilePath 这个值，因此需要主动修改。
+      result.tempFilePath = result.apFilePath;
+    } },
+
+  setScreenBrightness: {
+    args: {
+      value: 'brightness' } },
+
+
+  getScreenBrightness: {
+    returnValue: {
+      brightness: 'value' } } };
+
+
+
 
 var CALLBACKS = ['success', 'fail', 'cancel', 'complete'];
 
@@ -443,7 +773,7 @@ function processArgs(methodName, fromArgs) {var argsOption = arguments.length > 
           keyOption = keyOption(fromArgs[key], fromArgs, toArgs);
         }
         if (!keyOption) {// 不支持的参数
-          console.warn("\u5FAE\u4FE1\u5C0F\u7A0B\u5E8F ".concat(methodName, "\u6682\u4E0D\u652F\u6301").concat(key));
+          console.warn("\u652F\u4ED8\u5B9D\u5C0F\u7A0B\u5E8F ".concat(methodName, "\u6682\u4E0D\u652F\u6301").concat(key));
         } else if (isStr(keyOption)) {// 重写参数 key
           toArgs[keyOption] = fromArgs[key];
         } else if (isPlainObject(keyOption)) {// {name:newName,value:value}可重新指定参数 key:value
@@ -476,7 +806,7 @@ function wrapper(methodName, method) {
     var protocol = protocols[methodName];
     if (!protocol) {// 暂不支持的 api
       return function () {
-        console.error("\u5FAE\u4FE1\u5C0F\u7A0B\u5E8F \u6682\u4E0D\u652F\u6301".concat(methodName));
+        console.error("\u652F\u4ED8\u5B9D\u5C0F\u7A0B\u5E8F \u6682\u4E0D\u652F\u6301".concat(methodName));
       };
     }
     return function (arg1, arg2) {// 目前 api 最多两个参数
@@ -491,7 +821,7 @@ function wrapper(methodName, method) {
       if (typeof arg2 !== 'undefined') {
         args.push(arg2);
       }
-      var returnValue = wx[options.name || methodName].apply(wx, args);
+      var returnValue = my[options.name || methodName].apply(my, args);
       if (isSyncApi(methodName)) {// 同步 api
         return processReturnValue(methodName, returnValue, options.returnValue, isContextApi(methodName));
       }
@@ -512,10 +842,10 @@ var TODOS = [
 
 
 function createTodoApi(name) {
-  return function todoApi(_ref)
+  return function todoApi(_ref3)
 
 
-  {var fail = _ref.fail,complete = _ref.complete;
+  {var fail = _ref3.fail,complete = _ref3.complete;
     var res = {
       errMsg: "".concat(name, ":fail:\u6682\u4E0D\u652F\u6301 ").concat(name, " \u65B9\u6CD5") };
 
@@ -529,18 +859,18 @@ TODOS.forEach(function (name) {
 });
 
 var providers = {
-  oauth: ['weixin'],
-  share: ['weixin'],
-  payment: ['wxpay'],
-  push: ['weixin'] };
+  oauth: ['alipay'],
+  share: ['alipay'],
+  payment: ['alipay'],
+  push: ['alipay'] };
 
 
-function getProvider(_ref2)
+function getProvider(_ref4)
 
 
 
 
-{var service = _ref2.service,success = _ref2.success,fail = _ref2.fail,complete = _ref2.complete;
+{var service = _ref4.service,success = _ref4.success,fail = _ref4.fail,complete = _ref4.complete;
   var res = false;
   if (providers[service]) {
     res = {
@@ -600,56 +930,99 @@ var eventApi = /*#__PURE__*/Object.freeze({
   $emit: $emit });
 
 
+function setStorageSync(key, data) {
+  return my.setStorageSync({
+    key: key,
+    data: data });
 
+}
+function getStorageSync(key) {
+  var result = my.getStorageSync({
+    key: key });
 
-var api = /*#__PURE__*/Object.freeze({});
+  // 支付宝平台会返回一个 success 值，但是目前测试的结果这个始终是 true。当没有存储数据的时候，其它平台会返回空字符串。
+  return result.data !== null ? result.data : '';
+}
+function removeStorageSync(key) {
+  return my.removeStorageSync({
+    key: key });
 
+}
 
-
-var MPPage = Page;
-var MPComponent = Component;
-
-var customizeRE = /:/g;
-
-var customize = cached(function (str) {
-  return camelize(str.replace(customizeRE, '-'));
-});
-
-function initTriggerEvent(mpInstance) {
-  {
-    if (!wx.canIUse('nextTick')) {
-      return;
-    }
+function startGyroscope(params) {
+  if (hasOwn(params, 'interval')) {
+    console.warn('支付宝小程序 startGyroscope暂不支持interval');
   }
-  var oldTriggerEvent = mpInstance.triggerEvent;
-  mpInstance.triggerEvent = function (event) {for (var _len3 = arguments.length, args = new Array(_len3 > 1 ? _len3 - 1 : 0), _key3 = 1; _key3 < _len3; _key3++) {args[_key3 - 1] = arguments[_key3];}
-    return oldTriggerEvent.apply(mpInstance, [customize(event)].concat(args));
+  params.success && params.success({
+    errMsg: 'startGyroscope:ok' });
+
+  params.complete && params.complete({
+    errMsg: 'startGyroscope:ok' });
+
+}
+
+function createExecCallback(execCallback) {
+  return function wrapperExecCallback(res) {
+    this.actions.forEach(function (action, index) {
+      (action._$callbacks || []).forEach(function (callback) {
+        callback(res[index]);
+      });
+    });
+    execCallback(res);
   };
 }
 
-function initHook(name, options) {
-  var oldHook = options[name];
-  if (!oldHook) {
-    options[name] = function () {
-      initTriggerEvent(this);
-    };
-  } else {
-    options[name] = function () {
-      initTriggerEvent(this);for (var _len4 = arguments.length, args = new Array(_len4), _key4 = 0; _key4 < _len4; _key4++) {args[_key4] = arguments[_key4];}
-      return oldHook.apply(this, args);
-    };
+function addCallback(callback) {
+  if (isFn(callback)) {
+    var action = this.actions[this.actions.length - 1];
+    if (action) {
+      (action._$callbacks || (action._$callbacks = [])).push(callback);
+    }
   }
 }
 
-Page = function Page() {var options = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
-  initHook('onLoad', options);
-  return MPPage(options);
-};
+function createSelectorQuery() {
+  var query = my.createSelectorQuery();
 
-Component = function Component() {var options = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
-  initHook('created', options);
-  return MPComponent(options);
-};
+  var oldExec = query.exec;
+  var oldScrollOffset = query.scrollOffset;
+  var oldBoundingClientRect = query.boundingClientRect;
+  query.exec = function exec(callback) {
+    return oldExec.call(this, createExecCallback(callback).bind(this));
+  };
+  query.scrollOffset = function scrollOffset(callback) {
+    var ret = oldScrollOffset.call(this);
+    addCallback.call(this, callback);
+    return ret;
+  };
+  query.boundingClientRect = function boundingClientRect(callback) {
+    var ret = oldBoundingClientRect.call(this);
+    addCallback.call(this, callback);
+    return ret;
+  };
+
+  if (!query.fields) {
+    query.fields = function () {var _ref5 = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {},rect = _ref5.rect,size = _ref5.size,scrollOffset = _ref5.scrollOffset;var callback = arguments.length > 1 ? arguments[1] : undefined;
+      if (rect || size) {
+        this.boundingClientRect();
+      }
+      if (scrollOffset) {
+        this.scrollOffset();
+      }
+      addCallback.call(this, callback);
+      return this;
+    };
+  }
+  return query;
+}
+
+var api = /*#__PURE__*/Object.freeze({
+  setStorageSync: setStorageSync,
+  getStorageSync: getStorageSync,
+  removeStorageSync: removeStorageSync,
+  startGyroscope: startGyroscope,
+  createSelectorQuery: createSelectorQuery });
+
 
 var PAGE_EVENT_HOOKS = [
 'onPullDownRefresh',
@@ -723,16 +1096,6 @@ function initVueComponent(Vue, vueOptions) {
   return [VueComponent, vueOptions];
 }
 
-function initSlots(vm, vueSlots) {
-  if (Array.isArray(vueSlots) && vueSlots.length) {
-    var $slots = Object.create(null);
-    vueSlots.forEach(function (slotName) {
-      $slots[slotName] = true;
-    });
-    vm.$scopedSlots = vm.$slots = $slots;
-  }
-}
-
 function initVueIds(vueIds, mpInstance) {
   vueIds = (vueIds || '').split(',');
   var len = vueIds.length;
@@ -753,7 +1116,7 @@ function initData(vueOptions, context) {
     try {
       data = data.call(context); // 支持 Vue.prototype 上挂的数据
     } catch (e) {
-      if (Object({"NODE_ENV":"development","VUE_APP_PLATFORM":"mp-weixin","BASE_URL":"/"}).VUE_APP_DEBUG) {
+      if (Object({"NODE_ENV":"development","VUE_APP_PLATFORM":"mp-alipay","BASE_URL":"/"}).VUE_APP_DEBUG) {
         console.warn('根据 Vue 的 data 函数初始化小程序 data 失败，请尽量确保 data 函数中不访问 vm 对象，否则可能影响首次数据渲染速度。', data);
       }
     }
@@ -801,7 +1164,7 @@ function initBehaviors(vueOptions, initBehavior) {
   var behaviors = [];
   if (Array.isArray(vueBehaviors)) {
     vueBehaviors.forEach(function (behavior) {
-      behaviors.push(behavior.replace('uni://', "wx".concat("://")));
+      behaviors.push(behavior.replace('uni://', "my".concat("://")));
       if (behavior === 'uni://form-field') {
         if (Array.isArray(vueProps)) {
           vueProps.push('name');
@@ -1143,11 +1506,11 @@ var hooks = [
 'onPageNotFound'];
 
 
-function parseBaseApp(vm, _ref3)
+function parseBaseApp(vm, _ref6)
 
 
-{var mocks = _ref3.mocks,initRefs = _ref3.initRefs;
-  _vue.default.prototype.mpHost = "mp-weixin";
+{var mocks = _ref6.mocks,initRefs = _ref6.initRefs;
+  _vue.default.prototype.mpHost = "mp-alipay";
 
   _vue.default.mixin({
     beforeCreate: function beforeCreate() {
@@ -1179,11 +1542,6 @@ function parseBaseApp(vm, _ref3)
       if (this.$vm) {// 已经初始化过了，主要是为了百度，百度 onShow 在 onLaunch 之前
         return;
       }
-      {
-        if (!wx.canIUse('nextTick')) {// 事实 上2.2.3 即可，简单使用 2.3.0 的 nextTick 判断
-          console.error('当前微信基础库版本过低，请将 微信开发者工具-详情-项目设置-调试基础库版本 更换为`2.3.0`以上');
-        }
-      }
 
       this.$vm = vm;
 
@@ -1208,8 +1566,6 @@ function parseBaseApp(vm, _ref3)
   return appOptions;
 }
 
-var mocks = ['__route__', '__wxExparserNodeId__', '__wxWebviewId__'];
-
 function findVmByVueId(vm, vuePid) {
   var $children = vm.$children;
   // 优先查找直属
@@ -1226,46 +1582,11 @@ function findVmByVueId(vm, vuePid) {
   }
 }
 
-function initBehavior(options) {
-  return Behavior(options);
-}
-
-function isPage() {
-  return !!this.route;
-}
-
-function initRelation(detail) {
-  this.triggerEvent('__l', detail);
-}
-
-function initRefs(vm) {
-  var mpInstance = vm.$scope;
-  Object.defineProperty(vm, '$refs', {
-    get: function get() {
-      var $refs = {};
-      var components = mpInstance.selectAllComponents('.vue-ref');
-      components.forEach(function (component) {
-        var ref = component.dataset.ref;
-        $refs[ref] = component.$vm || component;
-      });
-      var forComponents = mpInstance.selectAllComponents('.vue-ref-in-for');
-      forComponents.forEach(function (component) {
-        var ref = component.dataset.ref;
-        if (!$refs[ref]) {
-          $refs[ref] = [];
-        }
-        $refs[ref].push(component.$vm || component);
-      });
-      return $refs;
-    } });
-
-}
-
-function handleLink(event) {var _ref4 =
+function handleLink(event) {var _ref7 =
 
 
 
-  event.detail || event.value,vuePid = _ref4.vuePid,vueOptions = _ref4.vueOptions; // detail 是微信,value 是百度(dipatch)
+  event.detail || event.value,vuePid = _ref7.vuePid,vueOptions = _ref7.vueOptions; // detail 是微信,value 是百度(dipatch)
 
   var parentVm;
 
@@ -1280,7 +1601,244 @@ function handleLink(event) {var _ref4 =
   vueOptions.parent = parentVm;
 }
 
+var isArray = Array.isArray;
+var keyList = Object.keys;
+
+function equal(a, b) {
+  if (a === b) return true;
+
+  if (a && b && typeof a === 'object' && typeof b === 'object') {
+    var arrA = isArray(a);
+    var arrB = isArray(b);
+    var i, length, key;
+    if (arrA && arrB) {
+      length = a.length;
+      if (length !== b.length) return false;
+      for (i = length; i-- !== 0;) {
+        if (!equal(a[i], b[i])) return false;
+      }
+      return true;
+    }
+    if (arrA !== arrB) return false;
+
+    var dateA = a instanceof Date;
+    var dateB = b instanceof Date;
+    if (dateA !== dateB) return false;
+    if (dateA && dateB) return a.getTime() === b.getTime();
+
+    var regexpA = a instanceof RegExp;
+    var regexpB = b instanceof RegExp;
+    if (regexpA !== regexpB) return false;
+    if (regexpA && regexpB) return a.toString() === b.toString();
+
+    var keys = keyList(a);
+    length = keys.length;
+    if (length !== keyList(b).length) {
+      return false;
+    }
+    for (i = length; i-- !== 0;) {
+      if (!hasOwn.call(b, keys[i])) return false;
+    }
+    for (i = length; i-- !== 0;) {
+      key = keys[i];
+      if (!equal(a[key], b[key])) return false;
+    }
+
+    return true;
+  }
+
+  return false;
+}
+
+var customizeRE = /:/g;
+
+var customize = cached(function (str) {
+  return camelize(str.replace(customizeRE, '-'));
+});
+
+var isComponent2 = my.canIUse('component2');
+
+var mocks = ['$id'];
+
+function initRefs() {
+
+}
+
+function initBehavior(_ref8)
+
+{var properties = _ref8.properties;
+  var props = {};
+
+  Object.keys(properties).forEach(function (key) {
+    props[key] = properties[key].value;
+  });
+
+  return {
+    props: props };
+
+}
+
+function initRelation(detail) {
+  this.props.onVueInit(detail);
+}
+
+function initSpecialMethods(mpInstance) {
+  if (!mpInstance.$vm) {
+    return;
+  }
+  var path = mpInstance.is || mpInstance.route;
+  if (!path) {
+    return;
+  }
+  if (path.indexOf('/') === 0) {
+    path = path.substr(1);
+  }
+  var specialMethods = my.specialMethods && my.specialMethods[path];
+  if (specialMethods) {
+    specialMethods.forEach(function (method) {
+      if (isFn(mpInstance.$vm[method])) {
+        mpInstance[method] = function (event) {
+          // TODO normalizeEvent
+          mpInstance.$vm[method](event);
+        };
+      }
+    });
+  }
+}
+
+function initChildVues(mpInstance) {
+  // 此时需保证当前 mpInstance 已经存在 $vm
+  if (!mpInstance.$vm) {
+    return;
+  }
+  mpInstance._$childVues && mpInstance._$childVues.forEach(function (_ref9)
+
+
+
+
+  {var vuePid = _ref9.vuePid,vueOptions = _ref9.vueOptions,VueComponent = _ref9.VueComponent,childMPInstance = _ref9.mpInstance;
+    // 父子关系
+    handleLink.call(mpInstance, {
+      detail: {
+        vuePid: vuePid,
+        vueOptions: vueOptions } });
+
+
+
+    childMPInstance.$vm = new VueComponent(vueOptions);
+
+    initSpecialMethods(childMPInstance);
+
+    handleRef.call(vueOptions.parent.$scope, childMPInstance);
+
+    childMPInstance.$vm.$mount();
+
+    initChildVues(childMPInstance);
+
+    childMPInstance.$vm._isMounted = true;
+    childMPInstance.$vm.__call_hook('mounted');
+    childMPInstance.$vm.__call_hook('onReady');
+  });
+
+  delete mpInstance._$childVues;
+}
+
+function handleRef(ref) {
+  if (!ref) {
+    return;
+  }
+  var refName = ref.props['data-ref'];
+  var refInForName = ref.props['data-ref-in-for'];
+  if (refName) {
+    this.$vm.$refs[refName] = ref.$vm || ref;
+  } else if (refInForName) {
+    this.$vm.$refs[refInForName] = [ref.$vm || ref];
+  }
+}
+
+function triggerEvent(type, detail, options) {
+  var handler = this.props[customize('on-' + type)];
+  if (!handler) {
+    return;
+  }
+
+  var eventOpts = this.props['data-event-opts'];
+
+  var target = {
+    dataset: {
+      eventOpts: eventOpts } };
+
+
+
+  handler({
+    type: customize(type),
+    target: target,
+    currentTarget: target,
+    detail: detail });
+
+}
+
+var IGNORES = ['$slots', '$scopedSlots'];
+
+function createObserver$1(isDidUpdate) {
+  return function observe(props) {var _this2 = this;
+    var prevProps = isDidUpdate ? props : this.props;
+    var nextProps = isDidUpdate ? this.props : props;
+    if (equal(prevProps, nextProps)) {
+      return;
+    }
+    Object.keys(prevProps).forEach(function (name) {
+      if (IGNORES.indexOf(name) === -1) {
+        var prevValue = prevProps[name];
+        var nextValue = nextProps[name];
+        if (!isFn(prevValue) && !isFn(nextValue) && !equal(prevValue, nextValue)) {
+          _this2.$vm[name] = nextProps[name];
+        }
+      }
+    });
+  };
+}
+
+var handleLink$1 = function () {
+  if (isComponent2) {
+    return function handleLink$1(detail) {
+      return handleLink.call(this, {
+        detail: detail });
+
+    };
+  }
+  return function handleLink$1(detail) {
+    if (this.$vm && this.$vm._isMounted) {// 父已初始化
+      return handleLink.call(this, {
+        detail: {
+          vuePid: detail.vuePid,
+          vueOptions: detail.vueOptions } });
+
+
+    }
+    // 支付宝通过 didMount 来实现，先子后父，故等父 ready 之后，统一初始化
+    (this._$childVues || (this._$childVues = [])).unshift(detail);
+  };
+}();
+
 function parseApp(vm) {
+  Object.defineProperty(_vue.default.prototype, '$slots', {
+    get: function get() {
+      return this.$scope && this.$scope.props.$slots;
+    },
+    set: function set() {
+
+    } });
+
+  Object.defineProperty(_vue.default.prototype, '$scopedSlots', {
+    get: function get() {
+      return this.$scope && this.$scope.props.$scopedSlots;
+    },
+    set: function set() {
+
+    } });
+
+
   return parseBaseApp(vm, {
     mocks: mocks,
     initRefs: initRefs });
@@ -1292,130 +1850,177 @@ function createApp(vm) {
   return vm;
 }
 
-function parseBaseComponent(vueComponentOptions)
-
-
-{var _ref5 = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {},isPage = _ref5.isPage,initRelation = _ref5.initRelation;var _initVueComponent =
-  initVueComponent(_vue.default, vueComponentOptions),_initVueComponent2 = _slicedToArray(_initVueComponent, 2),VueComponent = _initVueComponent2[0],vueOptions = _initVueComponent2[1];
-
-  var componentOptions = {
-    options: {
-      multipleSlots: true,
-      addGlobalClass: true },
-
-    data: initData(vueOptions, _vue.default.prototype),
-    behaviors: initBehaviors(vueOptions, initBehavior),
-    properties: initProperties(vueOptions.props, false, vueOptions.__file),
-    lifetimes: {
-      attached: function attached() {
-        var properties = this.properties;
-
-        var options = {
-          mpType: isPage.call(this) ? 'page' : 'component',
-          mpInstance: this,
-          propsData: properties };
-
-
-        initVueIds(properties.vueId, this);
-
-        // 处理父子关系
-        initRelation.call(this, {
-          vuePid: this._$vuePid,
-          vueOptions: options });
-
-
-        // 初始化 vue 实例
-        this.$vm = new VueComponent(options);
-
-        // 处理$slots,$scopedSlots（暂不支持动态变化$slots）
-        initSlots(this.$vm, properties.vueSlots);
-
-        // 触发首次 setData
-        this.$vm.$mount();
-      },
-      ready: function ready() {
-        // 当组件 props 默认值为 true，初始化时传入 false 会导致 created,ready 触发, 但 attached 不触发
-        // https://developers.weixin.qq.com/community/develop/doc/00066ae2844cc0f8eb883e2a557800
-        if (this.$vm) {
-          this.$vm._isMounted = true;
-          this.$vm.__call_hook('mounted');
-          this.$vm.__call_hook('onReady');
-        }
-      },
-      detached: function detached() {
-        this.$vm.$destroy();
-      } },
-
-    pageLifetimes: {
-      show: function show(args) {
-        this.$vm && this.$vm.__call_hook('onPageShow', args);
-      },
-      hide: function hide() {
-        this.$vm && this.$vm.__call_hook('onPageHide');
-      },
-      resize: function resize(size) {
-        this.$vm && this.$vm.__call_hook('onPageResize', size);
-      } },
-
-    methods: {
-      __l: handleLink,
-      __e: handleEvent } };
-
-
-
-  if (isPage) {
-    return componentOptions;
-  }
-  return [componentOptions, VueComponent];
-}
-
-function parseComponent(vueComponentOptions) {
-  return parseBaseComponent(vueComponentOptions, {
-    isPage: isPage,
-    initRelation: initRelation });
-
-}
-
 var hooks$1 = [
 'onShow',
 'onHide',
-'onUnload'];
+// mp-alipay 特有
+'onTitleClick',
+'onOptionMenuClick',
+'onPopMenuClick',
+'onPullIntercept'];
 
 
 hooks$1.push.apply(hooks$1, PAGE_EVENT_HOOKS);
 
-function parseBasePage(vuePageOptions, _ref6)
+function parsePage(vuePageOptions) {var _initVueComponent =
+  initVueComponent(_vue.default, vuePageOptions),_initVueComponent2 = _slicedToArray(_initVueComponent, 2),VueComponent = _initVueComponent2[0],vueOptions = _initVueComponent2[1];
+
+  var pageOptions = {
+    mixins: initBehaviors(vueOptions, initBehavior),
+    data: initData(vueOptions, _vue.default.prototype),
+    onLoad: function onLoad(args) {
+      var properties = this.props;
+
+      var options = {
+        mpType: 'page',
+        mpInstance: this,
+        propsData: properties };
 
 
-{var isPage = _ref6.isPage,initRelation = _ref6.initRelation;
-  var pageOptions = parseComponent(vuePageOptions);
+      // 初始化 vue 实例
+      this.$vm = new VueComponent(options);
 
-  initHooks(pageOptions.methods, hooks$1, vuePageOptions);
+      initSpecialMethods(this);
 
-  pageOptions.methods.onLoad = function (args) {
-    this.$vm.$mp.query = args; // 兼容 mpvue
-    this.$vm.__call_hook('onLoad', args);
-  };
+      // 触发首次 setData
+      this.$vm.$mount();
+
+      this.$vm.$mp.query = args; // 兼容 mpvue
+      this.$vm.__call_hook('onLoad', args);
+    },
+    onReady: function onReady() {
+      initChildVues(this);
+      this.$vm._isMounted = true;
+      this.$vm.__call_hook('mounted');
+      this.$vm.__call_hook('onReady');
+    },
+    onUnload: function onUnload() {
+      this.$vm.__call_hook('onUnload');
+      this.$vm.$destroy();
+    },
+    __r: handleRef,
+    __e: handleEvent,
+    __l: handleLink$1 };
+
+
+  initHooks(pageOptions, hooks$1, vuePageOptions);
 
   return pageOptions;
 }
 
-function parsePage(vuePageOptions) {
-  return parseBasePage(vuePageOptions, {
-    isPage: isPage,
-    initRelation: initRelation });
-
-}
-
 function createPage(vuePageOptions) {
   {
-    return Component(parsePage(vuePageOptions));
+    return Page(parsePage(vuePageOptions));
   }
+}
+
+function initVm(VueComponent) {
+  if (this.$vm) {
+    return;
+  }
+  var properties = this.props;
+
+  var options = {
+    mpType: 'component',
+    mpInstance: this,
+    propsData: properties };
+
+
+  initVueIds(properties.vueId, this);
+
+  if (isComponent2) {
+    // 处理父子关系
+    initRelation.call(this, {
+      vuePid: this._$vuePid,
+      vueOptions: options });
+
+
+    // 初始化 vue 实例
+    this.$vm = new VueComponent(options);
+
+    // 触发首次 setData
+    this.$vm.$mount();
+  } else {
+    // 处理父子关系
+    initRelation.call(this, {
+      vuePid: this._$vuePid,
+      vueOptions: options,
+      VueComponent: VueComponent,
+      mpInstance: this });
+
+
+    if (options.parent) {// 父组件已经初始化，直接初始化子，否则放到父组件的 didMount 中处理
+      // 初始化 vue 实例
+      this.$vm = new VueComponent(options);
+      handleRef.call(options.parent.$scope, this);
+      // 触发首次 setData
+      this.$vm.$mount();
+
+      initChildVues(this);
+
+      this.$vm._isMounted = true;
+      this.$vm.__call_hook('mounted');
+      this.$vm.__call_hook('onReady');
+    }
+  }
+}
+
+function parseComponent(vueComponentOptions) {var _initVueComponent3 =
+  initVueComponent(_vue.default, vueComponentOptions),_initVueComponent4 = _slicedToArray(_initVueComponent3, 2),VueComponent = _initVueComponent4[0],vueOptions = _initVueComponent4[1];
+
+  var properties = initProperties(vueOptions.props, false, vueOptions.__file);
+
+  var props = {
+    onVueInit: function onVueInit() {} };
+
+
+  Object.keys(properties).forEach(function (key) {
+    if (key !== 'vueSlots') {
+      props[key] = properties[key].value;
+    }
+  });
+
+  var componentOptions = {
+    mixins: initBehaviors(vueOptions, initBehavior),
+    data: initData(vueOptions, _vue.default.prototype),
+    props: props,
+    didMount: function didMount() {
+      initVm.call(this, VueComponent);
+
+      initSpecialMethods(this);
+
+      if (isComponent2) {
+        this.$vm._isMounted = true;
+        this.$vm.__call_hook('mounted');
+        this.$vm.__call_hook('onReady');
+      }
+    },
+    didUnmount: function didUnmount() {
+      this.$vm.$destroy();
+    },
+    methods: {
+      __r: handleRef,
+      __e: handleEvent,
+      __l: handleLink$1,
+      triggerEvent: triggerEvent } };
+
+
+
+  if (isComponent2) {
+    componentOptions.onInit = function onInit() {
+      initVm.call(this, VueComponent);
+    };
+    componentOptions.deriveDataFromProps = createObserver$1();
+  } else {
+    componentOptions.didUpdate = createObserver$1(true);
+  }
+
+  return componentOptions;
 }
 
 function createComponent(vueOptions) {
   {
-    return Component(parseComponent(vueOptions));
+    return my.defineComponent(parseComponent(vueOptions));
   }
 }
 
@@ -1426,14 +2031,14 @@ todos.forEach(function (todoApi) {
 canIUses.forEach(function (canIUseApi) {
   var apiName = protocols[canIUseApi] && protocols[canIUseApi].name ? protocols[canIUseApi].name :
   canIUseApi;
-  if (!wx.canIUse(apiName)) {
+  if (!my.canIUse(apiName)) {
     protocols[canIUseApi] = false;
   }
 });
 
 var uni = {};
 
-if (typeof Proxy !== 'undefined' && "mp-weixin" !== 'app-plus') {
+if (typeof Proxy !== 'undefined' && "mp-alipay" !== 'app-plus') {
   uni = new Proxy({}, {
     get: function get(target, name) {
       if (baseApi[name]) {
@@ -1453,10 +2058,10 @@ if (typeof Proxy !== 'undefined' && "mp-weixin" !== 'app-plus') {
       if (eventApi[name]) {
         return eventApi[name];
       }
-      if (!hasOwn(wx, name) && !hasOwn(protocols, name)) {
+      if (!hasOwn(my, name) && !hasOwn(protocols, name)) {
         return;
       }
-      return promisify(name, wrapper(name, wx[name]));
+      return promisify(name, wrapper(name, my[name]));
     } });
 
 } else {
@@ -1481,16 +2086,16 @@ if (typeof Proxy !== 'undefined' && "mp-weixin" !== 'app-plus') {
     uni[name] = promisify(name, api[name]);
   });
 
-  Object.keys(wx).forEach(function (name) {
-    if (hasOwn(wx, name) || hasOwn(protocols, name)) {
-      uni[name] = promisify(name, wrapper(name, wx[name]));
+  Object.keys(my).forEach(function (name) {
+    if (hasOwn(my, name) || hasOwn(protocols, name)) {
+      uni[name] = promisify(name, wrapper(name, my[name]));
     }
   });
 }
 
-wx.createApp = createApp;
-wx.createPage = createPage;
-wx.createComponent = createComponent;
+my.createApp = createApp;
+my.createPage = createPage;
+my.createComponent = createComponent;
 
 var uni$1 = uni;var _default =
 
@@ -6965,7 +7570,7 @@ function type(obj) {
 
 function flushCallbacks$1(vm) {
     if (vm.__next_tick_callbacks && vm.__next_tick_callbacks.length) {
-        if (Object({"NODE_ENV":"development","VUE_APP_PLATFORM":"mp-weixin","BASE_URL":"/"}).VUE_APP_DEBUG) {
+        if (Object({"NODE_ENV":"development","VUE_APP_PLATFORM":"mp-alipay","BASE_URL":"/"}).VUE_APP_DEBUG) {
             var mpInstance = vm.$scope;
             console.log('[' + (+new Date) + '][' + (mpInstance.is || mpInstance.route) + '][' + vm._uid +
                 ']:flushCallbacks[' + vm.__next_tick_callbacks.length + ']');
@@ -6986,14 +7591,14 @@ function nextTick$1(vm, cb) {
     //1.nextTick 之前 已 setData 且 setData 还未回调完成
     //2.nextTick 之前存在 render watcher
     if (!vm.__next_tick_pending && !hasRenderWatcher(vm)) {
-        if(Object({"NODE_ENV":"development","VUE_APP_PLATFORM":"mp-weixin","BASE_URL":"/"}).VUE_APP_DEBUG){
+        if(Object({"NODE_ENV":"development","VUE_APP_PLATFORM":"mp-alipay","BASE_URL":"/"}).VUE_APP_DEBUG){
             var mpInstance = vm.$scope;
             console.log('[' + (+new Date) + '][' + (mpInstance.is || mpInstance.route) + '][' + vm._uid +
                 ']:nextVueTick');
         }
         return nextTick(cb, vm)
     }else{
-        if(Object({"NODE_ENV":"development","VUE_APP_PLATFORM":"mp-weixin","BASE_URL":"/"}).VUE_APP_DEBUG){
+        if(Object({"NODE_ENV":"development","VUE_APP_PLATFORM":"mp-alipay","BASE_URL":"/"}).VUE_APP_DEBUG){
             var mpInstance$1 = vm.$scope;
             console.log('[' + (+new Date) + '][' + (mpInstance$1.is || mpInstance$1.route) + '][' + vm._uid +
                 ']:nextMPTick');
@@ -7069,7 +7674,7 @@ var patch = function(oldVnode, vnode) {
     });
     var diffData = diff(data, mpData);
     if (Object.keys(diffData).length) {
-      if (Object({"NODE_ENV":"development","VUE_APP_PLATFORM":"mp-weixin","BASE_URL":"/"}).VUE_APP_DEBUG) {
+      if (Object({"NODE_ENV":"development","VUE_APP_PLATFORM":"mp-alipay","BASE_URL":"/"}).VUE_APP_DEBUG) {
         console.log('[' + (+new Date) + '][' + (mpInstance.is || mpInstance.route) + '][' + this._uid +
           ']差量更新',
           JSON.stringify(diffData));
@@ -7610,7 +8215,7 @@ function normalizeComponent (
 var _vue = _interopRequireDefault(__webpack_require__(/*! vue */ 2));
 var _index = _interopRequireDefault(__webpack_require__(/*! ./pages/index/index.vue */ 12));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}
 createPage(_index.default);
-/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["createPage"]))
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-alipay/dist/index.js */ 1)["createPage"]))
 
 /***/ }),
 /* 12 */,
@@ -7768,7 +8373,7 @@ var getLifeStyle = function getLifeStyle(lat, lon) {var success = arguments.leng
     fail: fail });
 
 };exports.getLifeStyle = getLifeStyle;
-/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-alipay/dist/index.js */ 1)["default"]))
 
 /***/ }),
 /* 18 */
@@ -8136,4 +8741,4 @@ Snow;exports.default = _default;
 
 /***/ })
 ]]);
-//# sourceMappingURL=../../.sourcemap/mp-weixin/common/vendor.js.map
+//# sourceMappingURL=../../.sourcemap/mp-alipay/common/vendor.js.map

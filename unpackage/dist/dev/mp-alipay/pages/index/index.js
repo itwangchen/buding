@@ -1,4 +1,4 @@
-(global["webpackJsonp"] = global["webpackJsonp"] || []).push([["pages/index/index"],[
+(my["webpackJsonp"] = my["webpackJsonp"] || []).push([["pages/index/index"],[
 /* 0 */,
 /* 1 */,
 /* 2 */,
@@ -78,13 +78,8 @@ __webpack_require__.r(__webpack_exports__);
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
-var render = function() {
-  var _vm = this
-  var _h = _vm.$createElement
-  var _c = _vm._self._c || _h
-}
+var render = function () {}
 var staticRenderFns = []
-render._withStripped = true
 
 
 
@@ -113,7 +108,6 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 /* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;
-
 
 
 
@@ -497,10 +491,10 @@ var _Snow = _interopRequireDefault(__webpack_require__(/*! ../../class/Snow.js *
 //
 //
 //
-//
 var _default = { data: function data() {return { bgImgUrl: '/static/images/cloud.jpg', location: { x: '116.40', y: '39.9', name: '北京市' }, position: '正在获取位置...', todayData: {}, tomorrowData: {}, everyHourData: [], everyWeekData: [], airQuality: {}, liveWeather: {}, lifeStyle: [], lifeEnum: _utils.lifeIndexEnum, iconTypeObj: _utils.iconType, warmPrompt: '', width: 0, canvasHeight: 320, scole: 0, canvas_instance: null, apl: 0, rain_ins: null, snow_ins: null };}, onLoad: function onLoad() {var _this = this;uni.getSystemInfo({ success: function success(res) {console.log(res, '设备');_this.width = res.windowWidth;_this.scole = res.windowWidth / 375;_this.canvas_instance = uni.createCanvasContext('animation');} });this.getPosition();}, methods: { getPosition: function getPosition() {uni.getLocation({ type: 'gcj02', success: this.updateLocation, fail: function fail(err) {console.log(err);} });}, getData: function getData(lat, lon) {uni.showLoading({ title: '加载中' });Promise.all([this.getWeather(lat, lon), this.getAir(lat, lon), this.getHourWeather(lat, lon), this.getWeatherForWeek(lat, lon), this.getLifeIndex(lat, lon)]).then(function (res) {uni.hideLoading();uni.stopPullDownRefresh();});}, updateLocation: function updateLocation(res) {console.log(res, '获取用户位置');if (this.rain_ins) {this.rain_ins.stop();}if (this.snow_ins) {this.snow_ins.stop();}var x = res.latitude,y = res.longitude,name = res.name;var data = { location: { x: x, y: y, name: name || '北京市' }, rain_ins: null, snow_ins: null };this.data = data;this.getLocation(x, y, name);}, chooseLocation: function chooseLocation() {var _this2 = this;uni.chooseLocation({ success: function success(res) {var latitude = res.latitude,longitude = res.longitude;var _this2$data$location = _this2.data.location,x = _this2$data$location.x,y = _this2$data$location.y;if (latitude == x && longitude == y) {} else {_this2.updateLocation(res);}} });}, getLocation: function getLocation(lat, lon, name) {var _this3 = this;uni.showLoading({ title: "定位中", mask: true });(0, _api.getPosition)(lat, lon, function (res) {// console.log(res, 'formatted_addresses')
         if (res.statusCode == 200) {var response = res.data.result;var addr = response.formatted_addresses.recommend || response.rough;_this3.data.position = addr;uni.hideLoading();_this3.getData(lat, lon);}}, function (err) {console.log(err);uni.hideLoading();});}, getWeather: function getWeather(lat, lon) {var _this4 = this;if (!lat || !lon) {return;}(0, _api.getWeatherLive)(lat, lon, function (res) {// console.log(res, 'cond_code')
-        var data = res.data.HeWeather6[0].now;data.iconType = _this4.iconTypeObj[data.cond_code];var hour = new Date().getHours();var apl = 0;if (hour < 18 && hour >= 6) {apl = 0;} else {apl = 0.6;}_this4.liveWeather = data;_this4.apl = apl;var canvas_count = 0;var _this4$data = _this4.data,width = _this4$data.width,canvasHeight = _this4$data.canvasHeight,scole = _this4$data.scole;if (data.cond_code >= 300 && data.cond_code < 400) {canvas_count = _utils.rainType[data.cond_code];_this4.rain_ins = new _Rain.default(_this4.data.canvas_instance, width, canvasHeight * scole, { counts: canvas_count, speedCoefficient: 0.03 });_this4.rain_ins.start();} else if (data.cond_code >= 400 && data.cond_code < 500) {canvas_count = _utils.rainType[data.cond_code];_this4.setData({ snow_ins: new _Snow.default(_this4.canvas_instance, width, canvasHeight * scole, { counts: canvas_count, speedCoefficient: 0.03 }) });_this4.snow_ins.start();}}, function (err) {console.log(err);});}, getHourWeather: function getHourWeather(lat, lon) {var _this5 = this;if (!lat || !lon) {return;}(0, _api.getEveryHoursWeather)(lat, lon, function (res) {var data = res.data.HeWeather6[0].hourly;var arrData = [];data.forEach(function (item) {var d = {};d.time = item.time.split(" ")[1].split(":")[0];if (typeof d.time == 'string') {if (d.time.charAt(0) == '0') {var str = d.time;d.time = str.substring(1);}}
+        var data = res.data.HeWeather6[0].now;data.iconType = _this4.iconTypeObj[data.cond_code];var hour = new Date().getHours();var apl = 0;if (hour < 18 && hour >= 6) {apl = 0;} else {apl = 0.6;}_this4.liveWeather = data;_this4.apl = apl;var canvas_count = 0;var _this4$data = _this4.data,width = _this4$data.width,canvasHeight = _this4$data.canvasHeight,scole = _this4$data.scole;if (data.cond_code >= 300 && data.cond_code < 400) {canvas_count = _utils.rainType[data.cond_code];_this4.rain_ins = new _Rain.default(_this4.data.canvas_instance, width, canvasHeight * scole, { counts: canvas_count, speedCoefficient: 0.03 });_this4.rain_ins.start();} else if (data.cond_code >= 400 && data.cond_code < 500) {canvas_count = _utils.rainType[data.cond_code];_this4.setData({ snow_ins: new _Snow.default(_this4.canvas_instance, width, canvasHeight * scole, { counts: canvas_count, speedCoefficient: 0.03 }) });_this4.snow_ins.start();}}, function (err) {console.log(err);});}, getHourWeather: function getHourWeather(lat, lon) {var _this5 = this;if (!lat || !lon) {return;}(0, _api.getEveryHoursWeather)(lat, lon, function (res) {var data = res.data.HeWeather6[0].hourly;var arrData = [];data.forEach(function (item) {var d = {};d.time = item.time.split(" ")[1].split(":")[0];if (typeof d.time == 'string') {if (d.time.charAt(0) == '0') {var str = d.time;d.time = str.substring(1);}
+          }
           d.iconType = _this5.iconTypeObj[item.cond_code];
           d.tmp = item.tmp;
           arrData.push(d);
@@ -579,7 +573,7 @@ var _default = { data: function data() {return { bgImgUrl: '/static/images/cloud
 
       });
     } } };exports.default = _default;
-/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-alipay/dist/index.js */ 1)["default"]))
 
 /***/ }),
 /* 17 */,
@@ -614,4 +608,4 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ })
 ],[[11,"common/runtime","common/vendor"]]]);
-//# sourceMappingURL=../../../.sourcemap/mp-weixin/pages/index/index.js.map
+//# sourceMappingURL=../../../.sourcemap/mp-alipay/pages/index/index.js.map

@@ -1,0 +1,11 @@
+{
+  "pages": [
+    "pages/index/index"
+  ],
+  "window": {
+    "defaultTitle": "布丁天气",
+    "titleBarColor": "#272822",
+    "backgroundColor": "#fff"
+  },
+  "usingComponents": {}
+}
