@@ -1,4 +1,6 @@
 {
   "defaultTitle": "布丁天气",
-  "usingComponents": {}
+  "usingComponents": {
+    "myicon": "/components/icon"
+  }
 }

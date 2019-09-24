@@ -24,6 +24,7 @@ self.requirePlugin = AFAppX.requirePlugin;
 
 function success() {
 require('../../app');
+require('../../components/icon');
 require('../../pages/index/index');
 }
 self.bootstrapApp ? self.bootstrapApp({ success }) : success();

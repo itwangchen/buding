@@ -1,15 +1,19 @@
 <template>
-	<view class="container">
+	<view v-cloak class="container">
 		<view style='margin-top: -150rpx; padding-top: 150rpx;'>
 			<view class='animation-view'>
 				<view class='location' @click="chooseLocation">
-					<myicon class="icon" type="dingwei"></myicon>
+					<myicon class="icon" icon="dingwei"></myicon>
 					<text class='city'>{{position}}</text>
 				</view>
-				<canvas canvas-id='animation' style='width:100%;height:920rpx;position: absolute;top:100rpx'></canvas>
-				<view class="center-container">
-					<view class="flex-content-left">					
-						<view class="today-weather-view">
+				<!-- <canvas canvas-id='animation' style='width:100%;height:920rpx;position: absolute;top:100rpx'></canvas> -->
+				<view class="center-container" >
+					<view class="flex-content-left">
+						<!-- <view class="pm-number-view">
+							<text style="display:inline-block;width: 8rpx;border:8rpx solid {{airQuality.color}};border-radius: 6rpx;height: 22rpx;margin-right:12rpx;box-sizing:border-box"></text>
+							<text style="line-height: 60rpx;font-size:26rpx;color:white">{{airQuality.airText}} {{airQuality.aqi}}</text>
+						</view> -->
+						<view class="today-weather-view"  v-if="todayData.iconTypeBai">
 							<text style="text-align:center;font-size:32rpx;color:white;height:50rpx">
 								今 天
 							</text>
@@ -17,17 +21,17 @@
 								{{todayData.dateTxt}}
 							</text>
 							<view style="text-align:center;color:white">
-								<myicon class="icon" style="color: white; font-size:32rpx" :type="todayData.iconTypeBai"></myicon>
+								<myicon class="icon" style="color: white; font-size:32rpx" :icon="todayData.iconTypeBai"></myicon>
 								<text style='font-size:32rpx'>{{todayData.tmp_min}}/{{todayData.tmp_max}}</text>
 							</view>
 						</view>
 					</view>
-					<view class="flex-content-center">
+					<view class="flex-content-center" v-if="liveWeather.iconType">
 						<view class="temp-out-content">
 							<text class="today-temp">{{liveWeather.fl}}</text>
 							<text class="temp-symbol">℃</text>
 						</view>
-						<myicon class="icon" :type="liveWeather.iconType"></myicon>
+						<myicon class="icon"  :icon="liveWeather.iconType"></myicon>
 						<text class="today-temp-bottom">{{liveWeather.cond_txt}}</text>
 						<view class="temp-out-content__bottom">
 							<view class="flex-center__left">
@@ -42,7 +46,7 @@
 							</view>
 						</view>
 					</view>
-					<view class="flex-content-right">
+					<view class="flex-content-right" v-if="tomorrowData.iconTypeBai">
 						<view class="today-weather-view">
 							<text style="text-align:center;font-size:32rpx;color:white;height:50rpx">
 								明 天
@@ -51,7 +55,7 @@
 								{{tomorrowData.dateTxt}}
 							</text>
 							<view style="text-align:center;color:white">
-								<myicon class="icon" style="color: white;font-size:32rpx" type="tomorrowData.iconTypeBai"></myicon>
+								<myicon class="icon" style="color: white;font-size:32rpx"  :icon="tomorrowData.iconTypeBai"></myicon>
 								<text style='font-size:32rpx'>{{tomorrowData.tmp_min}}/{{tomorrowData.tmp_max}}</text>
 							</view>
 						</view>
@@ -59,30 +63,29 @@
 				</view>
 				<view class="all-day-list">
 					<scroll-view class="scroll-view_x" scroll-x style="overflow:hidden;width:auto;height:100%">
-						<view class="all-day-list-item" v-for="everyHourData" :key="item.time">
+						<view class="all-day-list-item" v-for="(item) in everyHourData" :key="item.time">
 							<view class="day-list-item">{{item.time}}点</view>
 							<view class="day-list-item">
-								<myicon style="color:white;font-size:36rpx" :type="item.iconType"></myicon>
+								<myicon style="color:white;font-size:36rpx" :icon="item.iconType"></myicon>
 							</view>
 							<view class="day-list-item">{{item.tmp}}°</view>
 						</view>
 					</scroll-view>
 				</view>
 			</view>
-
 			<view class="one-week-list">
-				<view class="one-week-list-item" v-for="everyWeekData" :key="item.weekday">
+				<view class="one-week-list-item" v-for="(item) in everyWeekData" :key="item.weekday">
 					<view class="week-list-item" style="font-size: 28rpx">
 						<view>{{item.weekday}}</view>
 						<view>{{item.date}}</view>
 					</view>
 					<view class="week-list-item">{{item.cond_txt_d}}</view>
 					<view class="week-list-item">
-						<myicon style="color:white;font-size:44rpx" :type="item.iconTypeBai"></myicon>
+						<myicon style="color:white;font-size:44rpx" :icon="item.iconTypeBai"></myicon>
 					</view>
 					<view class="week-list-item">{{item.tmp_min}}~{{item.tmp_max}}°</view>
 					<view class="week-list-item">
-						<myicon style="color:white;font-size:44rpx" :type="item.iconTypeYe"></myicon>
+						<myicon style="color:white;font-size:44rpx" :icon="item.iconTypeYe"></myicon>
 					</view>
 					<view class="week-list-item">{{item.cond_txt_n}}</view>
 					<view class="week-list-item" style="font-size: 28rpx">
@@ -169,15 +172,14 @@
 			</view>
 
 			<view class='last-view'>
-				<view class='last-view-item' v-for="lifeStyle" key="item.type">
+				<view class='last-view-item' v-for="(item) in lifeStyle" :key="item.type">
 					<view class='last-view-item-top'>{{lifeEnum[item.type]}}</view>
 					<view class='last-view-item-bottom'>{{item.brf}}</view>
 				</view>
 			</view>
 		</view>
+		<!-- </scroll-view> -->
 	</view>
-	<!-- index.wxml -->
-
 </template>
 
 <script>
@@ -186,10 +188,11 @@
 		getWeaterInfo,
 		getEveryHoursWeather,
 		getWeekWeather,
-		// getAirQuality,
+		getAirQuality,
 		getWeatherLive,
 		getLifeStyle
 	} from '../../uitl/api'
+	import myicon from '../../components/icon.vue'
 	import {
 		weekEnum as weekday,
 		airQuailtyLevel,
@@ -202,6 +205,9 @@
 	import Rain from '../../class/Rain.js'
 	import Snow from '../../class/Snow.js'
 	export default {
+		components: {
+			myicon
+		},
 		data() {
 			return {
 				bgImgUrl: '/static/images/cloud.jpg',
@@ -236,7 +242,7 @@
 					console.log(res, '设备');
 					this.width = res.windowWidth;
 					this.scole = res.windowWidth / 375;
-					this.canvas_instance = uni.createCanvasContext('animation');
+					// this.canvas_instance = uni.createCanvasContext('animation');
 				},
 			})
 			this.getPosition()
@@ -297,7 +303,7 @@
 						let {
 							x,
 							y
-						} = this.data.location
+						} = this.location
 						if (latitude == x && longitude == y) {
 
 						} else {
@@ -317,7 +323,7 @@
 					if (res.statusCode == 200) {
 						let response = res.data.result
 						let addr = response.formatted_addresses.recommend || response.rough
-						this.data.position = addr;
+						this.position = addr;
 						uni.hideLoading()
 						this.getData(lat, lon);
 					}
@@ -348,10 +354,10 @@
 						width,
 						canvasHeight,
 						scole
-					} = this.data
+					} = this
 					if (data.cond_code >= 300 && data.cond_code < 400) {
 						canvas_count = rainType[data.cond_code]
-						this.rain_ins = new Rain(this.data.canvas_instance, width, canvasHeight * scole, {
+						this.rain_ins = new Rain(this.canvas_instance, width, canvasHeight * scole, {
 							counts: canvas_count,
 							speedCoefficient: 0.03
 						})
@@ -416,8 +422,10 @@
 					data[1].weekday = '明 天'
 					data[2].weekday = '后 天'
 					this.everyWeekData = data;
-					this.todayData = data[0];
-					this.tomorrowData = data[1];
+					this.todayData = { ...data[0]
+					};
+					this.tomorrowData = { ...data[1]
+					};
 				}, fail => {
 
 				})
@@ -426,23 +434,22 @@
 				if (!lat || !lon) {
 					return
 				}
+
 				// getAirQuality(lat, lon, res => {
-				//   let data = res.data.HeWeather6[0].air_now_city
-				//   console.log(res,'getAirQuality')
-				//   let value = data.aqi
-				//   let keys = Object.keys(airQuailtyLevel)
-				//   for (let i = 0; i < keys.length; i++) {
-				//     if (Number(value) <= Number(keys[i])) {
-				//       data.color = arrForAirColor[i];
-				//       data.airText = airQuailtyLevel[keys[i]];
-				//       break;
-				//     }
-				//   }
-				//   this.setData({
-				//     airQuality: data
-				//   })
+				// 	let data = res.data.HeWeather6[0].air_now_city
+				// 	console.log(res, 'getAirQuality')
+				// 	let value = data.aqi
+				// 	let keys = Object.keys(airQuailtyLevel)
+				// 	for (let i = 0; i < keys.length; i++) {
+				// 		if (Number(value) <= Number(keys[i])) {
+				// 			data.color = arrForAirColor[i];
+				// 			data.airText = airQuailtyLevel[keys[i]];
+				// 			break;
+				// 		}
+				// 	}
+				// 	this.airQuality = data;
 				// }, err => {
-				//   console.log(err)
+				// 	console.log(err)
 				// })
 			},
 			getLifeIndex: function(lat, lon) {
@@ -471,29 +478,14 @@
 
 <style>
 	.container {
-		/* 	display: flex;
-		flex-direction: column;
-		align-items: center;
-		justify-container: center; */
-		background: #f6f6f6;
+		background-image: linear-gradient(to top,rgb(51, 8, 103)  0%,rgb(48, 207, 208)  100%);
 		display: flex;
 		flex-direction: column;
 		justify-content: flex-start;
-		background: url(/static/images/cloud.jpg);
-		width: 100%;
-		height: 100%;
-		font-family: -apple-system-font, Helvetica Neue, Helvetica, sans-serif;
-	}
-
-	page {
-		background: #f6f6f6;
-		width: 100%;
-		height: 100%;
-		font-family: -apple-system-font, Helvetica Neue, Helvetica, sans-serif;
+		display: block;
 	}
 
 	.location {
-		margin-top: 90rpx;
 		width: 100%;
 		font-size: 28rpx;
 		height: 80rpx;
@@ -521,30 +513,30 @@
 
 	.center-container {
 		display: flex;
-		margin-top: 100rpx;
-		justify-container: center;
+		/* margin-top: 100rpx; */
+		justify-content: center;
 		flex-direction: row;
 		height: 500rpx;
 		width: 100%;
 		box-sizing: border-box;
 	}
 
-	.flex-container-left,
-	.flex-container-right {
+	.flex-content-left,
+	.flex-content-right {
 		height: 100%;
 		width: 25%;
 		width: 200rpx;
 	}
 
-	.flex-container-center {
+	.flex-content-center {
 		height: 100%;
 		width: 50%;
 		text-align: center;
-		justify-container: center;
+		justify-content: center;
 		justify-items: center;
 	}
 
-	.temp-out-container {
+	.temp-out-content {
 		margin-top: 0rpx;
 		padding-left: 30rpx;
 	}
@@ -572,9 +564,9 @@
 		top: 30rpx;
 	}
 
-	.temp-out-container__bottom {
+	.temp-out-content__bottom {
 		display: flex;
-		justify-container: center;
+		justify-content: center;
 		flex-direction: column;
 		height: 170rpx;
 	}
@@ -630,7 +622,7 @@
 	.today-weather-view {
 		display: flex;
 		flex-direction: column;
-		justify-container: flex-start;
+		justify-content: flex-start;
 		margin-top: 265rpx;
 		justify-items: center;
 	}
@@ -649,7 +641,7 @@
 	}
 
 	.all-day-list-item {
-		width: 100rpx;
+		width: 93.75rpx;
 		height: 100%;
 		display: inline-block;
 		text-align: center;
@@ -670,7 +662,7 @@
 		margin-top: 30rpx;
 		display: flex;
 		flex-direction: row;
-		justify-container: center;
+		justify-content: center;
 		color: white;
 		font-size: 30rpx;
 	}
@@ -683,7 +675,7 @@
 		padding: 20rpx 0rpx;
 		display: flex;
 		flex-direction: column;
-		justify-container: center;
+		justify-content: center;
 		vertical-align: middle;
 	}
 
@@ -707,11 +699,11 @@
 	.live-index-item {
 		width: 100%;
 		height: 118rpx;
-		border-top: 1rpx solid #357588;
+		/* border-top: 1rpx solid #357588; */
 	}
 
 	.live-index-item:nth-last-child(1) {
-		border-bottom: 1rpx solid #357588;
+		/* border-bottom: 1rpx solid #357588; */
 	}
 
 	.live-index-item-left {

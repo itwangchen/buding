@@ -4,7 +4,7 @@
   ],
   "window": {
     "defaultTitle": "布丁天气",
-    "titleBarColor": "#272822",
+    "titleBarColor": "#30b8c4",
     "backgroundColor": "#fff"
   },
   "usingComponents": {}

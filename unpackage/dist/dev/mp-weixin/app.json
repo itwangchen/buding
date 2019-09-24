@@ -4,16 +4,15 @@
   ],
   "subPackages": [],
   "window": {
-    "navigationBarTextStyle": "black",
+    "navigationBarTextStyle": "white",
     "navigationBarTitleText": "布丁天气",
-    "navigationBarBackgroundColor": "#F8F8F8",
-    "backgroundColor": "#F8F8F8"
+    "navigationBarBackgroundColor": "#30b8c4",
+    "backgroundColor": "#fff"
   },
   "permission": {
     "scope.userLocation": {
       "desc": "获取用户位置为用户提供准确的天气服务"
     }
   },
-  "usingComponents": {},
-  "sitemapLocation": "sitemap70.json"
+  "usingComponents": {}
 }
