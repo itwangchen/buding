@@ -252,8 +252,9 @@
 		},
 		methods: {
 			getPosition: function() {
+				console.log(255);
 				uni.getLocation({
-					// type: 'gcj02',
+					type: 'gcj02',
 					success: this.updateLocation,
 					fail: err => {
 						console.log(err)
@@ -271,7 +272,7 @@
 				})
 			},
 			updateLocation: function(res) {
-				console.log(res, '获取用户位置');
+				console.log('获取用户位置');
 				if (this.rain_ins) {
 					this.rain_ins.stop()
 				}
@@ -293,8 +294,11 @@
 					snow_ins: null
 				};
 				this.data = data;
-				// this.getData(x, y);
-				this.getLocation(x, y, name);
+				this.getData(x, y);
+				
+				
+				
+				// this.getLocation(x, y, name);
 			},
 
 			chooseLocation: function() {
@@ -758,28 +762,32 @@
 		height: 41vw;
 		overflow: hidden;
 		overflow: hidden;
-		text-overflow:ellipsis;
+		text-overflow: ellipsis;
 		/* background: red; */
 		display: inline-block;
 		text-align: center;
 		vertical-align: middle;
 	}
-	.last-view-item .scroll-text{
+
+	.last-view-item .scroll-text {
 		font-size: 24rpx;
 		word-wrap: break-word;
-		white-space:normal;
+		white-space: normal;
 		animation: tipsScroll 0s linear infinite;
 		-webkit-animation: tipsScroll 0s linear infinite;
 	}
-	.last-view-item  .home-text {
+
+	.last-view-item .home-text {
 		line-height: 40rpx;
 	}
+
 	.last-view-item .out-scroll-text {
 		margin: 0 22rpx;
 		overflow-y: scroll;
 	}
-	.last-view-item .scroll-text text {
-	}
+
+	.last-view-item .scroll-text text {}
+
 	.last-view-item-top {
 		width: 100%;
 		height: 8vw;

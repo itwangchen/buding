@@ -332,29 +332,28 @@
 	height: 41vw;
 	overflow: hidden;
 	overflow: hidden;
-	-o-text-overflow:ellipsis;
-	   text-overflow:ellipsis;
+	-o-text-overflow: ellipsis;
+	   text-overflow: ellipsis;
 	/* background: red; */
 	display: inline-block;
 	text-align: center;
 	vertical-align: middle;
 }
-.last-view-item .scroll-text{
+.last-view-item .scroll-text {
 	font-size: 24rpx;
 	word-wrap: break-word;
-	white-space:normal;
+	white-space: normal;
 	animation: tipsScroll 0s linear infinite;
 	-webkit-animation: tipsScroll 0s linear infinite;
 }
-.last-view-item  .home-text {
+.last-view-item .home-text {
 	line-height: 40rpx;
 }
 .last-view-item .out-scroll-text {
 	margin: 0 22rpx;
 	overflow-y: scroll;
 }
-.last-view-item .scroll-text text {
-}
+.last-view-item .scroll-text text {}
 .last-view-item-top {
 	width: 100%;
 	height: 8vw;

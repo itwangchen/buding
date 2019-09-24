@@ -87,10 +87,13 @@
         "sdkConfigs" : {
             "maps" : {
                 "qqmap" : {
-                    "key" : "dbcd0bce164347c89de825bf1c1ecc03"
+                    "key" : "5EOBZ-JGBKX-SXY4O-TY2WO-E3X3H-IVFXX"
                 }
             }
         },
-        "domain" : "itwangchen.club"
+        "domain" : "itwangchen.club",
+        "devServer" : {
+            "https" : false
+        }
     }
 }
