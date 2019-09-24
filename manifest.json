@@ -77,5 +77,20 @@
     },
     "mp-toutiao" : {
         "usingComponents" : true
+    },
+    "h5" : {
+        "title" : "布丁天气",
+        "router" : {
+            "mode" : "hash",
+            "base" : ""
+        },
+        "sdkConfigs" : {
+            "maps" : {
+                "qqmap" : {
+                    "key" : "dbcd0bce164347c89de825bf1c1ecc03"
+                }
+            }
+        },
+        "domain" : "itwangchen.club"
     }
 }

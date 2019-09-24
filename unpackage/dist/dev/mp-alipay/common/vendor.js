@@ -8231,7 +8231,7 @@ createPage(_index.default);
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.getLifeStyle = exports.getWeatherLive = exports.getWeekWeather = exports.getEveryHoursWeather = exports.getWeaterInfo = exports.getPosition = void 0;var _config = _interopRequireDefault(__webpack_require__(/*! ../uitl/config */ 18));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}
+/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.getLifeStyle = exports.getWeatherLive = exports.getAirQuality = exports.getWeekWeather = exports.getEveryHoursWeather = exports.getWeaterInfo = exports.getPosition = void 0;var _config = _interopRequireDefault(__webpack_require__(/*! ../uitl/config */ 18));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}
 var mapKey = _config.default.MAP_API_KEY;
 var weatherKey = _config.default.WEATHER_API_KEY;
 // map url
@@ -8320,25 +8320,25 @@ exports.getEveryHoursWeather = getEveryHoursWeather;var getWeekWeather = functio
 };
 
 // 空气质量
-// export const getAirQuality = (lat, lon, success = {}, fail = {}) => {
-//   return uni.request({
-//     url: airQualityUrl,
-//     header: {
-//       'Content-Type': 'application/json'
-//     },
-//     data: {
-//       location: `${lat},${lon}`,
-//       lang: 'zh',
-//       unit: 'm',
-//       key: weatherKey
-//     },
-//     success,
-//     fail
-//   })
-// }
+exports.getWeekWeather = getWeekWeather;var getAirQuality = function getAirQuality(lat, lon) {var success = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : {};var fail = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : {};
+  return uni.request({
+    url: airQualityUrl,
+    header: {
+      'Content-Type': 'application/json' },
+
+    data: {
+      location: "".concat(lat, ",").concat(lon),
+      lang: 'zh',
+      unit: 'm',
+      key: weatherKey },
+
+    success: success,
+    fail: fail });
+
+};
 
 // 实况天气
-exports.getWeekWeather = getWeekWeather;var getWeatherLive = function getWeatherLive(lat, lon) {var success = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : {};var fail = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : {};
+exports.getAirQuality = getAirQuality;var getWeatherLive = function getWeatherLive(lat, lon) {var success = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : {};var fail = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : {};
   return uni.request({
     url: weatherLive,
     header: {

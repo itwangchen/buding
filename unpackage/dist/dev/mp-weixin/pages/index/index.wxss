@@ -1,8 +1,8 @@
 
 .container {
-	background-image: -webkit-gradient(linear,left bottom, left top,from(rgb(51, 8, 103)),to(rgb(48, 207, 208)));
-	background-image: -o-linear-gradient(bottom,rgb(51, 8, 103)  0%,rgb(48, 207, 208)  100%);
-	background-image: linear-gradient(to top,rgb(51, 8, 103)  0%,rgb(48, 207, 208)  100%);
+	background-image: -webkit-gradient(linear, left bottom, left top, from(rgb(51, 8, 103)), to(rgb(48, 207, 208)));
+	background-image: -o-linear-gradient(bottom, rgb(51, 8, 103) 0%, rgb(48, 207, 208) 100%);
+	background-image: linear-gradient(to top, rgb(51, 8, 103) 0%, rgb(48, 207, 208) 100%);
 	display: -webkit-box;
 	display: -webkit-flex;
 	display: -ms-flexbox;
@@ -328,12 +328,32 @@
 	color: white;
 }
 .last-view-item {
-	width: 25%;
-	height: 25vw;
+	width: 50%;
+	height: 41vw;
+	overflow: hidden;
+	overflow: hidden;
+	-o-text-overflow:ellipsis;
+	   text-overflow:ellipsis;
 	/* background: red; */
 	display: inline-block;
 	text-align: center;
 	vertical-align: middle;
+}
+.last-view-item .scroll-text{
+	font-size: 24rpx;
+	word-wrap: break-word;
+	white-space:normal;
+	animation: tipsScroll 0s linear infinite;
+	-webkit-animation: tipsScroll 0s linear infinite;
+}
+.last-view-item  .home-text {
+	line-height: 40rpx;
+}
+.last-view-item .out-scroll-text {
+	margin: 0 22rpx;
+	overflow-y: scroll;
+}
+.last-view-item .scroll-text text {
 }
 .last-view-item-top {
 	width: 100%;

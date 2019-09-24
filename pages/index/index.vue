@@ -7,13 +7,13 @@
 					<text class='city'>{{position}}</text>
 				</view>
 				<!-- <canvas canvas-id='animation' style='width:100%;height:920rpx;position: absolute;top:100rpx'></canvas> -->
-				<view class="center-container" >
+				<view class="center-container">
 					<view class="flex-content-left">
-						<!-- <view class="pm-number-view">
-							<text style="display:inline-block;width: 8rpx;border:8rpx solid {{airQuality.color}};border-radius: 6rpx;height: 22rpx;margin-right:12rpx;box-sizing:border-box"></text>
-							<text style="line-height: 60rpx;font-size:26rpx;color:white">{{airQuality.airText}} {{airQuality.aqi}}</text>
+						<!-- 	<view class="pm-number-view" v-if="airQuality.color">
+							<text :style="'display:inline-block;width: 8rpx;border:8rpx solid '+airQuality.color+';border-radius: 6rpx;height: 22rpx;margin-right:12rpx;box-sizing:border-box'"></text>
+							<text style="line-height: 60rpx;font-size:26rpx;color:white">{{airQuality.airText}}   {{airQuality.aqi}}</text>
 						</view> -->
-						<view class="today-weather-view"  v-if="todayData.iconTypeBai">
+						<view class="today-weather-view" v-if="todayData.iconTypeBai">
 							<text style="text-align:center;font-size:32rpx;color:white;height:50rpx">
 								今 天
 							</text>
@@ -31,7 +31,7 @@
 							<text class="today-temp">{{liveWeather.fl}}</text>
 							<text class="temp-symbol">℃</text>
 						</view>
-						<myicon class="icon"  :icon="liveWeather.iconType"></myicon>
+						<myicon class="icon" :icon="liveWeather.iconType"></myicon>
 						<text class="today-temp-bottom">{{liveWeather.cond_txt}}</text>
 						<view class="temp-out-content__bottom">
 							<view class="flex-center__left">
@@ -55,7 +55,7 @@
 								{{tomorrowData.dateTxt}}
 							</text>
 							<view style="text-align:center;color:white">
-								<myicon class="icon" style="color: white;font-size:32rpx"  :icon="tomorrowData.iconTypeBai"></myicon>
+								<myicon class="icon" style="color: white;font-size:32rpx" :icon="tomorrowData.iconTypeBai"></myicon>
 								<text style='font-size:32rpx'>{{tomorrowData.tmp_min}}/{{tomorrowData.tmp_max}}</text>
 							</view>
 						</view>
@@ -175,6 +175,9 @@
 				<view class='last-view-item' v-for="(item) in lifeStyle" :key="item.type">
 					<view class='last-view-item-top'>{{lifeEnum[item.type]}}</view>
 					<view class='last-view-item-bottom'>{{item.brf}}</view>
+					<view class="home-text out-scroll-text">
+						<text class='scroll-text'>{{item.txt}}</text>
+					</view>
 				</view>
 			</view>
 		</view>
@@ -250,7 +253,7 @@
 		methods: {
 			getPosition: function() {
 				uni.getLocation({
-					type: 'gcj02',
+					// type: 'gcj02',
 					success: this.updateLocation,
 					fail: err => {
 						console.log(err)
@@ -290,6 +293,7 @@
 					snow_ins: null
 				};
 				this.data = data;
+				// this.getData(x, y);
 				this.getLocation(x, y, name);
 			},
 
@@ -319,7 +323,7 @@
 					mask: true
 				})
 				getPosition(lat, lon, (res) => {
-					// console.log(res, 'formatted_addresses')
+					console.log(res, 'formatted_addresses')
 					if (res.statusCode == 200) {
 						let response = res.data.result
 						let addr = response.formatted_addresses.recommend || response.rough
@@ -434,10 +438,9 @@
 				if (!lat || !lon) {
 					return
 				}
-
 				// getAirQuality(lat, lon, res => {
 				// 	let data = res.data.HeWeather6[0].air_now_city
-				// 	console.log(res, 'getAirQuality')
+				// 	console.log(res.data, 'getAirQuality')
 				// 	let value = data.aqi
 				// 	let keys = Object.keys(airQuailtyLevel)
 				// 	for (let i = 0; i < keys.length; i++) {
@@ -448,6 +451,7 @@
 				// 		}
 				// 	}
 				// 	this.airQuality = data;
+				// 	console.log(data,'空气质量')
 				// }, err => {
 				// 	console.log(err)
 				// })
@@ -461,12 +465,15 @@
 					let result = res.data.HeWeather6[0].lifestyle
 					let keys = Object.keys(lifeIndexEnum)
 					keys.forEach(item => {
-						data.push(result.filter(v => {
+						var filterItem = result.filter(v => {
 							return v.type == item;
-						})[0])
+						})
+						if (filterItem.length != 0) {
+							data.push(filterItem[0])
+						}
 					})
-					this.lifeStyle = data,
-						this.warmPrompt = data[0].txt
+					this.lifeStyle = data
+					this.warmPrompt = data[0].txt
 				}, err => {
 
 				})
@@ -478,7 +485,7 @@
 
 <style>
 	.container {
-		background-image: linear-gradient(to top,rgb(51, 8, 103)  0%,rgb(48, 207, 208)  100%);
+		background-image: linear-gradient(to top, rgb(51, 8, 103) 0%, rgb(48, 207, 208) 100%);
 		display: flex;
 		flex-direction: column;
 		justify-content: flex-start;
@@ -747,14 +754,32 @@
 	}
 
 	.last-view-item {
-		width: 25%;
-		height: 25vw;
+		width: 50%;
+		height: 41vw;
+		overflow: hidden;
+		overflow: hidden;
+		text-overflow:ellipsis;
 		/* background: red; */
 		display: inline-block;
 		text-align: center;
 		vertical-align: middle;
 	}
-
+	.last-view-item .scroll-text{
+		font-size: 24rpx;
+		word-wrap: break-word;
+		white-space:normal;
+		animation: tipsScroll 0s linear infinite;
+		-webkit-animation: tipsScroll 0s linear infinite;
+	}
+	.last-view-item  .home-text {
+		line-height: 40rpx;
+	}
+	.last-view-item .out-scroll-text {
+		margin: 0 22rpx;
+		overflow-y: scroll;
+	}
+	.last-view-item .scroll-text text {
+	}
 	.last-view-item-top {
 		width: 100%;
 		height: 8vw;

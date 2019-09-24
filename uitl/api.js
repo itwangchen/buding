@@ -87,22 +87,22 @@ export const getWeekWeather = (lat, lon, success = {}, fail = {}) => {
 }
 
 // 空气质量
-// export const getAirQuality = (lat, lon, success = {}, fail = {}) => {
-//   return uni.request({
-//     url: airQualityUrl,
-//     header: {
-//       'Content-Type': 'application/json'
-//     },
-//     data: {
-//       location: `${lat},${lon}`,
-//       lang: 'zh',
-//       unit: 'm',
-//       key: weatherKey
-//     },
-//     success,
-//     fail
-//   })
-// }
+export const getAirQuality = (lat, lon, success = {}, fail = {}) => {
+  return uni.request({
+    url: airQualityUrl,
+    header: {
+      'Content-Type': 'application/json'
+    },
+    data: {
+      location: `${lat},${lon}`,
+      lang: 'zh',
+      unit: 'm',
+      key: weatherKey
+    },
+    success,
+    fail
+  })
+}
 
 // 实况天气
 export const getWeatherLive = (lat, lon, success = {}, fail = {}) => {

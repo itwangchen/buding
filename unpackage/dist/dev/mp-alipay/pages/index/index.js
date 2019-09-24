@@ -297,6 +297,9 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+
+
+
 var _api = __webpack_require__(/*! ../../uitl/api */ 17);
 
 
@@ -364,7 +367,7 @@ var _Snow = _interopRequireDefault(__webpack_require__(/*! ../../class/Snow.js *
   methods: {
     getPosition: function getPosition() {
       uni.getLocation({
-        type: 'gcj02',
+        // type: 'gcj02',
         success: this.updateLocation,
         fail: function fail(err) {
           console.log(err);
@@ -404,6 +407,7 @@ var _Snow = _interopRequireDefault(__webpack_require__(/*! ../../class/Snow.js *
         snow_ins: null };
 
       this.data = data;
+      // this.getData(x, y);
       this.getLocation(x, y, name);
     },
 
@@ -433,7 +437,7 @@ var _Snow = _interopRequireDefault(__webpack_require__(/*! ../../class/Snow.js *
         mask: true });
 
       (0, _api.getPosition)(lat, lon, function (res) {
-        // console.log(res, 'formatted_addresses')
+        console.log(res, 'formatted_addresses');
         if (res.statusCode == 200) {
           var response = res.data.result;
           var addr = response.formatted_addresses.recommend || response.rough;
@@ -548,10 +552,9 @@ var _Snow = _interopRequireDefault(__webpack_require__(/*! ../../class/Snow.js *
       if (!lat || !lon) {
         return;
       }
-
       // getAirQuality(lat, lon, res => {
       // 	let data = res.data.HeWeather6[0].air_now_city
-      // 	console.log(res, 'getAirQuality')
+      // 	console.log(res.data, 'getAirQuality')
       // 	let value = data.aqi
       // 	let keys = Object.keys(airQuailtyLevel)
       // 	for (let i = 0; i < keys.length; i++) {
@@ -562,6 +565,7 @@ var _Snow = _interopRequireDefault(__webpack_require__(/*! ../../class/Snow.js *
       // 		}
       // 	}
       // 	this.airQuality = data;
+      // 	console.log(data,'空气质量')
       // }, err => {
       // 	console.log(err)
       // })
@@ -575,11 +579,14 @@ var _Snow = _interopRequireDefault(__webpack_require__(/*! ../../class/Snow.js *
         var result = res.data.HeWeather6[0].lifestyle;
         var keys = Object.keys(_utils.lifeIndexEnum);
         keys.forEach(function (item) {
-          data.push(result.filter(function (v) {
+          var filterItem = result.filter(function (v) {
             return v.type == item;
-          })[0]);
+          });
+          if (filterItem.length != 0) {
+            data.push(filterItem[0]);
+          }
         });
-        _this7.lifeStyle = data,
+        _this7.lifeStyle = data;
         _this7.warmPrompt = data[0].txt;
       }, function (err) {
 
