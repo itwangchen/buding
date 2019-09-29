@@ -285,7 +285,7 @@
 				})
 			},
 			updateLocation: function(res) {
-				console.log('获取用户位置');
+				console.log(res, '获取用户位置');
 				if (this.rain_ins) {
 					this.rain_ins.stop()
 				}
@@ -308,9 +308,6 @@
 				};
 				this.data = data;
 				// this.getData(x, y);
-
-
-
 				this.getLocation(x, y, name);
 			},
 
@@ -339,35 +336,49 @@
 					title: "定位中",
 					mask: true
 				})
-
-				//#ifdef H5 
-				console.log(lat, lon, 'h5判断调用');
-				initialize(lat, lon, (res) => {
-					console.log(res, 'bd返回');
-					var addr = res.address || name;
-					this.position = addr;
-					uni.hideLoading()
-					this.getData(lat, lon);
-				});
-				//#endif
-
-				//#ifndef H5
-				console.log(lat, lon, '非h5判断调用');
-				getPosition(lat, lon, (res) => {
-					console.log(res, 'formatted_addresses')
-					if (res.statusCode == 200) {
-						let response = res.data.result
-						let addr = response.formatted_addresses.recommend || response.rough
-						this.position = addr;
-						uni.hideLoading()
-						this.getData(lat, lon);
-					}
-				}, (err => {
-					console.log(err)
-					uni.hideLoading()
-				}))
-				//#endif
-
+				// 
+				// 				//#ifdef H5 
+				// 				console.log(lat, lon, 'h5判断调用');
+				// 				initialize(lat, lon, (res) => {
+				// 					console.log(res, 'bd返回');
+				// 					var addr = res.address || name;
+				// 					this.position = addr;
+				// 					uni.hideLoading()
+				// 					this.getData(lat, lon);
+				// 				});
+				// 				//#endif
+				// 
+				// 				//#ifndef H5
+				// 				console.log(lat, lon, '非h5判断调用');
+				// 				getPosition(lat, lon, (res) => {
+				// 					console.log(res, 'formatted_addresses')
+				// 					if (res.statusCode == 200) {
+				// 						let response = res.data.result
+				// 						let addr = response.formatted_addresses.recommend || response.rough
+				// 						this.position = addr;
+				// 						uni.hideLoading()
+				// 						this.getData(lat, lon);
+				// 					}
+				// 				}, (err => {
+				// 					console.log(err)
+				// 					uni.hideLoading()
+				// 				}))
+				// 				//#endif
+				// getPosition(lat, lon, (res) => {
+				// 	console.log(res, 'formatted_addresses')
+				// 	if (res.statusCode == 200) {
+				// 		let response = res.data.result
+				// 		let addr = response.formatted_addresses.recommend || response.rough
+				// 		this.position = addr;
+				// 		uni.hideLoading()
+				// 		this.getData(lat, lon);
+				// 	}
+				// }, (err => {
+				// 	console.log(err)
+				// 	uni.hideLoading()
+				// }))
+				this.position = name?;
+				this.getData(lat, lon);
 			},
 			getWeather: function(lat, lon) {
 				if (!lat || !lon) {
