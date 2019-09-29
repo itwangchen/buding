@@ -91,9 +91,6 @@
                 }
             }
         },
-        "domain" : "itwangchen.club",
-        "devServer" : {
-            "https" : false
-        }
+        "domain" : "itwangchen.club"
     }
 }

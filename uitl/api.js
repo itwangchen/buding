@@ -15,6 +15,8 @@ const airQualityUrl = 'https://free-api.heweather.net/s6/air/now'
 const weatherLive = 'https://free-api.heweather.net/s6/weather/now'
 // 生活指数
 const lifeStyle = 'https://free-api.heweather.net/s6/weather/lifestyle'
+
+
 // 根据当前位置的坐标反得到当前位置的详细信息
 export const getPosition = (lat, lon, success = {}, fail = {}) => {
   return uni.request({

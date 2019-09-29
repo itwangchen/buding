@@ -1,7 +1,12 @@
 <script>
+	import {loadScript} from './uitl/utils'
 	export default {
 		onLaunch: function() {
 			console.log('App Launch')
+			//#ifdef H5
+				console.log(loadScript,'插入百度地图');
+				loadScript();
+			//#endif			
 		},
 		onShow: function() {
 			console.log('App Show')

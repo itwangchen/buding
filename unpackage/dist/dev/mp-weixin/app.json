@@ -14,5 +14,6 @@
       "desc": "获取用户位置为用户提供准确的天气服务"
     }
   },
-  "usingComponents": {}
+  "usingComponents": {},
+  "sitemapLocation": "sitemap24.json"
 }
