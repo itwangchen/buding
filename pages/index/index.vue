@@ -244,15 +244,6 @@
 			}
 		},
 		onLoad() {
-
-		},
-		onShow() {
-			//#ifdef H5
-			var script = document.createElement('script');
-			script.src = "https://api.map.baidu.com/api?v=2.0&ak=" + bdMapKey;
-			document.body.appendChild(script);
-			// loadScript();
-			//#endif	
 			uni.getSystemInfo({
 				success: (res) => {
 					console.log(res, '设备');
@@ -262,12 +253,18 @@
 				},
 			})
 			this.getPosition()
+
+		},
+		onShow() {
 		},
 		methods: {
 			getPosition: function() {
 				console.log(255);
 				uni.getLocation({
+					// #ifdef MP-WEIXIN
+					// type: 'wgs84',
 					type: 'gcj02',
+					// #endif
 					success: this.updateLocation,
 					fail: err => {
 						console.log(err, 'uni.getLocation')
@@ -325,60 +322,35 @@
 						if (latitude == x && longitude == y) {
 
 						} else {
-							this.updateLocation(res)
+							// this.updateLocation(res)
+							this.getLocation(latitude,longitude);
+							console.log(res,'选择地址 ');
+							// this.getData(lat, lon);
 						}
 					}
 				})
 			},
 
-			getLocation: function(lat, lon, name) {
+			getLocation: function(lat, lon) {
 				uni.showLoading({
 					title: "定位中",
 					mask: true
-				})
-				// 
-				// 				//#ifdef H5 
-				// 				console.log(lat, lon, 'h5判断调用');
-				// 				initialize(lat, lon, (res) => {
-				// 					console.log(res, 'bd返回');
-				// 					var addr = res.address || name;
-				// 					this.position = addr;
-				// 					uni.hideLoading()
-				// 					this.getData(lat, lon);
-				// 				});
-				// 				//#endif
-				// 
-				// 				//#ifndef H5
-				// 				console.log(lat, lon, '非h5判断调用');
-				// 				getPosition(lat, lon, (res) => {
-				// 					console.log(res, 'formatted_addresses')
-				// 					if (res.statusCode == 200) {
-				// 						let response = res.data.result
-				// 						let addr = response.formatted_addresses.recommend || response.rough
-				// 						this.position = addr;
-				// 						uni.hideLoading()
-				// 						this.getData(lat, lon);
-				// 					}
-				// 				}, (err => {
-				// 					console.log(err)
-				// 					uni.hideLoading()
-				// 				}))
-				// 				//#endif
-				// getPosition(lat, lon, (res) => {
-				// 	console.log(res, 'formatted_addresses')
-				// 	if (res.statusCode == 200) {
-				// 		let response = res.data.result
-				// 		let addr = response.formatted_addresses.recommend || response.rough
-				// 		this.position = addr;
-				// 		uni.hideLoading()
-				// 		this.getData(lat, lon);
-				// 	}
-				// }, (err => {
-				// 	console.log(err)
-				// 	uni.hideLoading()
-				// }))
-				this.position = name?;
-				this.getData(lat, lon);
+				})				
+				getPosition(lat, lon, (res) => {
+					console.log(res, 'formatted_addresses')
+					if (res.statusCode == 200) {
+						let response = res.data.result
+						let addr = response.formatted_addresses.recommend || response.rough
+						this.position = addr;
+						uni.hideLoading()
+						this.getData(lat, lon);
+					}
+				}, (err => {
+					console.log(err)
+					uni.hideLoading()
+				}))
+				// this.position = name;
+				// this.getData(lat, lon);
 			},
 			getWeather: function(lat, lon) {
 				if (!lat || !lon) {

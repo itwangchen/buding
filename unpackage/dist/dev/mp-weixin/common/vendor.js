@@ -753,7 +753,7 @@ function initData(vueOptions, context) {
     try {
       data = data.call(context); // 支持 Vue.prototype 上挂的数据
     } catch (e) {
-      if (Object({"NODE_ENV":"development","VUE_APP_PLATFORM":"mp-weixin","BASE_URL":"/"}).VUE_APP_DEBUG) {
+      if (Object({"VUE_APP_PLATFORM":"mp-weixin","NODE_ENV":"development","BASE_URL":"/"}).VUE_APP_DEBUG) {
         console.warn('根据 Vue 的 data 函数初始化小程序 data 失败，请尽量确保 data 函数中不访问 vm 对象，否则可能影响首次数据渲染速度。', data);
       }
     }
@@ -6965,7 +6965,7 @@ function type(obj) {
 
 function flushCallbacks$1(vm) {
     if (vm.__next_tick_callbacks && vm.__next_tick_callbacks.length) {
-        if (Object({"NODE_ENV":"development","VUE_APP_PLATFORM":"mp-weixin","BASE_URL":"/"}).VUE_APP_DEBUG) {
+        if (Object({"VUE_APP_PLATFORM":"mp-weixin","NODE_ENV":"development","BASE_URL":"/"}).VUE_APP_DEBUG) {
             var mpInstance = vm.$scope;
             console.log('[' + (+new Date) + '][' + (mpInstance.is || mpInstance.route) + '][' + vm._uid +
                 ']:flushCallbacks[' + vm.__next_tick_callbacks.length + ']');
@@ -6986,14 +6986,14 @@ function nextTick$1(vm, cb) {
     //1.nextTick 之前 已 setData 且 setData 还未回调完成
     //2.nextTick 之前存在 render watcher
     if (!vm.__next_tick_pending && !hasRenderWatcher(vm)) {
-        if(Object({"NODE_ENV":"development","VUE_APP_PLATFORM":"mp-weixin","BASE_URL":"/"}).VUE_APP_DEBUG){
+        if(Object({"VUE_APP_PLATFORM":"mp-weixin","NODE_ENV":"development","BASE_URL":"/"}).VUE_APP_DEBUG){
             var mpInstance = vm.$scope;
             console.log('[' + (+new Date) + '][' + (mpInstance.is || mpInstance.route) + '][' + vm._uid +
                 ']:nextVueTick');
         }
         return nextTick(cb, vm)
     }else{
-        if(Object({"NODE_ENV":"development","VUE_APP_PLATFORM":"mp-weixin","BASE_URL":"/"}).VUE_APP_DEBUG){
+        if(Object({"VUE_APP_PLATFORM":"mp-weixin","NODE_ENV":"development","BASE_URL":"/"}).VUE_APP_DEBUG){
             var mpInstance$1 = vm.$scope;
             console.log('[' + (+new Date) + '][' + (mpInstance$1.is || mpInstance$1.route) + '][' + vm._uid +
                 ']:nextMPTick');
@@ -7069,7 +7069,7 @@ var patch = function(oldVnode, vnode) {
     });
     var diffData = diff(data, mpData);
     if (Object.keys(diffData).length) {
-      if (Object({"NODE_ENV":"development","VUE_APP_PLATFORM":"mp-weixin","BASE_URL":"/"}).VUE_APP_DEBUG) {
+      if (Object({"VUE_APP_PLATFORM":"mp-weixin","NODE_ENV":"development","BASE_URL":"/"}).VUE_APP_DEBUG) {
         console.log('[' + (+new Date) + '][' + (mpInstance.is || mpInstance.route) + '][' + this._uid +
           ']差量更新',
           JSON.stringify(diffData));
@@ -7806,6 +7806,367 @@ var _vue = _interopRequireDefault(__webpack_require__(/*! vue */ 2));
 var _index = _interopRequireDefault(__webpack_require__(/*! ./pages/index/index.vue */ 14));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}
 createPage(_index.default);
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["createPage"]))
+
+/***/ }),
+/* 14 */,
+/* 15 */,
+/* 16 */,
+/* 17 */,
+/* 18 */,
+/* 19 */
+/*!***********************************************!*\
+  !*** D:/code/uniappdev/uniappdev/uitl/api.js ***!
+  \***********************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.getLifeStyle = exports.getWeatherLive = exports.getAirQuality = exports.getWeekWeather = exports.getEveryHoursWeather = exports.getWeaterInfo = exports.getPosition = void 0;var _config = _interopRequireDefault(__webpack_require__(/*! ../uitl/config */ 9));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}
+var mapKey = _config.default.MAP_API_KEY;
+var weatherKey = _config.default.WEATHER_API_KEY;
+// map url
+var locationUrl = 'https://apis.map.qq.com/ws/geocoder/v1/';
+//天气url
+var weatherUrl = 'https://free-api.heweather.net/s6/weather/forecast';
+//24小时内 每小时
+var everyhoursUrl = 'https://free-api.heweather.net/s6/weather/hourly';
+// 一周内
+var everyWeekUrl = 'https://free-api.heweather.net/s6/weather/forecast';
+//空气质量
+var airQualityUrl = 'https://free-api.heweather.net/s6/air/now';
+// 实况天气
+var weatherLive = 'https://free-api.heweather.net/s6/weather/now';
+// 生活指数
+var lifeStyle = 'https://free-api.heweather.net/s6/weather/lifestyle';
+
+
+// 根据当前位置的坐标反得到当前位置的详细信息
+var getPosition = function getPosition(lat, lon) {var success = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : {};var fail = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : {};
+  return uni.request({
+    url: locationUrl,
+    header: {
+      'Content-Type': 'application/json' },
+
+    data: {
+      location: "".concat(lat, ",").concat(lon),
+      key: mapKey,
+      get_poi: 0 },
+
+    success: success,
+    fail: fail });
+
+};
+
+// 根据location得到天气信息
+exports.getPosition = getPosition;var getWeaterInfo = function getWeaterInfo(lat, lon) {var success = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : {};var fail = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : {};
+  return uni.request({
+    url: weatherUrl,
+    header: {
+      'Content-Type': 'application/json' },
+
+    data: {
+      location: "".concat(lat, ",").concat(lon),
+      lang: 'zh',
+      unit: 'm',
+      key: weatherKey },
+
+    success: success,
+    fail: fail });
+
+};
+
+// 根据location信息得到24小逐小时天气情况
+exports.getWeaterInfo = getWeaterInfo;var getEveryHoursWeather = function getEveryHoursWeather(lat, lon) {var success = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : {};var fail = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : {};
+  return uni.request({
+    url: everyhoursUrl,
+    header: {
+      'Content-Type': 'application/json' },
+
+    data: {
+      location: "".concat(lat, ",").concat(lon),
+      lang: 'zh',
+      unit: 'm',
+      key: weatherKey },
+
+    success: success,
+    fail: fail });
+
+};
+
+// 根据location信息得到一周内天气情况
+exports.getEveryHoursWeather = getEveryHoursWeather;var getWeekWeather = function getWeekWeather(lat, lon) {var success = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : {};var fail = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : {};
+  return uni.request({
+    url: everyWeekUrl,
+    header: {
+      'Content-Type': 'application/json' },
+
+    data: {
+      location: "".concat(lat, ",").concat(lon),
+      lang: 'zh',
+      unit: 'm',
+      key: weatherKey },
+
+    success: success,
+    fail: fail });
+
+};
+
+// 空气质量
+exports.getWeekWeather = getWeekWeather;var getAirQuality = function getAirQuality(lat, lon) {var success = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : {};var fail = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : {};
+  return uni.request({
+    url: airQualityUrl,
+    header: {
+      'Content-Type': 'application/json' },
+
+    data: {
+      location: "".concat(lat, ",").concat(lon),
+      lang: 'zh',
+      unit: 'm',
+      key: weatherKey },
+
+    success: success,
+    fail: fail });
+
+};
+
+// 实况天气
+exports.getAirQuality = getAirQuality;var getWeatherLive = function getWeatherLive(lat, lon) {var success = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : {};var fail = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : {};
+  return uni.request({
+    url: weatherLive,
+    header: {
+      'Content-Type': 'application/json' },
+
+    data: {
+      location: "".concat(lat, ",").concat(lon),
+      lang: 'zh',
+      unit: 'm',
+      key: weatherKey },
+
+    success: success,
+    fail: fail });
+
+};
+
+// 生活指数
+exports.getWeatherLive = getWeatherLive;
+var getLifeStyle = function getLifeStyle(lat, lon) {var success = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : {};var fail = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : {};
+  return uni.request({
+    url: lifeStyle,
+    header: {
+      'Content-Type': 'application/json' },
+
+    data: {
+      location: "".concat(lat, ",").concat(lon),
+      lang: 'zh',
+      unit: 'm',
+      key: weatherKey },
+
+    success: success,
+    fail: fail });
+
+};exports.getLifeStyle = getLifeStyle;
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
+
+/***/ }),
+/* 20 */
+/*!*************************************************!*\
+  !*** D:/code/uniappdev/uniappdev/class/Rain.js ***!
+  \*************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _Weather2 = _interopRequireDefault(__webpack_require__(/*! ./Weather.js */ 21));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}function _classCallCheck(instance, Constructor) {if (!(instance instanceof Constructor)) {throw new TypeError("Cannot call a class as a function");}}function _defineProperties(target, props) {for (var i = 0; i < props.length; i++) {var descriptor = props[i];descriptor.enumerable = descriptor.enumerable || false;descriptor.configurable = true;if ("value" in descriptor) descriptor.writable = true;Object.defineProperty(target, descriptor.key, descriptor);}}function _createClass(Constructor, protoProps, staticProps) {if (protoProps) _defineProperties(Constructor.prototype, protoProps);if (staticProps) _defineProperties(Constructor, staticProps);return Constructor;}function _possibleConstructorReturn(self, call) {if (call && (typeof call === "object" || typeof call === "function")) {return call;}return _assertThisInitialized(self);}function _assertThisInitialized(self) {if (self === void 0) {throw new ReferenceError("this hasn't been initialised - super() hasn't been called");}return self;}function _getPrototypeOf(o) {_getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) {return o.__proto__ || Object.getPrototypeOf(o);};return _getPrototypeOf(o);}function _inherits(subClass, superClass) {if (typeof superClass !== "function" && superClass !== null) {throw new TypeError("Super expression must either be null or a function");}subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } });if (superClass) _setPrototypeOf(subClass, superClass);}function _setPrototypeOf(o, p) {_setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) {o.__proto__ = p;return o;};return _setPrototypeOf(o, p);}var
+Rain = /*#__PURE__*/function (_Weather) {_inherits(Rain, _Weather);function Rain() {_classCallCheck(this, Rain);return _possibleConstructorReturn(this, _getPrototypeOf(Rain).apply(this, arguments));}_createClass(Rain, [{ key: "_init", value: function _init()
+    {
+      this.context.setLineWidth(2);
+      this.context.setLineCap('round');
+      var height = this.height;
+      var width = this.width;
+      var counts = this.opt.counts || 100;
+      var speedCoefficient = this.opt.speedCoefficient;
+      var speed = speedCoefficient * height;
+      this.animationArray = [];
+      var arr = this.animationArray;
+
+      for (var i = 0; i < counts; i++) {
+        var d = {
+          x: Math.random() * width,
+          y: Math.random() * height,
+          len: 2 * Math.random(),
+          xs: -1,
+          ys: 10 * Math.random() + speed,
+          color: 'rgba(255,255,255,0.1)' };
+
+        arr.push(d);
+      }
+    } }, { key: "_drawing", value: function _drawing()
+
+    {
+      var arr = this.animationArray;
+      var ctx = this.context;
+      ctx.clearRect(0, 0, this.width, this.height);
+      for (var i = 0; i < arr.length; i++) {
+        var s = arr[i];
+        ctx.beginPath();
+        ctx.moveTo(s.x, s.y);
+        ctx.lineTo(s.x + s.len * s.xs, s.y + s.len * s.ys);
+        ctx.setStrokeStyle(s.color);
+        ctx.stroke();
+      }
+      ctx.draw();
+      return this.update();
+    } }, { key: "update", value: function update()
+
+    {
+      var width = this.width;
+      var height = this.height;
+      var arr = this.animationArray;
+      for (var i = 0; i < arr.length; i++) {
+        var s = arr[i];
+        s.x = s.x + s.xs;
+        s.y = s.y + s.ys;
+        if (s.x > width || s.y > height) {
+          s.x = Math.random() * width;
+          s.y = -10;
+        }
+      }
+    } }]);return Rain;}(_Weather2.default);var _default =
+
+
+Rain;exports.default = _default;
+
+/***/ }),
+/* 21 */
+/*!****************************************************!*\
+  !*** D:/code/uniappdev/uniappdev/class/Weather.js ***!
+  \****************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;function _classCallCheck(instance, Constructor) {if (!(instance instanceof Constructor)) {throw new TypeError("Cannot call a class as a function");}}function _defineProperties(target, props) {for (var i = 0; i < props.length; i++) {var descriptor = props[i];descriptor.enumerable = descriptor.enumerable || false;descriptor.configurable = true;if ("value" in descriptor) descriptor.writable = true;Object.defineProperty(target, descriptor.key, descriptor);}}function _createClass(Constructor, protoProps, staticProps) {if (protoProps) _defineProperties(Constructor.prototype, protoProps);if (staticProps) _defineProperties(Constructor, staticProps);return Constructor;}
+var STOP_ANIMATION = 'stop';
+var START_ANIMATION = 'start';var
+
+Weather = /*#__PURE__*/function () {
+  function Weather(context, width, height) {var option = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : {};_classCallCheck(this, Weather);
+    this.opt = option || {};
+    this.context = context;
+    this.timer = null;
+    this.status = STOP_ANIMATION;
+    this.width = width;
+    this.height = height;
+    this._init();
+  }_createClass(Weather, [{ key: "_init", value: function _init()
+
+    {} }, { key: "_drawing", value: function _drawing()
+    {} }, { key: "start", value: function start()
+    {var _this = this;
+      if (this.status !== START_ANIMATION) {
+        this.status = START_ANIMATION;
+        this.timer = setInterval(function () {
+          _this._drawing();
+        }, 30);
+        return this;
+      }
+    } }, { key: "stop", value: function stop()
+    {
+      this.status = STOP_ANIMATION;
+      clearInterval(this.timer);
+      this.timer = null;
+      return this;
+    } }]);return Weather;}();var _default =
+
+
+Weather;exports.default = _default;
+
+/***/ }),
+/* 22 */
+/*!*************************************************!*\
+  !*** D:/code/uniappdev/uniappdev/class/Snow.js ***!
+  \*************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _Weather2 = _interopRequireDefault(__webpack_require__(/*! ./Weather.js */ 21));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}function _classCallCheck(instance, Constructor) {if (!(instance instanceof Constructor)) {throw new TypeError("Cannot call a class as a function");}}function _defineProperties(target, props) {for (var i = 0; i < props.length; i++) {var descriptor = props[i];descriptor.enumerable = descriptor.enumerable || false;descriptor.configurable = true;if ("value" in descriptor) descriptor.writable = true;Object.defineProperty(target, descriptor.key, descriptor);}}function _createClass(Constructor, protoProps, staticProps) {if (protoProps) _defineProperties(Constructor.prototype, protoProps);if (staticProps) _defineProperties(Constructor, staticProps);return Constructor;}function _possibleConstructorReturn(self, call) {if (call && (typeof call === "object" || typeof call === "function")) {return call;}return _assertThisInitialized(self);}function _assertThisInitialized(self) {if (self === void 0) {throw new ReferenceError("this hasn't been initialised - super() hasn't been called");}return self;}function _getPrototypeOf(o) {_getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) {return o.__proto__ || Object.getPrototypeOf(o);};return _getPrototypeOf(o);}function _inherits(subClass, superClass) {if (typeof superClass !== "function" && superClass !== null) {throw new TypeError("Super expression must either be null or a function");}subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } });if (superClass) _setPrototypeOf(subClass, superClass);}function _setPrototypeOf(o, p) {_setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) {o.__proto__ = p;return o;};return _setPrototypeOf(o, p);}var
+Snow = /*#__PURE__*/function (_Weather) {_inherits(Snow, _Weather);function Snow() {_classCallCheck(this, Snow);return _possibleConstructorReturn(this, _getPrototypeOf(Snow).apply(this, arguments));}_createClass(Snow, [{ key: "_init", value: function _init()
+    {var
+
+      width =
+
+      this.width,height = this.height;
+      console.log(width);
+      var colors = this.opt.colors || ['#ccc', '#eee', '#fff', '#ddd'];
+      var counts = this.opt.counts || 100;
+
+      var speedCoefficient = this.opt.speedCoefficient || 0.03;
+      var speed = speedCoefficient * height * 0.15;
+
+      var radius = this.opt.radius || 2;
+      this.animationArray = [];
+      var arr = this.animationArray;
+
+      for (var i = 0; i < counts; i++) {
+        arr.push({
+          x: Math.random() * width,
+          y: Math.random() * height,
+          ox: Math.random() * width,
+          ys: Math.random() + speed,
+          r: Math.floor(Math.random() * (radius + 0.5) + 0.5),
+          color: colors[Math.floor(Math.random() * colors.length)],
+          rs: Math.random() * 80 });
+
+      }
+      console.log(arr);
+    } }, { key: "_drawing", value: function _drawing()
+    {
+      var arr = this.animationArray;
+      var context = this.context;
+      context.clearRect(0, 0, this.width, this.height);
+      for (var i = 0; i < arr.length; i++) {var _arr$i =
+
+
+
+
+
+        arr[i],x = _arr$i.x,y = _arr$i.y,r = _arr$i.r,color = _arr$i.color;
+        context.beginPath();
+        context.arc(x, y, r, 0, Math.PI * 2, false);
+        context.setFillStyle(color);
+        context.fill();
+        context.closePath();
+      }
+
+      context.draw();
+      this._update();
+    } }, { key: "_update", value: function _update()
+    {var
+
+      width =
+
+      this.width,height = this.height;
+      var arr = this.animationArray;
+      var v = this.opt.speedCoefficient / 10;
+      for (var i = 0; i < arr.length; i++) {
+        var p = arr[i];var
+
+        ox =
+
+        p.ox,ys = p.ys;
+        p.rs += v;
+        p.x = ox + Math.cos(p.rs) * width / 2;
+        p.y += ys;
+        if (p.x > width || p.y > height) {
+          p.x = Math.random() * width;
+          p.y = -10;
+        }
+      }
+    } }]);return Snow;}(_Weather2.default);var _default =
+
+
+Snow;exports.default = _default;
 
 /***/ })
 ]]);
