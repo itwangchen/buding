@@ -1,0 +1,13 @@
+{
+  "pages": [
+    "pages/index/index"
+  ],
+  "subPackages": [],
+  "window": {
+    "navigationBarTextStyle": "white",
+    "navigationBarTitleText": "布丁天气",
+    "navigationBarBackgroundColor": "#30b8c4",
+    "backgroundColor": "#fff"
+  },
+  "usingComponents": {}
+}

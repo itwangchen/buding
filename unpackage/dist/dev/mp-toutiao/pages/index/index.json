@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "布丁天气",
+  "usingComponents": {
+    "myicon": "/components/icon"
+  }
+}
