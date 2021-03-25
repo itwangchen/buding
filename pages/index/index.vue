@@ -377,7 +377,11 @@
 					type: 'gcj02',
 					success: this.updateLocation,
 					fail: err => {
-						console.log(err, 'uni.getLocation')
+						console.log(err, 'uni.getLocation','小程序拒绝',this.location)
+						let location=this.location;
+						this.position = location.name;
+						this.getData( location.x, location.y);
+						uni.hideLoading()
 					}
 				})
 			},
@@ -419,7 +423,11 @@
 			},
 
 			chooseLocation: function() {
-				console.log(666)
+				//判断是否为头条小程序
+				//ifdef MP-TOUTIAO
+				this.getPosition()
+				return
+				//endif
 				uni.chooseLocation({
 					success: res => {
 						let {
