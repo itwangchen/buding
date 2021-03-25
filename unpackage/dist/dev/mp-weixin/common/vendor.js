@@ -1,27 +1,5 @@
 (global["webpackJsonp"] = global["webpackJsonp"] || []).push([["common/vendor"],[
-/* 0 */
-/*!*******************************************!*\
-  !*** D:/code/uniappdev/uniappdev/main.js ***!
-  \*******************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-/* WEBPACK VAR INJECTION */(function(createApp) {__webpack_require__(/*! uni-pages */ 4);
-var _vue = _interopRequireDefault(__webpack_require__(/*! vue */ 2));
-var _App = _interopRequireDefault(__webpack_require__(/*! ./App */ 5));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}function _objectSpread(target) {for (var i = 1; i < arguments.length; i++) {var source = arguments[i] != null ? arguments[i] : {};var ownKeys = Object.keys(source);if (typeof Object.getOwnPropertySymbols === 'function') {ownKeys = ownKeys.concat(Object.getOwnPropertySymbols(source).filter(function (sym) {return Object.getOwnPropertyDescriptor(source, sym).enumerable;}));}ownKeys.forEach(function (key) {_defineProperty(target, key, source[key]);});}return target;}function _defineProperty(obj, key, value) {if (key in obj) {Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true });} else {obj[key] = value;}return obj;}
-
-_vue.default.config.productionTip = false;
-
-_App.default.mpType = 'app';
-
-var app = new _vue.default(_objectSpread({},
-_App.default));
-
-createApp(app).$mount();
-/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["createApp"]))
-
-/***/ }),
+/* 0 */,
 /* 1 */
 /*!************************************************************!*\
   !*** ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js ***!
@@ -30,7 +8,7 @@ createApp(app).$mount();
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });exports.createApp = createApp;exports.createComponent = createComponent;exports.createPage = createPage;exports.default = void 0;var _vue = _interopRequireDefault(__webpack_require__(/*! vue */ 2));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}function _slicedToArray(arr, i) {return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _nonIterableRest();}function _nonIterableRest() {throw new TypeError("Invalid attempt to destructure non-iterable instance");}function _iterableToArrayLimit(arr, i) {var _arr = [];var _n = true;var _d = false;var _e = undefined;try {for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) {_arr.push(_s.value);if (i && _arr.length === i) break;}} catch (err) {_d = true;_e = err;} finally {try {if (!_n && _i["return"] != null) _i["return"]();} finally {if (_d) throw _e;}}return _arr;}function _arrayWithHoles(arr) {if (Array.isArray(arr)) return arr;}function _defineProperty(obj, key, value) {if (key in obj) {Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true });} else {obj[key] = value;}return obj;}function _toConsumableArray(arr) {return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _nonIterableSpread();}function _nonIterableSpread() {throw new TypeError("Invalid attempt to spread non-iterable instance");}function _iterableToArray(iter) {if (Symbol.iterator in Object(iter) || Object.prototype.toString.call(iter) === "[object Arguments]") return Array.from(iter);}function _arrayWithoutHoles(arr) {if (Array.isArray(arr)) {for (var i = 0, arr2 = new Array(arr.length); i < arr.length; i++) {arr2[i] = arr[i];}return arr2;}}
+Object.defineProperty(exports, "__esModule", { value: true });exports.createApp = createApp;exports.createComponent = createComponent;exports.createPage = createPage;exports.default = void 0;var _vue = _interopRequireDefault(__webpack_require__(/*! vue */ 2));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}function ownKeys(object, enumerableOnly) {var keys = Object.keys(object);if (Object.getOwnPropertySymbols) {var symbols = Object.getOwnPropertySymbols(object);if (enumerableOnly) symbols = symbols.filter(function (sym) {return Object.getOwnPropertyDescriptor(object, sym).enumerable;});keys.push.apply(keys, symbols);}return keys;}function _objectSpread(target) {for (var i = 1; i < arguments.length; i++) {var source = arguments[i] != null ? arguments[i] : {};if (i % 2) {ownKeys(Object(source), true).forEach(function (key) {_defineProperty(target, key, source[key]);});} else if (Object.getOwnPropertyDescriptors) {Object.defineProperties(target, Object.getOwnPropertyDescriptors(source));} else {ownKeys(Object(source)).forEach(function (key) {Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key));});}}return target;}function _slicedToArray(arr, i) {return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest();}function _nonIterableRest() {throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.");}function _iterableToArrayLimit(arr, i) {if (typeof Symbol === "undefined" || !(Symbol.iterator in Object(arr))) return;var _arr = [];var _n = true;var _d = false;var _e = undefined;try {for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) {_arr.push(_s.value);if (i && _arr.length === i) break;}} catch (err) {_d = true;_e = err;} finally {try {if (!_n && _i["return"] != null) _i["return"]();} finally {if (_d) throw _e;}}return _arr;}function _arrayWithHoles(arr) {if (Array.isArray(arr)) return arr;}function _defineProperty(obj, key, value) {if (key in obj) {Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true });} else {obj[key] = value;}return obj;}function _toConsumableArray(arr) {return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread();}function _nonIterableSpread() {throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.");}function _unsupportedIterableToArray(o, minLen) {if (!o) return;if (typeof o === "string") return _arrayLikeToArray(o, minLen);var n = Object.prototype.toString.call(o).slice(8, -1);if (n === "Object" && o.constructor) n = o.constructor.name;if (n === "Map" || n === "Set") return Array.from(n);if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen);}function _iterableToArray(iter) {if (typeof Symbol !== "undefined" && Symbol.iterator in Object(iter)) return Array.from(iter);}function _arrayWithoutHoles(arr) {if (Array.isArray(arr)) return _arrayLikeToArray(arr);}function _arrayLikeToArray(arr, len) {if (len == null || len > arr.length) len = arr.length;for (var i = 0, arr2 = new Array(len); i < len; i++) {arr2[i] = arr[i];}return arr2;}
 
 var _toString = Object.prototype.toString;
 var hasOwnProperty = Object.prototype.hasOwnProperty;
@@ -263,21 +241,27 @@ var promiseInterceptor = {
 
 
 var SYNC_API_RE =
-/^\$|interceptors|Interceptor$|getSubNVueById|requireNativePlugin|upx2px|hideKeyboard|canIUse|^create|Sync$|Manager$|base64ToArrayBuffer|arrayBufferToBase64/;
+/^\$|sendNativeEvent|restoreGlobal|getCurrentSubNVue|getMenuButtonBoundingClientRect|^report|interceptors|Interceptor$|getSubNVueById|requireNativePlugin|upx2px|hideKeyboard|canIUse|^create|Sync$|Manager$|base64ToArrayBuffer|arrayBufferToBase64/;
 
 var CONTEXT_API_RE = /^create|Manager$/;
 
-var CALLBACK_API_RE = /^on/;
+// Context例外情况
+var CONTEXT_API_RE_EXC = ['createBLEConnection'];
+
+// 同步例外情况
+var ASYNC_API = ['createBLEConnection'];
+
+var CALLBACK_API_RE = /^on|^off/;
 
 function isContextApi(name) {
-  return CONTEXT_API_RE.test(name);
+  return CONTEXT_API_RE.test(name) && CONTEXT_API_RE_EXC.indexOf(name) === -1;
 }
 function isSyncApi(name) {
-  return SYNC_API_RE.test(name);
+  return SYNC_API_RE.test(name) && ASYNC_API.indexOf(name) === -1;
 }
 
 function isCallbackApi(name) {
-  return CALLBACK_API_RE.test(name);
+  return CALLBACK_API_RE.test(name) && name !== 'onPush';
 }
 
 function handlePromise(promise) {
@@ -298,6 +282,19 @@ function shouldPromise(name) {
   return true;
 }
 
+/* eslint-disable no-extend-native */
+if (!Promise.prototype.finally) {
+  Promise.prototype.finally = function (callback) {
+    var promise = this.constructor;
+    return this.then(
+    function (value) {return promise.resolve(callback()).then(function () {return value;});},
+    function (reason) {return promise.resolve(callback()).then(function () {
+        throw reason;
+      });});
+
+  };
+}
+
 function promisify(name, api) {
   if (!shouldPromise(name)) {
     return api;
@@ -311,18 +308,6 @@ function promisify(name, api) {
         success: resolve,
         fail: reject })].concat(
       params));
-      /* eslint-disable no-extend-native */
-      if (!Promise.prototype.finally) {
-        Promise.prototype.finally = function (callback) {
-          var promise = this.constructor;
-          return this.then(
-          function (value) {return promise.resolve(callback()).then(function () {return value;});},
-          function (reason) {return promise.resolve(callback()).then(function () {
-              throw reason;
-            });});
-
-        };
-      }
     })));
   };
 }
@@ -373,13 +358,12 @@ var interceptors = {
   promiseInterceptor: promiseInterceptor };
 
 
-
-
 var baseApi = /*#__PURE__*/Object.freeze({
+  __proto__: null,
   upx2px: upx2px,
-  interceptors: interceptors,
   addInterceptor: addInterceptor,
-  removeInterceptor: removeInterceptor });
+  removeInterceptor: removeInterceptor,
+  interceptors: interceptors });
 
 
 var previewImage = {
@@ -416,10 +400,29 @@ var previewImage = {
   } };
 
 
-var protocols = {
-  previewImage: previewImage };
+function addSafeAreaInsets(result) {
+  if (result.safeArea) {
+    var safeArea = result.safeArea;
+    result.safeAreaInsets = {
+      top: safeArea.top,
+      left: safeArea.left,
+      right: result.windowWidth - safeArea.right,
+      bottom: result.windowHeight - safeArea.bottom };
 
-var todos = [];
+  }
+}
+var protocols = {
+  previewImage: previewImage,
+  getSystemInfo: {
+    returnValue: addSafeAreaInsets },
+
+  getSystemInfoSync: {
+    returnValue: addSafeAreaInsets } };
+
+
+var todos = [
+'vibrate'];
+
 var canIUses = [];
 
 var CALLBACKS = ['success', 'fail', 'cancel', 'complete'];
@@ -504,6 +507,7 @@ function wrapper(methodName, method) {
 var todoApis = Object.create(null);
 
 var TODOS = [
+'onTabBarMidButtonTap',
 'subscribePush',
 'unsubscribePush',
 'onPush',
@@ -559,6 +563,7 @@ function getProvider(_ref2)
 }
 
 var extraApi = /*#__PURE__*/Object.freeze({
+  __proto__: null,
   getProvider: getProvider });
 
 
@@ -594,16 +599,15 @@ function $emit() {
 }
 
 var eventApi = /*#__PURE__*/Object.freeze({
+  __proto__: null,
   $on: $on,
   $off: $off,
   $once: $once,
   $emit: $emit });
 
 
-
-
-var api = /*#__PURE__*/Object.freeze({});
-
+var api = /*#__PURE__*/Object.freeze({
+  __proto__: null });
 
 
 var MPPage = Page;
@@ -716,10 +720,10 @@ function initVueComponent(Vue, vueOptions) {
   var VueComponent;
   if (isFn(vueOptions)) {
     VueComponent = vueOptions;
-    vueOptions = VueComponent.extendOptions;
   } else {
     VueComponent = Vue.extend(vueOptions);
   }
+  vueOptions = VueComponent.options;
   return [VueComponent, vueOptions];
 }
 
@@ -753,7 +757,7 @@ function initData(vueOptions, context) {
     try {
       data = data.call(context); // 支持 Vue.prototype 上挂的数据
     } catch (e) {
-      if (Object({"VUE_APP_PLATFORM":"mp-weixin","NODE_ENV":"development","BASE_URL":"/"}).VUE_APP_DEBUG) {
+      if (Object({"NODE_ENV":"development","VUE_APP_PLATFORM":"mp-weixin","BASE_URL":"/"}).VUE_APP_DEBUG) {
         console.warn('根据 Vue 的 data 函数初始化小程序 data 失败，请尽量确保 data 函数中不访问 vm 对象，否则可能影响首次数据渲染速度。', data);
       }
     }
@@ -788,14 +792,14 @@ function createObserver(name) {
 }
 
 function initBehaviors(vueOptions, initBehavior) {
-  var vueBehaviors = vueOptions['behaviors'];
-  var vueExtends = vueOptions['extends'];
-  var vueMixins = vueOptions['mixins'];
+  var vueBehaviors = vueOptions.behaviors;
+  var vueExtends = vueOptions.extends;
+  var vueMixins = vueOptions.mixins;
 
-  var vueProps = vueOptions['props'];
+  var vueProps = vueOptions.props;
 
   if (!vueProps) {
-    vueOptions['props'] = vueProps = [];
+    vueOptions.props = vueProps = [];
   }
 
   var behaviors = [];
@@ -807,11 +811,11 @@ function initBehaviors(vueOptions, initBehavior) {
           vueProps.push('name');
           vueProps.push('value');
         } else {
-          vueProps['name'] = {
+          vueProps.name = {
             type: String,
             default: '' };
 
-          vueProps['value'] = {
+          vueProps.value = {
             type: [String, Number, Boolean, Array, Object, Date],
             default: '' };
 
@@ -880,7 +884,7 @@ function initProperties(props) {var isBehavior = arguments.length > 1 && argumen
     Object.keys(props).forEach(function (key) {
       var opts = props[key];
       if (isPlainObject(opts)) {// title:{type:String,default:''}
-        var value = opts['default'];
+        var value = opts.default;
         if (isFn(value)) {
           value = value();
         }
@@ -917,6 +921,11 @@ function wrapper$1(event) {
 
   if (!hasOwn(event, 'detail')) {
     event.detail = {};
+  }
+
+  if (hasOwn(event, 'markerId')) {
+    event.detail = typeof event.detail === 'object' ? event.detail : {};
+    event.detail.markerId = event.markerId;
   }
 
   if (isPlainObject(event.detail)) {
@@ -1071,11 +1080,11 @@ function handleEvent(event) {var _this = this;
   // [['tap',[['handle',[1,2,a]],['handle1',[1,2,a]]]]]
   var dataset = (event.currentTarget || event.target).dataset;
   if (!dataset) {
-    return console.warn("\u4E8B\u4EF6\u4FE1\u606F\u4E0D\u5B58\u5728");
+    return console.warn('事件信息不存在');
   }
   var eventOpts = dataset.eventOpts || dataset['event-opts']; // 支付宝 web-view 组件 dataset 非驼峰
   if (!eventOpts) {
-    return console.warn("\u4E8B\u4EF6\u4FE1\u606F\u4E0D\u5B58\u5728");
+    return console.warn('事件信息不存在');
   }
 
   // [['handle',[1,2,a]],['handle1',[1,2,a]]]
@@ -1103,6 +1112,18 @@ function handleEvent(event) {var _this = this;
           handlerCtx.$parent.$parent)
           {// mp-weixin,mp-toutiao 抽象节点模拟 scoped slots
             handlerCtx = handlerCtx.$parent.$parent;
+          }
+          if (methodName === '$emit') {
+            handlerCtx.$emit.apply(handlerCtx,
+            processEventArgs(
+            _this.$vm,
+            event,
+            eventArray[1],
+            eventArray[2],
+            isCustom,
+            methodName));
+
+            return;
           }
           var handler = handlerCtx[methodName];
           if (!isFn(handler)) {
@@ -1147,6 +1168,10 @@ function parseBaseApp(vm, _ref3)
 
 
 {var mocks = _ref3.mocks,initRefs = _ref3.initRefs;
+  if (vm.$options.store) {
+    _vue.default.prototype.$store = vm.$options.store;
+  }
+
   _vue.default.prototype.mpHost = "mp-weixin";
 
   _vue.default.mixin({
@@ -1192,6 +1217,8 @@ function parseBaseApp(vm, _ref3)
 
 
       this.$vm.$scope = this;
+      // vm 上也挂载 globalData
+      this.$vm.globalData = this.globalData;
 
       this.$vm._isMounted = true;
       this.$vm.__call_hook('mounted', args);
@@ -1202,6 +1229,13 @@ function parseBaseApp(vm, _ref3)
 
   // 兼容旧版本 globalData
   appOptions.globalData = vm.$options.globalData || {};
+  // 将 methods 中的方法挂在 getApp() 中
+  var methods = vm.$options.methods;
+  if (methods) {
+    Object.keys(methods).forEach(function (name) {
+      appOptions[name] = methods[name];
+    });
+  }
 
   initHooks(appOptions, hooks);
 
@@ -1212,14 +1246,17 @@ var mocks = ['__route__', '__wxExparserNodeId__', '__wxWebviewId__'];
 
 function findVmByVueId(vm, vuePid) {
   var $children = vm.$children;
-  // 优先查找直属
-  var parentVm = $children.find(function (childVm) {return childVm.$scope._$vueId === vuePid;});
-  if (parentVm) {
-    return parentVm;
+  // 优先查找直属(反向查找:https://github.com/dcloudio/uni-app/issues/1200)
+  for (var i = $children.length - 1; i >= 0; i--) {
+    var childVm = $children[i];
+    if (childVm.$scope._$vueId === vuePid) {
+      return childVm;
+    }
   }
   // 反向递归查找
-  for (var i = $children.length - 1; i >= 0; i--) {
-    parentVm = findVmByVueId($children[i], vuePid);
+  var parentVm;
+  for (var _i = $children.length - 1; _i >= 0; _i--) {
+    parentVm = findVmByVueId($children[_i], vuePid);
     if (parentVm) {
       return parentVm;
     }
@@ -1298,11 +1335,21 @@ function parseBaseComponent(vueComponentOptions)
 {var _ref5 = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {},isPage = _ref5.isPage,initRelation = _ref5.initRelation;var _initVueComponent =
   initVueComponent(_vue.default, vueComponentOptions),_initVueComponent2 = _slicedToArray(_initVueComponent, 2),VueComponent = _initVueComponent2[0],vueOptions = _initVueComponent2[1];
 
-  var componentOptions = {
-    options: {
-      multipleSlots: true,
-      addGlobalClass: true },
+  var options = _objectSpread({
+    multipleSlots: true,
+    addGlobalClass: true },
+  vueOptions.options || {});
 
+
+  {
+    // 微信 multipleSlots 部分情况有 bug，导致内容顺序错乱 如 u-list，提供覆盖选项
+    if (vueOptions['mp-weixin'] && vueOptions['mp-weixin'].options) {
+      Object.assign(options, vueOptions['mp-weixin'].options);
+    }
+  }
+
+  var componentOptions = {
+    options: options,
     data: initData(vueOptions, _vue.default.prototype),
     behaviors: initBehaviors(vueOptions, initBehavior),
     properties: initProperties(vueOptions.props, false, vueOptions.__file),
@@ -1343,7 +1390,7 @@ function parseBaseComponent(vueComponentOptions)
         }
       },
       detached: function detached() {
-        this.$vm.$destroy();
+        this.$vm && this.$vm.$destroy();
       } },
 
     pageLifetimes: {
@@ -1362,6 +1409,18 @@ function parseBaseComponent(vueComponentOptions)
       __e: handleEvent } };
 
 
+  // externalClasses
+  if (vueOptions.externalClasses) {
+    componentOptions.externalClasses = vueOptions.externalClasses;
+  }
+
+  if (Array.isArray(vueOptions.wxsCallMethods)) {
+    vueOptions.wxsCallMethods.forEach(function (callMethod) {
+      componentOptions.methods[callMethod] = function (args) {
+        return this.$vm[callMethod](args);
+      };
+    });
+  }
 
   if (isPage) {
     return componentOptions;
@@ -1436,6 +1495,9 @@ var uni = {};
 if (typeof Proxy !== 'undefined' && "mp-weixin" !== 'app-plus') {
   uni = new Proxy({}, {
     get: function get(target, name) {
+      if (target[name]) {
+        return target[name];
+      }
       if (baseApi[name]) {
         return baseApi[name];
       }
@@ -1457,6 +1519,10 @@ if (typeof Proxy !== 'undefined' && "mp-weixin" !== 'app-plus') {
         return;
       }
       return promisify(name, wrapper(name, wx[name]));
+    },
+    set: function set(target, name, value) {
+      target[name] = value;
+      return true;
     } });
 
 } else {
@@ -1507,8 +1573,8 @@ uni$1;exports.default = _default;
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* WEBPACK VAR INJECTION */(function(global) {/*!
- * Vue.js v2.6.10
- * (c) 2014-2019 Evan You
+ * Vue.js v2.6.11
+ * (c) 2014-2020 Evan You
  * Released under the MIT License.
  */
 /*  */
@@ -2206,7 +2272,13 @@ var uid = 0;
  * directives subscribing to it.
  */
 var Dep = function Dep () {
-  this.id = uid++;
+  // fixed by xxxxxx (nvue vuex)
+  /* eslint-disable no-undef */
+  if(typeof SharedObject !== 'undefined'){
+    this.id = SharedObject.uid++;
+  } else {
+    this.id = uid++;
+  }
   this.subs = [];
 };
 
@@ -2219,8 +2291,8 @@ Dep.prototype.removeSub = function removeSub (sub) {
 };
 
 Dep.prototype.depend = function depend () {
-  if (Dep.target) {
-    Dep.target.addDep(this);
+  if (Dep.SharedObject.target) {
+    Dep.SharedObject.target.addDep(this);
   }
 };
 
@@ -2241,17 +2313,20 @@ Dep.prototype.notify = function notify () {
 // The current target watcher being evaluated.
 // This is globally unique because only one watcher
 // can be evaluated at a time.
-Dep.target = null;
-var targetStack = [];
+// fixed by xxxxxx (nvue shared vuex)
+/* eslint-disable no-undef */
+Dep.SharedObject = typeof SharedObject !== 'undefined' ? SharedObject : {};
+Dep.SharedObject.target = null;
+Dep.SharedObject.targetStack = [];
 
 function pushTarget (target) {
-  targetStack.push(target);
-  Dep.target = target;
+  Dep.SharedObject.targetStack.push(target);
+  Dep.SharedObject.target = target;
 }
 
 function popTarget () {
-  targetStack.pop();
-  Dep.target = targetStack[targetStack.length - 1];
+  Dep.SharedObject.targetStack.pop();
+  Dep.SharedObject.target = Dep.SharedObject.targetStack[Dep.SharedObject.targetStack.length - 1];
 }
 
 /*  */
@@ -2418,7 +2493,13 @@ var Observer = function Observer (value) {
   def(value, '__ob__', this);
   if (Array.isArray(value)) {
     if (hasProto) {
-      protoAugment(value, arrayMethods);
+      {// fixed by xxxxxx 微信小程序使用 plugins 之后，数组方法被直接挂载到了数组对象上，需要执行 copyAugment 逻辑
+        if(value.push !== value.__proto__.push){
+          copyAugment(value, arrayMethods, arrayKeys);
+        } else {
+          protoAugment(value, arrayMethods);
+        }
+      }
     } else {
       copyAugment(value, arrayMethods, arrayKeys);
     }
@@ -2530,7 +2611,7 @@ function defineReactive$$1 (
     configurable: true,
     get: function reactiveGetter () {
       var value = getter ? getter.call(obj) : val;
-      if (Dep.target) {
+      if (Dep.SharedObject.target) { // fixed by xxxxxx
         dep.depend();
         if (childOb) {
           childOb.dep.depend();
@@ -3461,7 +3542,7 @@ if (typeof Promise !== 'undefined' && isNative(Promise)) {
   };
 } else if (typeof setImmediate !== 'undefined' && isNative(setImmediate)) {
   // Fallback to setImmediate.
-  // Techinically it leverages the (macro) task queue,
+  // Technically it leverages the (macro) task queue,
   // but it is still a better choice than setTimeout.
   timerFunc = function () {
     setImmediate(flushCallbacks);
@@ -3527,7 +3608,7 @@ if (true) {
     warn(
       "Property \"" + key + "\" must be accessed with \"$data." + key + "\" because " +
       'properties starting with "$" or "_" are not proxied in the Vue instance to ' +
-      'prevent conflicts with Vue internals' +
+      'prevent conflicts with Vue internals. ' +
       'See: https://vuejs.org/v2/api/#data',
       target
     );
@@ -3727,17 +3808,48 @@ function updateListeners (
 
 /*  */
 
+// fixed by xxxxxx (mp properties)
+function extractPropertiesFromVNodeData(data, Ctor, res, context) {
+  var propOptions = Ctor.options.mpOptions && Ctor.options.mpOptions.properties;
+  if (isUndef(propOptions)) {
+    return res
+  }
+  var externalClasses = Ctor.options.mpOptions.externalClasses || [];
+  var attrs = data.attrs;
+  var props = data.props;
+  if (isDef(attrs) || isDef(props)) {
+    for (var key in propOptions) {
+      var altKey = hyphenate(key);
+      var result = checkProp(res, props, key, altKey, true) ||
+          checkProp(res, attrs, key, altKey, false);
+      // externalClass
+      if (
+        result &&
+        res[key] &&
+        externalClasses.indexOf(altKey) !== -1 &&
+        context[camelize(res[key])]
+      ) {
+        // 赋值 externalClass 真正的值(模板里 externalClass 的值可能是字符串)
+        res[key] = context[camelize(res[key])];
+      }
+    }
+  }
+  return res
+}
+
 function extractPropsFromVNodeData (
   data,
   Ctor,
-  tag
+  tag,
+  context// fixed by xxxxxx
 ) {
   // we are only extracting raw values here.
   // validation and default values are handled in the child
   // component itself.
   var propOptions = Ctor.options.props;
   if (isUndef(propOptions)) {
-    return
+    // fixed by xxxxxx
+    return extractPropertiesFromVNodeData(data, Ctor, {}, context)
   }
   var res = {};
   var attrs = data.attrs;
@@ -3765,7 +3877,8 @@ function extractPropsFromVNodeData (
       checkProp(res, attrs, key, altKey, false);
     }
   }
-  return res
+  // fixed by xxxxxx
+  return extractPropertiesFromVNodeData(data, Ctor, res, context)
 }
 
 function checkProp (
@@ -3983,7 +4096,12 @@ function resolveSlots (
         slot.push(child);
       }
     } else {
-      (slots.default || (slots.default = [])).push(child);
+      // fixed by xxxxxx 临时 hack 掉 uni-app 中的异步 name slot page
+      if(child.asyncMeta && child.asyncMeta.data && child.asyncMeta.data.slot === 'page'){
+        (slots['page'] || (slots['page'] = [])).push(child);
+      }else{
+        (slots.default || (slots.default = [])).push(child);
+      }
     }
   }
   // ignore slots that contains only whitespace
@@ -4093,12 +4211,12 @@ function renderList (
   if (Array.isArray(val) || typeof val === 'string') {
     ret = new Array(val.length);
     for (i = 0, l = val.length; i < l; i++) {
-      ret[i] = render(val[i], i);
+      ret[i] = render(val[i], i, i, i); // fixed by xxxxxx
     }
   } else if (typeof val === 'number') {
     ret = new Array(val);
     for (i = 0; i < val; i++) {
-      ret[i] = render(i + 1, i);
+      ret[i] = render(i + 1, i, i, i); // fixed by xxxxxx
     }
   } else if (isObject(val)) {
     if (hasSymbol && val[Symbol.iterator]) {
@@ -4106,7 +4224,7 @@ function renderList (
       var iterator = val[Symbol.iterator]();
       var result = iterator.next();
       while (!result.done) {
-        ret.push(render(result.value, ret.length));
+        ret.push(render(result.value, ret.length, i++, i)); // fixed by xxxxxx
         result = iterator.next();
       }
     } else {
@@ -4114,7 +4232,7 @@ function renderList (
       ret = new Array(keys.length);
       for (i = 0, l = keys.length; i < l; i++) {
         key = keys[i];
-        ret[i] = render(val[key], key, i);
+        ret[i] = render(val[key], key, i, i); // fixed by xxxxxx
       }
     }
   }
@@ -4149,7 +4267,8 @@ function renderSlot (
       }
       props = extend(extend({}, bindObject), props);
     }
-    nodes = scopedSlotFn(props) || fallback;
+    // fixed by xxxxxx app-plus scopedSlot
+    nodes = scopedSlotFn(props, this, props._i) || fallback;
   } else {
     nodes = this.$slots[name] || fallback;
   }
@@ -4377,7 +4496,7 @@ function bindDynamicKeys (baseObj, values) {
     if (typeof key === 'string' && key) {
       baseObj[values[i]] = values[i + 1];
     } else if ( true && key !== '' && key !== null) {
-      // null is a speical value for explicitly removing a binding
+      // null is a special value for explicitly removing a binding
       warn(
         ("Invalid value for dynamic directive argument (expected string or null): " + key),
         this
@@ -4601,6 +4720,8 @@ var componentVNodeHooks = {
     var context = vnode.context;
     var componentInstance = vnode.componentInstance;
     if (!componentInstance._isMounted) {
+      callHook(componentInstance, 'onServiceCreated');
+      callHook(componentInstance, 'onServiceAttached');
       componentInstance._isMounted = true;
       callHook(componentInstance, 'mounted');
     }
@@ -4690,7 +4811,7 @@ function createComponent (
   }
 
   // extract props
-  var propsData = extractPropsFromVNodeData(data, Ctor, tag);
+  var propsData = extractPropsFromVNodeData(data, Ctor, tag, context); // fixed by xxxxxx
 
   // functional component
   if (isTrue(Ctor.options.functional)) {
@@ -4873,6 +4994,12 @@ function _createElement (
     ns = (context.$vnode && context.$vnode.ns) || config.getTagNamespace(tag);
     if (config.isReservedTag(tag)) {
       // platform built-in elements
+      if ( true && isDef(data) && isDef(data.nativeOn)) {
+        warn(
+          ("The .native modifier for v-on is only valid on components but it was used on <" + tag + ">."),
+          context
+        );
+      }
       vnode = new VNode(
         config.parsePlatformTagName(tag), data, children,
         undefined, undefined, context
@@ -4998,7 +5125,7 @@ function renderMixin (Vue) {
     // render self
     var vnode;
     try {
-      // There's no need to maintain a stack becaues all render fns are called
+      // There's no need to maintain a stack because all render fns are called
       // separately from one another. Nested component's render fns are called
       // when parent component is patched.
       currentRenderingInstance = vm;
@@ -5533,7 +5660,10 @@ function updateChildComponent (
     // keep a copy of raw propsData
     vm.$options.propsData = propsData;
   }
-
+  
+  // fixed by xxxxxx update properties(mp runtime)
+  vm._$updateProperties && vm._$updateProperties(vm);
+  
   // update listeners
   listeners = listeners || emptyObject;
   var oldListeners = vm.$options._parentListeners;
@@ -6239,7 +6369,7 @@ function createComputedGetter (key) {
       if (watcher.dirty) {
         watcher.evaluate();
       }
-      if (Dep.target) {
+      if (Dep.SharedObject.target) {// fixed by xxxxxx
         watcher.depend();
       }
       return watcher.value
@@ -6404,10 +6534,10 @@ function initMixin (Vue) {
     initEvents(vm);
     initRender(vm);
     callHook(vm, 'beforeCreate');
-    vm.mpHost !== 'mp-toutiao' && initInjections(vm); // resolve injections before data/props  
+    !vm._$fallback && initInjections(vm); // resolve injections before data/props  
     initState(vm);
-    vm.mpHost !== 'mp-toutiao' && initProvide(vm); // resolve provide after data/props
-    vm.mpHost !== 'mp-toutiao' && callHook(vm, 'created');      
+    !vm._$fallback && initProvide(vm); // resolve provide after data/props
+    !vm._$fallback && callHook(vm, 'created');      
 
     /* istanbul ignore if */
     if ( true && config.performance && mark) {
@@ -6852,7 +6982,7 @@ Object.defineProperty(Vue, 'FunctionalRenderContext', {
   value: FunctionalRenderContext
 });
 
-Vue.version = '2.6.10';
+Vue.version = '2.6.11';
 
 /**
  * https://raw.githubusercontent.com/Tencent/westore/master/packages/westore/utils/diff.js
@@ -6965,7 +7095,7 @@ function type(obj) {
 
 function flushCallbacks$1(vm) {
     if (vm.__next_tick_callbacks && vm.__next_tick_callbacks.length) {
-        if (Object({"VUE_APP_PLATFORM":"mp-weixin","NODE_ENV":"development","BASE_URL":"/"}).VUE_APP_DEBUG) {
+        if (Object({"NODE_ENV":"development","VUE_APP_PLATFORM":"mp-weixin","BASE_URL":"/"}).VUE_APP_DEBUG) {
             var mpInstance = vm.$scope;
             console.log('[' + (+new Date) + '][' + (mpInstance.is || mpInstance.route) + '][' + vm._uid +
                 ']:flushCallbacks[' + vm.__next_tick_callbacks.length + ']');
@@ -6986,14 +7116,14 @@ function nextTick$1(vm, cb) {
     //1.nextTick 之前 已 setData 且 setData 还未回调完成
     //2.nextTick 之前存在 render watcher
     if (!vm.__next_tick_pending && !hasRenderWatcher(vm)) {
-        if(Object({"VUE_APP_PLATFORM":"mp-weixin","NODE_ENV":"development","BASE_URL":"/"}).VUE_APP_DEBUG){
+        if(Object({"NODE_ENV":"development","VUE_APP_PLATFORM":"mp-weixin","BASE_URL":"/"}).VUE_APP_DEBUG){
             var mpInstance = vm.$scope;
             console.log('[' + (+new Date) + '][' + (mpInstance.is || mpInstance.route) + '][' + vm._uid +
                 ']:nextVueTick');
         }
         return nextTick(cb, vm)
     }else{
-        if(Object({"VUE_APP_PLATFORM":"mp-weixin","NODE_ENV":"development","BASE_URL":"/"}).VUE_APP_DEBUG){
+        if(Object({"NODE_ENV":"development","VUE_APP_PLATFORM":"mp-weixin","BASE_URL":"/"}).VUE_APP_DEBUG){
             var mpInstance$1 = vm.$scope;
             console.log('[' + (+new Date) + '][' + (mpInstance$1.is || mpInstance$1.route) + '][' + vm._uid +
                 ']:nextMPTick');
@@ -7067,9 +7197,9 @@ var patch = function(oldVnode, vnode) {
     Object.keys(data).forEach(function (key) { //仅同步 data 中有的数据
       mpData[key] = mpInstance.data[key];
     });
-    var diffData = diff(data, mpData);
+    var diffData = this.$shouldDiffData === false ? data : diff(data, mpData);
     if (Object.keys(diffData).length) {
-      if (Object({"VUE_APP_PLATFORM":"mp-weixin","NODE_ENV":"development","BASE_URL":"/"}).VUE_APP_DEBUG) {
+      if (Object({"NODE_ENV":"development","VUE_APP_PLATFORM":"mp-weixin","BASE_URL":"/"}).VUE_APP_DEBUG) {
         console.log('[' + (+new Date) + '][' + (mpInstance.is || mpInstance.route) + '][' + this._uid +
           ']差量更新',
           JSON.stringify(diffData));
@@ -7123,7 +7253,7 @@ function mountComponent$1(
     }
   }
   
-  vm.mpHost !== 'mp-toutiao' && callHook(vm, 'beforeMount');
+  !vm._$fallback && callHook(vm, 'beforeMount');
 
   var updateComponent = function () {
     vm._update(vm._render(), hydrating);
@@ -7243,6 +7373,11 @@ function internalMixin(Vue) {
 
   Vue.config.errorHandler = function(err) {
     console.error(err);
+    /* eslint-disable no-undef */
+    var app = getApp();
+    if (app && app.onError) {
+      app.onError(err);
+    }
   };
 
   var oldEmit = Vue.prototype.$emit;
@@ -7262,9 +7397,21 @@ function internalMixin(Vue) {
 
   MP_METHODS.forEach(function (method) {
     Vue.prototype[method] = function(args) {
-      if (this.$scope) {
+      if (this.$scope && this.$scope[method]) {
         return this.$scope[method](args)
       }
+      // mp-alipay
+      if (typeof my === 'undefined') {
+        return
+      }
+      if (method === 'createSelectorQuery') {
+        /* eslint-disable no-undef */
+        return my.createSelectorQuery(args)
+      } else if (method === 'createIntersectionObserver') {
+        /* eslint-disable no-undef */
+        return my.createIntersectionObserver(args)
+      }
+      // TODO mp-alipay 暂不支持 selectAllComponents,selectComponent
     };
   });
 
@@ -7285,7 +7432,7 @@ function internalMixin(Vue) {
       }
     }
     if (vm._hasHookEvent) {
-      vm.$emit('hook:' + hook);
+      vm.$emit('hook:' + hook, args);
     }
     popTarget();
     return ret
@@ -7476,28 +7623,557 @@ module.exports = g;
 
 /***/ }),
 /* 4 */
-/*!**********************************************!*\
-  !*** D:/code/uniappdev/uniappdev/pages.json ***!
-  \**********************************************/
+/*!*********************************!*\
+  !*** D:/code/buding/pages.json ***!
+  \*********************************/
 /*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
+/***/ (function(module, exports) {
 
-"use strict";
 
 
 /***/ }),
 /* 5 */,
 /* 6 */,
 /* 7 */,
-/* 8 */
-/*!*************************************************!*\
-  !*** D:/code/uniappdev/uniappdev/uitl/utils.js ***!
-  \*************************************************/
+/* 8 */,
+/* 9 */,
+/* 10 */
+/*!**********************************************************************************************************!*\
+  !*** ./node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib/runtime/componentNormalizer.js ***!
+  \**********************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return normalizeComponent; });
+/* globals __VUE_SSR_CONTEXT__ */
+
+// IMPORTANT: Do NOT use ES2015 features in this file (except for modules).
+// This module is a runtime utility for cleaner component module output and will
+// be included in the final webpack user bundle.
+
+function normalizeComponent (
+  scriptExports,
+  render,
+  staticRenderFns,
+  functionalTemplate,
+  injectStyles,
+  scopeId,
+  moduleIdentifier, /* server only */
+  shadowMode, /* vue-cli only */
+  components, // fixed by xxxxxx auto components
+  renderjs // fixed by xxxxxx renderjs
+) {
+  // Vue.extend constructor export interop
+  var options = typeof scriptExports === 'function'
+    ? scriptExports.options
+    : scriptExports
+
+  // fixed by xxxxxx auto components
+  if (components) {
+    if (!options.components) {
+      options.components = {}
+    }
+    var hasOwn = Object.prototype.hasOwnProperty
+    for (var name in components) {
+      if (hasOwn.call(components, name) && !hasOwn.call(options.components, name)) {
+        options.components[name] = components[name]
+      }
+    }
+  }
+  // fixed by xxxxxx renderjs
+  if (renderjs) {
+    (renderjs.beforeCreate || (renderjs.beforeCreate = [])).unshift(function() {
+      this[renderjs.__module] = this
+    });
+    (options.mixins || (options.mixins = [])).push(renderjs)
+  }
+
+  // render functions
+  if (render) {
+    options.render = render
+    options.staticRenderFns = staticRenderFns
+    options._compiled = true
+  }
+
+  // functional template
+  if (functionalTemplate) {
+    options.functional = true
+  }
+
+  // scopedId
+  if (scopeId) {
+    options._scopeId = 'data-v-' + scopeId
+  }
+
+  var hook
+  if (moduleIdentifier) { // server build
+    hook = function (context) {
+      // 2.3 injection
+      context =
+        context || // cached call
+        (this.$vnode && this.$vnode.ssrContext) || // stateful
+        (this.parent && this.parent.$vnode && this.parent.$vnode.ssrContext) // functional
+      // 2.2 with runInNewContext: true
+      if (!context && typeof __VUE_SSR_CONTEXT__ !== 'undefined') {
+        context = __VUE_SSR_CONTEXT__
+      }
+      // inject component styles
+      if (injectStyles) {
+        injectStyles.call(this, context)
+      }
+      // register component module identifier for async chunk inferrence
+      if (context && context._registeredComponents) {
+        context._registeredComponents.add(moduleIdentifier)
+      }
+    }
+    // used by ssr in case component is cached and beforeCreate
+    // never gets called
+    options._ssrRegister = hook
+  } else if (injectStyles) {
+    hook = shadowMode
+      ? function () { injectStyles.call(this, this.$root.$options.shadowRoot) }
+      : injectStyles
+  }
+
+  if (hook) {
+    if (options.functional) {
+      // for template-only hot-reload because in that case the render fn doesn't
+      // go through the normalizer
+      options._injectStyles = hook
+      // register for functioal component in vue file
+      var originalRender = options.render
+      options.render = function renderWithStyleInjection (h, context) {
+        hook.call(context)
+        return originalRender(h, context)
+      }
+    } else {
+      // inject component registration as beforeCreate hook
+      var existing = options.beforeCreate
+      options.beforeCreate = existing
+        ? [].concat(existing, hook)
+        : [hook]
+    }
+  }
+
+  return {
+    exports: scriptExports,
+    options: options
+  }
+}
+
+
+/***/ }),
+/* 11 */,
+/* 12 */,
+/* 13 */,
+/* 14 */,
+/* 15 */,
+/* 16 */,
+/* 17 */
+/*!*************************************!*\
+  !*** D:/code/buding/uitl/config.js ***!
+  \*************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });exports.loadScript = exports.initialize = exports.snowType = exports.rainType = exports.iconType = exports.lifeIndexEnum = exports.arrForAirColor = exports.airQuailtyLevel = exports.weekEnum = void 0;var _config = _interopRequireDefault(__webpack_require__(/*! ../uitl/config */ 9));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}
+Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _default = {
+  MAP_API_KEY: 'WOXBZ-UKCW3-BN73P-YTNWU-HAXVF-GIFAH', //腾讯地图
+  WEATHER_API_KEY: 'dbcd0bce164347c89de825bf1c1ecc03', //和风天气
+  H5_Map_Key: "GMMBZ-UEUC6-DVISM-E5CKJ-OMHL6-56FJP", //高德地图
+  BD_Map_Key: "ub60z8oQBNt4XRuvZSQDn16gK4Lo8pPm" //百度地图
+};exports.default = _default;
+
+/***/ }),
+/* 18 */
+/*!*****************************************!*\
+  !*** D:/code/buding/uitl/QS-baiduyy.js ***!
+  \*****************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = openVoice;function ownKeys(object, enumerableOnly) {var keys = Object.keys(object);if (Object.getOwnPropertySymbols) {var symbols = Object.getOwnPropertySymbols(object);if (enumerableOnly) symbols = symbols.filter(function (sym) {return Object.getOwnPropertyDescriptor(object, sym).enumerable;});keys.push.apply(keys, symbols);}return keys;}function _objectSpread(target) {for (var i = 1; i < arguments.length; i++) {var source = arguments[i] != null ? arguments[i] : {};if (i % 2) {ownKeys(Object(source), true).forEach(function (key) {_defineProperty(target, key, source[key]);});} else if (Object.getOwnPropertyDescriptors) {Object.defineProperties(target, Object.getOwnPropertyDescriptors(source));} else {ownKeys(Object(source)).forEach(function (key) {Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key));});}}return target;}function _defineProperty(obj, key, value) {if (key in obj) {Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true });} else {obj[key] = value;}return obj;}var audioTeam = [];
+var audioStartSwitch = false;
+var getAudioUrl = 'https://tsn.baidu.com/text2audio';
+/**
+                                                       * 浏览器调用语音合成接口
+                                                       * 请参考 https://ai.baidu.com/docs#/TTS-API/41ac79a6
+                                                       * 强烈建议后端访问接口获取token返回给前端
+                                                       * client_id = API Key & client_secret = secret Key
+                                                       * 获取token接口: https://openapi.baidu.com/oauth/2.0/token?grant_type=client_credentials&client_id=uFYiXWMCiYvx68V4EVyCGeL8j4GAzXD5&client_secret=897Mm2qCj7bC1eHYVDxaWrO38FscTOHD
+                                                       */
+
+function getBDVoicToken() {
+  return new Promise(function (rs, rj) {
+    console.log('准备访问接口获取语音token');
+    uni.request({ // 强烈建议此接口由后端访问并且维护token有效期，否则前端每次访问都会刷新token
+      //此url为专门插件测试预览用的key和secret key， 请替换为自己申请的key
+      url: 'https://openapi.baidu.com/oauth/2.0/token',
+      method: 'POST', //建议使用post访问
+      // data: 'grant_type=client_credentials&client_id=nm6Os9qqOacgxXjKv8PIp45H&client_secret=BXHhGIpNU7Wi3GDYUt0AGY5cWbWklrov',
+      data: 'grant_type=client_credentials&client_id=jtwoB9xzRnv3qltcfqL0pk1t&client_secret=A16UKHBKVeAh68kuGGSPqnemCVyPDmgb',
+      header: {
+        "content-type": "application/x-www-form-urlencoded" },
+
+      success: function success(res) {
+        console.log('访问成功');
+        rs(res);
+      },
+      fail: function fail(err) {
+        console.log('访问失败');
+        rj(err);
+      } });
+
+  });
+}
+
+function openVoice(objs) {// 传入需转为语音的文本内容
+  var lineUp = false;
+  var returnAudio = false;
+  if (typeof objs !== 'string') {
+    if (objs && objs.lineUp === true) {
+      lineUp = true;
+    }
+    if (objs && objs.returnAudio === true) {
+      returnAudio = true;
+    }
+  }
+  if (returnAudio) {
+    return new Promise(function (resolve, reject) {
+      openVoiceFc(objs, returnAudio).then(function (res) {
+        resolve(res);
+      }).catch(function (err) {
+        reject(err);
+      });
+    });
+  }
+
+  if (!audioStartSwitch || lineUp) {
+    audioStartSwitch = true;
+    openVoiceFc(objs);
+  } else {
+    audioTeam.push(objs);
+  }
+}
+
+function openVoiceFc(objs, returnAudio) {
+  console.log('准备获取语音tok');
+  if (returnAudio) {
+    return new Promise(function (resolve, reject) {
+      getBDVoicToken().then(function (res) {
+        console.log('获取语音tok接口成功');
+        if (res.data && res.data.access_token) {
+          console.log('token: ' + res.data.access_token);
+          resolve(tts(objs, res.data.access_token, returnAudio));
+        } else {
+          console.log('获取语音tok接口为空');
+          reject('获取语音tok接口为空');
+        }
+      }).catch(function (err) {
+        console.log('获取语音tok接口失败');
+        reject(err || '获取语音tok接口失败');
+      });
+    });
+  } else {
+    getBDVoicToken().then(function (res) {
+      console.log('获取语音tok接口成功');
+      if (res.data && res.data.access_token) {
+        console.log('token: ' + res.data.access_token);
+        tts(objs, res.data.access_token);
+      } else {
+        console.log('获取语音tok接口为空');
+      }
+    }).catch(function (err) {
+      console.log('获取语音tok接口失败');
+    });
+  }
+}
+
+function tts(objs, tok, returnAudio) {
+  if (typeof objs == 'string')
+  objs = { voiceSet: { tex: objs } };
+  var data = _objectSpread({
+    tok: tok,
+    cuid: tok,
+    ctp: 1,
+    lan: 'zh' },
+  objs.voiceSet);
+
+  if (returnAudio)
+  return btts(data, objs.audioSet, objs.audioCallback, objs.lineUp, returnAudio);
+  btts(data, objs.audioSet, objs.audioCallback, objs.lineUp, returnAudio);
+}
+
+function setAudioSet(options, audio) {
+  if (options) {
+    audio.volume = options.volume || 1;
+    audio.startTime = options.startTime || 0;
+    audio.loop = options.loop || false;
+    audio.obeyMuteSwitch = options.obeyMuteSwitch && typeof options.obeyMuteSwitch == 'boolean' ? options.obeyMuteSwitch :
+    true; //支持微信小程序、百度小程序、头条小程序
+  }
+}
+
+function btts(param, options, audioCallback, lineUp, returnAudio) {
+  var audio = uni.createInnerAudioContext();
+  setAudioSet(options, audio);
+  // 序列化参数列表
+  var fd = [];
+  for (var k in param) {
+    fd.push(k + '=' + encodeURIComponent(encodeURIComponent(param[k])));
+  }
+  audio.src = "".concat(getAudioUrl, "?").concat(fd.join('&'));
+
+  if (returnAudio) {
+    audio.onEnded(function () {
+      console.log('音频播放结束');
+      console.log('销毁音频实例');
+      audio.destroy(); //销毁音频实例
+      audio = null;
+    });
+    audio.onError(function (e) {
+      if (audioCallback && audioCallback.onError && typeof audioCallback.onError == 'function') audioCallback.onError(e);
+      console.log('音频播放错误: ' + JSON.stringify(e));
+      console.log('销毁音频实例');
+      audio.destroy(); //销毁音频实例
+      audio = null;
+    });
+    return audio;
+  }
+  audio.onPlay(function () {
+    console.log('音频播放开始');
+    if (audioCallback && audioCallback.onPlay && typeof audioCallback.onPlay == 'function') audioCallback.onPlay();
+  });
+  audio.onPause(function () {
+    if (audioCallback && audioCallback.onPause && typeof audioCallback.onPause == 'function') audioCallback.onPause();
+  });
+  audio.onWaiting(function () {
+    if (audioCallback && audioCallback.onWaiting && typeof audioCallback.onWaiting == 'function') audioCallback.onWaiting();
+  });
+  audio.onStop(function () {
+    if (audioCallback && audioCallback.onStop && typeof audioCallback.onStop == 'function') audioCallback.onStop();
+  });
+  audio.onTimeUpdate(function () {
+    if (audioCallback && audioCallback.onTimeUpdate && typeof audioCallback.onTimeUpdate == 'function') audioCallback.onTimeUpdate();
+  });
+  audio.onSeeking(function () {
+    if (audioCallback && audioCallback.onSeeking && typeof audioCallback.onSeeking == 'function') audioCallback.onSeeking();
+  });
+  audio.onSeeked(function () {
+    if (audioCallback && audioCallback.onSeeked && typeof audioCallback.onSeeked == 'function') audioCallback.onSeeked();
+  });
+  audio.onEnded(function () {
+    console.log('音频播放结束');
+    console.log('销毁音频实例');
+    audio.destroy(); //销毁音频实例
+    audio = null;
+    if (audioCallback && audioCallback.onEnded && typeof audioCallback.onEnded == 'function') audioCallback.onEnded();
+    if (lineUp !== false) {
+      if (audioTeam.length > 0) {
+        console.log('队列中');
+        openVoiceFc(audioTeam[0]);
+        audioTeam.splice(0, 1);
+      } else {
+        console.log('队列为零');
+        audioStartSwitch = false;
+      }
+    }
+  });
+  audio.onError(function (e) {
+    if (audioCallback && audioCallback.onError && typeof audioCallback.onError == 'function') audioCallback.onError(e);
+    console.log('音频播放错误: ' + JSON.stringify(e));
+    console.log('销毁音频实例');
+    audio.destroy(); //销毁音频实例
+    audio = null;
+  });
+  audio.play();
+}
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
+
+/***/ }),
+/* 19 */
+/*!**********************************!*\
+  !*** D:/code/buding/uitl/api.js ***!
+  \**********************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.getLifeStyle = exports.getWeatherLive = exports.getAirQuality = exports.getWeekWeather = exports.getEveryHoursWeather = exports.getWeaterInfo = exports.getPosition = void 0;var _config = _interopRequireDefault(__webpack_require__(/*! ../uitl/config */ 17));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}
+var mapKey = _config.default.MAP_API_KEY;
+var weatherKey = _config.default.WEATHER_API_KEY;
+var H5_Map_Key = _config.default.H5_Map_Key;
+// map url
+var locationUrl = 'https://apis.map.qq.com/ws/geocoder/v1/';
+//天气url
+var weatherUrl = 'https://free-api.heweather.net/s6/weather/forecast';
+//24小时内 每小时
+var everyhoursUrl = 'https://free-api.heweather.net/s6/weather/hourly';
+// 一周内
+var everyWeekUrl = 'https://free-api.heweather.net/s6/weather/forecast';
+//空气质量
+var airQualityUrl = 'https://free-api.heweather.net/s6/air/now';
+// 实况天气
+var weatherLive = 'https://free-api.heweather.net/s6/weather/now';
+// 生活指数
+var lifeStyle = 'https://free-api.heweather.net/s6/weather/lifestyle';
+
+
+// 根据当前位置的坐标反得到当前位置的详细信息
+var getPosition = function getPosition(lat, lon) {var success = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : {};var fail = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : {};
+  // console.log({
+  // 	location: `${lat},${lon}`,
+  //
+
+
+  // 	//ifndef H5
+  // 	key: mapKey,
+  // 	//endif
+  // 	get_poi: 0
+  // },'转换参数')
+  return uni.request({
+    url: locationUrl,
+    header: {
+      'Content-Type': 'application/json' },
+
+    data: {
+      location: "".concat(lat, ",").concat(lon),
+
+
+
+      //ifndef H5
+      key: mapKey,
+      //endif
+      get_poi: 0 },
+
+    success: success,
+    fail: fail });
+
+};
+
+// 根据location得到天气信息
+exports.getPosition = getPosition;var getWeaterInfo = function getWeaterInfo(lat, lon) {var success = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : {};var fail = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : {};
+  return uni.request({
+    url: weatherUrl,
+    header: {
+      'Content-Type': 'application/json' },
+
+    data: {
+      location: "".concat(lat, ",").concat(lon),
+      lang: 'zh',
+      unit: 'm',
+      key: weatherKey },
+
+    success: success,
+    fail: fail });
+
+};
+
+// 根据location信息得到24小逐小时天气情况
+exports.getWeaterInfo = getWeaterInfo;var getEveryHoursWeather = function getEveryHoursWeather(lat, lon) {var success = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : {};var fail = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : {};
+  return uni.request({
+    url: everyhoursUrl,
+    header: {
+      'Content-Type': 'application/json' },
+
+    data: {
+      location: "".concat(lat, ",").concat(lon),
+      lang: 'zh',
+      unit: 'm',
+      key: weatherKey },
+
+    success: success,
+    fail: fail });
+
+};
+
+// 根据location信息得到一周内天气情况
+exports.getEveryHoursWeather = getEveryHoursWeather;var getWeekWeather = function getWeekWeather(lat, lon) {var success = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : {};var fail = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : {};
+  return uni.request({
+    url: everyWeekUrl,
+    header: {
+      'Content-Type': 'application/json' },
+
+    data: {
+      location: "".concat(lat, ",").concat(lon),
+      lang: 'zh',
+      unit: 'm',
+      key: weatherKey },
+
+    success: success,
+    fail: fail });
+
+};
+
+// 空气质量
+exports.getWeekWeather = getWeekWeather;var getAirQuality = function getAirQuality(lat, lon) {var success = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : {};var fail = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : {};
+  return uni.request({
+    url: airQualityUrl,
+    header: {
+      'Content-Type': 'application/json' },
+
+    data: {
+      location: "".concat(lat, ",").concat(lon),
+      lang: 'zh',
+      unit: 'm',
+      key: weatherKey },
+
+    success: success,
+    fail: fail });
+
+};
+
+// 实况天气
+exports.getAirQuality = getAirQuality;var getWeatherLive = function getWeatherLive(lat, lon) {var success = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : {};var fail = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : {};
+  return uni.request({
+    url: weatherLive,
+    header: {
+      'Content-Type': 'application/json' },
+
+    data: {
+      location: "".concat(lat, ",").concat(lon),
+      lang: 'zh',
+      unit: 'm',
+      key: weatherKey },
+
+    success: success,
+    fail: fail });
+
+};
+
+// 生活指数
+exports.getWeatherLive = getWeatherLive;
+var getLifeStyle = function getLifeStyle(lat, lon) {var success = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : {};var fail = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : {};
+  return uni.request({
+    url: lifeStyle,
+    header: {
+      'Content-Type': 'application/json' },
+
+    data: {
+      location: "".concat(lat, ",").concat(lon),
+      lang: 'zh',
+      unit: 'm',
+      key: weatherKey },
+
+    success: success,
+    fail: fail });
+
+};exports.getLifeStyle = getLifeStyle;
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
+
+/***/ }),
+/* 20 */
+/*!************************************!*\
+  !*** D:/code/buding/uitl/utils.js ***!
+  \************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });exports.loadScript = exports.initialize = exports.snowType = exports.rainType = exports.iconType = exports.lifeIndexEnum = exports.arrForAirColor = exports.airQuailtyLevel = exports.weekEnum = void 0;var _config = _interopRequireDefault(__webpack_require__(/*! ../uitl/config */ 17));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}
 var bdMapKey = _config.default.BD_Map_Key;
 var weekEnum = {
   0: '星期日',
@@ -7670,314 +8346,16 @@ exports.initialize = initialize;var loadScript = function loadScript() {
 exports.loadScript = loadScript;
 
 /***/ }),
-/* 9 */
-/*!**************************************************!*\
-  !*** D:/code/uniappdev/uniappdev/uitl/config.js ***!
-  \**************************************************/
+/* 21 */
+/*!************************************!*\
+  !*** D:/code/buding/class/Rain.js ***!
+  \************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _default = {
-  MAP_API_KEY: '5EOBZ-JGBKX-SXY4O-TY2WO-E3X3H-IVFXX',
-  WEATHER_API_KEY: 'dbcd0bce164347c89de825bf1c1ecc03',
-  BD_Map_Key: "ub60z8oQBNt4XRuvZSQDn16gK4Lo8pPm" };exports.default = _default;
-
-/***/ }),
-/* 10 */,
-/* 11 */,
-/* 12 */
-/*!********************************************************************!*\
-  !*** ./node_modules/vue-loader/lib/runtime/componentNormalizer.js ***!
-  \********************************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return normalizeComponent; });
-/* globals __VUE_SSR_CONTEXT__ */
-
-// IMPORTANT: Do NOT use ES2015 features in this file (except for modules).
-// This module is a runtime utility for cleaner component module output and will
-// be included in the final webpack user bundle.
-
-function normalizeComponent (
-  scriptExports,
-  render,
-  staticRenderFns,
-  functionalTemplate,
-  injectStyles,
-  scopeId,
-  moduleIdentifier, /* server only */
-  shadowMode /* vue-cli only */
-) {
-  // Vue.extend constructor export interop
-  var options = typeof scriptExports === 'function'
-    ? scriptExports.options
-    : scriptExports
-
-  // render functions
-  if (render) {
-    options.render = render
-    options.staticRenderFns = staticRenderFns
-    options._compiled = true
-  }
-
-  // functional template
-  if (functionalTemplate) {
-    options.functional = true
-  }
-
-  // scopedId
-  if (scopeId) {
-    options._scopeId = 'data-v-' + scopeId
-  }
-
-  var hook
-  if (moduleIdentifier) { // server build
-    hook = function (context) {
-      // 2.3 injection
-      context =
-        context || // cached call
-        (this.$vnode && this.$vnode.ssrContext) || // stateful
-        (this.parent && this.parent.$vnode && this.parent.$vnode.ssrContext) // functional
-      // 2.2 with runInNewContext: true
-      if (!context && typeof __VUE_SSR_CONTEXT__ !== 'undefined') {
-        context = __VUE_SSR_CONTEXT__
-      }
-      // inject component styles
-      if (injectStyles) {
-        injectStyles.call(this, context)
-      }
-      // register component module identifier for async chunk inferrence
-      if (context && context._registeredComponents) {
-        context._registeredComponents.add(moduleIdentifier)
-      }
-    }
-    // used by ssr in case component is cached and beforeCreate
-    // never gets called
-    options._ssrRegister = hook
-  } else if (injectStyles) {
-    hook = shadowMode
-      ? function () { injectStyles.call(this, this.$root.$options.shadowRoot) }
-      : injectStyles
-  }
-
-  if (hook) {
-    if (options.functional) {
-      // for template-only hot-reload because in that case the render fn doesn't
-      // go through the normalizer
-      options._injectStyles = hook
-      // register for functioal component in vue file
-      var originalRender = options.render
-      options.render = function renderWithStyleInjection (h, context) {
-        hook.call(context)
-        return originalRender(h, context)
-      }
-    } else {
-      // inject component registration as beforeCreate hook
-      var existing = options.beforeCreate
-      options.beforeCreate = existing
-        ? [].concat(existing, hook)
-        : [hook]
-    }
-  }
-
-  return {
-    exports: scriptExports,
-    options: options
-  }
-}
-
-
-/***/ }),
-/* 13 */
-/*!****************************************************************************!*\
-  !*** D:/code/uniappdev/uniappdev/main.js?{"page":"pages%2Findex%2Findex"} ***!
-  \****************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-/* WEBPACK VAR INJECTION */(function(createPage) {__webpack_require__(/*! uni-pages */ 4);
-
-var _vue = _interopRequireDefault(__webpack_require__(/*! vue */ 2));
-var _index = _interopRequireDefault(__webpack_require__(/*! ./pages/index/index.vue */ 14));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}
-createPage(_index.default);
-/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["createPage"]))
-
-/***/ }),
-/* 14 */,
-/* 15 */,
-/* 16 */,
-/* 17 */,
-/* 18 */,
-/* 19 */
-/*!***********************************************!*\
-  !*** D:/code/uniappdev/uniappdev/uitl/api.js ***!
-  \***********************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.getLifeStyle = exports.getWeatherLive = exports.getAirQuality = exports.getWeekWeather = exports.getEveryHoursWeather = exports.getWeaterInfo = exports.getPosition = void 0;var _config = _interopRequireDefault(__webpack_require__(/*! ../uitl/config */ 9));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}
-var mapKey = _config.default.MAP_API_KEY;
-var weatherKey = _config.default.WEATHER_API_KEY;
-// map url
-var locationUrl = 'https://apis.map.qq.com/ws/geocoder/v1/';
-//天气url
-var weatherUrl = 'https://free-api.heweather.net/s6/weather/forecast';
-//24小时内 每小时
-var everyhoursUrl = 'https://free-api.heweather.net/s6/weather/hourly';
-// 一周内
-var everyWeekUrl = 'https://free-api.heweather.net/s6/weather/forecast';
-//空气质量
-var airQualityUrl = 'https://free-api.heweather.net/s6/air/now';
-// 实况天气
-var weatherLive = 'https://free-api.heweather.net/s6/weather/now';
-// 生活指数
-var lifeStyle = 'https://free-api.heweather.net/s6/weather/lifestyle';
-
-
-// 根据当前位置的坐标反得到当前位置的详细信息
-var getPosition = function getPosition(lat, lon) {var success = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : {};var fail = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : {};
-  return uni.request({
-    url: locationUrl,
-    header: {
-      'Content-Type': 'application/json' },
-
-    data: {
-      location: "".concat(lat, ",").concat(lon),
-      key: mapKey,
-      get_poi: 0 },
-
-    success: success,
-    fail: fail });
-
-};
-
-// 根据location得到天气信息
-exports.getPosition = getPosition;var getWeaterInfo = function getWeaterInfo(lat, lon) {var success = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : {};var fail = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : {};
-  return uni.request({
-    url: weatherUrl,
-    header: {
-      'Content-Type': 'application/json' },
-
-    data: {
-      location: "".concat(lat, ",").concat(lon),
-      lang: 'zh',
-      unit: 'm',
-      key: weatherKey },
-
-    success: success,
-    fail: fail });
-
-};
-
-// 根据location信息得到24小逐小时天气情况
-exports.getWeaterInfo = getWeaterInfo;var getEveryHoursWeather = function getEveryHoursWeather(lat, lon) {var success = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : {};var fail = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : {};
-  return uni.request({
-    url: everyhoursUrl,
-    header: {
-      'Content-Type': 'application/json' },
-
-    data: {
-      location: "".concat(lat, ",").concat(lon),
-      lang: 'zh',
-      unit: 'm',
-      key: weatherKey },
-
-    success: success,
-    fail: fail });
-
-};
-
-// 根据location信息得到一周内天气情况
-exports.getEveryHoursWeather = getEveryHoursWeather;var getWeekWeather = function getWeekWeather(lat, lon) {var success = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : {};var fail = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : {};
-  return uni.request({
-    url: everyWeekUrl,
-    header: {
-      'Content-Type': 'application/json' },
-
-    data: {
-      location: "".concat(lat, ",").concat(lon),
-      lang: 'zh',
-      unit: 'm',
-      key: weatherKey },
-
-    success: success,
-    fail: fail });
-
-};
-
-// 空气质量
-exports.getWeekWeather = getWeekWeather;var getAirQuality = function getAirQuality(lat, lon) {var success = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : {};var fail = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : {};
-  return uni.request({
-    url: airQualityUrl,
-    header: {
-      'Content-Type': 'application/json' },
-
-    data: {
-      location: "".concat(lat, ",").concat(lon),
-      lang: 'zh',
-      unit: 'm',
-      key: weatherKey },
-
-    success: success,
-    fail: fail });
-
-};
-
-// 实况天气
-exports.getAirQuality = getAirQuality;var getWeatherLive = function getWeatherLive(lat, lon) {var success = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : {};var fail = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : {};
-  return uni.request({
-    url: weatherLive,
-    header: {
-      'Content-Type': 'application/json' },
-
-    data: {
-      location: "".concat(lat, ",").concat(lon),
-      lang: 'zh',
-      unit: 'm',
-      key: weatherKey },
-
-    success: success,
-    fail: fail });
-
-};
-
-// 生活指数
-exports.getWeatherLive = getWeatherLive;
-var getLifeStyle = function getLifeStyle(lat, lon) {var success = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : {};var fail = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : {};
-  return uni.request({
-    url: lifeStyle,
-    header: {
-      'Content-Type': 'application/json' },
-
-    data: {
-      location: "".concat(lat, ",").concat(lon),
-      lang: 'zh',
-      unit: 'm',
-      key: weatherKey },
-
-    success: success,
-    fail: fail });
-
-};exports.getLifeStyle = getLifeStyle;
-/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
-
-/***/ }),
-/* 20 */
-/*!*************************************************!*\
-  !*** D:/code/uniappdev/uniappdev/class/Rain.js ***!
-  \*************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _Weather2 = _interopRequireDefault(__webpack_require__(/*! ./Weather.js */ 21));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}function _classCallCheck(instance, Constructor) {if (!(instance instanceof Constructor)) {throw new TypeError("Cannot call a class as a function");}}function _defineProperties(target, props) {for (var i = 0; i < props.length; i++) {var descriptor = props[i];descriptor.enumerable = descriptor.enumerable || false;descriptor.configurable = true;if ("value" in descriptor) descriptor.writable = true;Object.defineProperty(target, descriptor.key, descriptor);}}function _createClass(Constructor, protoProps, staticProps) {if (protoProps) _defineProperties(Constructor.prototype, protoProps);if (staticProps) _defineProperties(Constructor, staticProps);return Constructor;}function _possibleConstructorReturn(self, call) {if (call && (typeof call === "object" || typeof call === "function")) {return call;}return _assertThisInitialized(self);}function _assertThisInitialized(self) {if (self === void 0) {throw new ReferenceError("this hasn't been initialised - super() hasn't been called");}return self;}function _getPrototypeOf(o) {_getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) {return o.__proto__ || Object.getPrototypeOf(o);};return _getPrototypeOf(o);}function _inherits(subClass, superClass) {if (typeof superClass !== "function" && superClass !== null) {throw new TypeError("Super expression must either be null or a function");}subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } });if (superClass) _setPrototypeOf(subClass, superClass);}function _setPrototypeOf(o, p) {_setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) {o.__proto__ = p;return o;};return _setPrototypeOf(o, p);}var
-Rain = /*#__PURE__*/function (_Weather) {_inherits(Rain, _Weather);function Rain() {_classCallCheck(this, Rain);return _possibleConstructorReturn(this, _getPrototypeOf(Rain).apply(this, arguments));}_createClass(Rain, [{ key: "_init", value: function _init()
+Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _Weather2 = _interopRequireDefault(__webpack_require__(/*! ./Weather.js */ 22));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}function _classCallCheck(instance, Constructor) {if (!(instance instanceof Constructor)) {throw new TypeError("Cannot call a class as a function");}}function _defineProperties(target, props) {for (var i = 0; i < props.length; i++) {var descriptor = props[i];descriptor.enumerable = descriptor.enumerable || false;descriptor.configurable = true;if ("value" in descriptor) descriptor.writable = true;Object.defineProperty(target, descriptor.key, descriptor);}}function _createClass(Constructor, protoProps, staticProps) {if (protoProps) _defineProperties(Constructor.prototype, protoProps);if (staticProps) _defineProperties(Constructor, staticProps);return Constructor;}function _createSuper(Derived) {return function () {var Super = _getPrototypeOf(Derived),result;if (_isNativeReflectConstruct()) {var NewTarget = _getPrototypeOf(this).constructor;result = Reflect.construct(Super, arguments, NewTarget);} else {result = Super.apply(this, arguments);}return _possibleConstructorReturn(this, result);};}function _possibleConstructorReturn(self, call) {if (call && (typeof call === "object" || typeof call === "function")) {return call;}return _assertThisInitialized(self);}function _assertThisInitialized(self) {if (self === void 0) {throw new ReferenceError("this hasn't been initialised - super() hasn't been called");}return self;}function _isNativeReflectConstruct() {if (typeof Reflect === "undefined" || !Reflect.construct) return false;if (Reflect.construct.sham) return false;if (typeof Proxy === "function") return true;try {Date.prototype.toString.call(Reflect.construct(Date, [], function () {}));return true;} catch (e) {return false;}}function _getPrototypeOf(o) {_getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) {return o.__proto__ || Object.getPrototypeOf(o);};return _getPrototypeOf(o);}function _inherits(subClass, superClass) {if (typeof superClass !== "function" && superClass !== null) {throw new TypeError("Super expression must either be null or a function");}subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } });if (superClass) _setPrototypeOf(subClass, superClass);}function _setPrototypeOf(o, p) {_setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) {o.__proto__ = p;return o;};return _setPrototypeOf(o, p);}var
+Rain = /*#__PURE__*/function (_Weather) {_inherits(Rain, _Weather);var _super = _createSuper(Rain);function Rain() {_classCallCheck(this, Rain);return _super.apply(this, arguments);}_createClass(Rain, [{ key: "_init", value: function _init()
     {
       this.context.setLineWidth(2);
       this.context.setLineCap('round');
@@ -8037,10 +8415,10 @@ Rain = /*#__PURE__*/function (_Weather) {_inherits(Rain, _Weather);function Rain
 Rain;exports.default = _default;
 
 /***/ }),
-/* 21 */
-/*!****************************************************!*\
-  !*** D:/code/uniappdev/uniappdev/class/Weather.js ***!
-  \****************************************************/
+/* 22 */
+/*!***************************************!*\
+  !*** D:/code/buding/class/Weather.js ***!
+  \***************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -8082,16 +8460,16 @@ Weather = /*#__PURE__*/function () {
 Weather;exports.default = _default;
 
 /***/ }),
-/* 22 */
-/*!*************************************************!*\
-  !*** D:/code/uniappdev/uniappdev/class/Snow.js ***!
-  \*************************************************/
+/* 23 */
+/*!************************************!*\
+  !*** D:/code/buding/class/Snow.js ***!
+  \************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _Weather2 = _interopRequireDefault(__webpack_require__(/*! ./Weather.js */ 21));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}function _classCallCheck(instance, Constructor) {if (!(instance instanceof Constructor)) {throw new TypeError("Cannot call a class as a function");}}function _defineProperties(target, props) {for (var i = 0; i < props.length; i++) {var descriptor = props[i];descriptor.enumerable = descriptor.enumerable || false;descriptor.configurable = true;if ("value" in descriptor) descriptor.writable = true;Object.defineProperty(target, descriptor.key, descriptor);}}function _createClass(Constructor, protoProps, staticProps) {if (protoProps) _defineProperties(Constructor.prototype, protoProps);if (staticProps) _defineProperties(Constructor, staticProps);return Constructor;}function _possibleConstructorReturn(self, call) {if (call && (typeof call === "object" || typeof call === "function")) {return call;}return _assertThisInitialized(self);}function _assertThisInitialized(self) {if (self === void 0) {throw new ReferenceError("this hasn't been initialised - super() hasn't been called");}return self;}function _getPrototypeOf(o) {_getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) {return o.__proto__ || Object.getPrototypeOf(o);};return _getPrototypeOf(o);}function _inherits(subClass, superClass) {if (typeof superClass !== "function" && superClass !== null) {throw new TypeError("Super expression must either be null or a function");}subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } });if (superClass) _setPrototypeOf(subClass, superClass);}function _setPrototypeOf(o, p) {_setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) {o.__proto__ = p;return o;};return _setPrototypeOf(o, p);}var
-Snow = /*#__PURE__*/function (_Weather) {_inherits(Snow, _Weather);function Snow() {_classCallCheck(this, Snow);return _possibleConstructorReturn(this, _getPrototypeOf(Snow).apply(this, arguments));}_createClass(Snow, [{ key: "_init", value: function _init()
+Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _Weather2 = _interopRequireDefault(__webpack_require__(/*! ./Weather.js */ 22));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}function _classCallCheck(instance, Constructor) {if (!(instance instanceof Constructor)) {throw new TypeError("Cannot call a class as a function");}}function _defineProperties(target, props) {for (var i = 0; i < props.length; i++) {var descriptor = props[i];descriptor.enumerable = descriptor.enumerable || false;descriptor.configurable = true;if ("value" in descriptor) descriptor.writable = true;Object.defineProperty(target, descriptor.key, descriptor);}}function _createClass(Constructor, protoProps, staticProps) {if (protoProps) _defineProperties(Constructor.prototype, protoProps);if (staticProps) _defineProperties(Constructor, staticProps);return Constructor;}function _createSuper(Derived) {return function () {var Super = _getPrototypeOf(Derived),result;if (_isNativeReflectConstruct()) {var NewTarget = _getPrototypeOf(this).constructor;result = Reflect.construct(Super, arguments, NewTarget);} else {result = Super.apply(this, arguments);}return _possibleConstructorReturn(this, result);};}function _possibleConstructorReturn(self, call) {if (call && (typeof call === "object" || typeof call === "function")) {return call;}return _assertThisInitialized(self);}function _assertThisInitialized(self) {if (self === void 0) {throw new ReferenceError("this hasn't been initialised - super() hasn't been called");}return self;}function _isNativeReflectConstruct() {if (typeof Reflect === "undefined" || !Reflect.construct) return false;if (Reflect.construct.sham) return false;if (typeof Proxy === "function") return true;try {Date.prototype.toString.call(Reflect.construct(Date, [], function () {}));return true;} catch (e) {return false;}}function _getPrototypeOf(o) {_getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) {return o.__proto__ || Object.getPrototypeOf(o);};return _getPrototypeOf(o);}function _inherits(subClass, superClass) {if (typeof superClass !== "function" && superClass !== null) {throw new TypeError("Super expression must either be null or a function");}subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } });if (superClass) _setPrototypeOf(subClass, superClass);}function _setPrototypeOf(o, p) {_setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) {o.__proto__ = p;return o;};return _setPrototypeOf(o, p);}var
+Snow = /*#__PURE__*/function (_Weather) {_inherits(Snow, _Weather);var _super = _createSuper(Snow);function Snow() {_classCallCheck(this, Snow);return _super.apply(this, arguments);}_createClass(Snow, [{ key: "_init", value: function _init()
     {var
 
       width =

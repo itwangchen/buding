@@ -3,13 +3,13 @@
 		{
 			"path": "pages/index/index",
 			"style": {
-				"navigationBarTitleText": "布丁天气"
+				"navigationBarTitleText": "布丁天气v1.0.2"
 			}
 		}
 	],
 	"globalStyle": {
 		"navigationBarTextStyle": "white",
-		"navigationBarTitleText": "布丁天气",
+		"navigationBarTitleText": "布丁天气v1.0.2",
 		"navigationBarBackgroundColor": "#30b8c4",
 		"backgroundColor": "#fff"
 	}

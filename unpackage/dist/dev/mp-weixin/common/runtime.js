@@ -1,5 +1,5 @@
 
-  !function(){try{var r=Function("return this")();r&&!r.Math&&Object.assign(r,{Array:Array,Date:Date,Error:Error,Function:Function,Math:Math,Object:Object,RegExp:RegExp,String:String,TypeError:TypeError,setTimeout:setTimeout,clearTimeout:clearTimeout,setInterval:setInterval,clearInterval:clearInterval})}catch(r){}}();
+  !function(){try{var a=Function("return this")();a&&!a.Math&&(Object.assign(a,{isFinite:isFinite,Array:Array,Date:Date,Error:Error,Function:Function,Math:Math,Object:Object,RegExp:RegExp,String:String,TypeError:TypeError,setTimeout:setTimeout,clearTimeout:clearTimeout,setInterval:setInterval,clearInterval:clearInterval}),"undefined"!=typeof Reflect&&(a.Reflect=Reflect))}catch(a){}}();
   /******/ (function(modules) { // webpackBootstrap
 /******/ 	// install a JSONP callback for chunk loading
 /******/ 	function webpackJsonpCallback(data) {
@@ -129,6 +129,7 @@
 /******/ 				linkTag.onerror = function(event) {
 /******/ 					var request = event && event.target && event.target.src || fullhref;
 /******/ 					var err = new Error("Loading CSS chunk " + chunkId + " failed.\n(" + request + ")");
+/******/ 					err.code = "CSS_CHUNK_LOAD_FAILED";
 /******/ 					err.request = request;
 /******/ 					delete installedCssChunks[chunkId]
 /******/ 					linkTag.parentNode.removeChild(linkTag)

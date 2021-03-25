@@ -1,18 +1,30 @@
 <template>
 	<view v-cloak class="container">
+		<view>
+			<!-- <button @click="login">Login</button> -->
+			<!-- <button open-type="getPhoneNumber" @getphonenumber="getPhoneNumber">获取手机号</button> -->
+		</view>
+		<!--  #ifdef  APP-PLUS -->
+		<view class='toUpdate' @click="handeleUpdate">
+			检查更新
+		</view>
+		<!-- #endif -->
 		<view style='margin-top: -150rpx; padding-top: 150rpx;'>
 			<view class='animation-view'>
 				<view class='location' @click="chooseLocation">
 					<myicon class="icon" icon="dingwei"></myicon>
 					<text class='city'>{{position}}</text>
 				</view>
-				<!-- <canvas canvas-id='animation' style='width:100%;height:920rpx;position: absolute;top:100rpx'></canvas> -->
+				<!-- <view class='toUpdate' @click="doTTS">
+					语音播放
+				</view> -->
+				<!-- #ifdef MP-WEIXIN -->
+				<view class='toUpdate' @click="doTTS">
+					语音播放
+				</view>
+				<!-- #endif -->
 				<view class="center-container">
 					<view class="flex-content-left">
-						<!-- 	<view class="pm-number-view" v-if="airQuality.color">
-							<text :style="'display:inline-block;width: 8rpx;border:8rpx solid '+airQuality.color+';border-radius: 6rpx;height: 22rpx;margin-right:12rpx;box-sizing:border-box'"></text>
-							<text style="line-height: 60rpx;font-size:26rpx;color:white">{{airQuality.airText}}   {{airQuality.aqi}}</text>
-						</view> -->
 						<view class="today-weather-view" v-if="todayData.iconTypeBai">
 							<text style="text-align:center;font-size:32rpx;color:white;height:50rpx">
 								今 天
@@ -96,7 +108,7 @@
 
 			</view>
 
-			<view class='live-index-view'>
+			<view class='live-index-view' v-if="todayData.sr">
 				<view class='live-index-item'>
 					<view class='live-index-item-left'>
 						<view class='live-index-top-txt'>
@@ -171,7 +183,7 @@
 				</view>
 			</view>
 
-			<view class='last-view'>
+			<view class='last-view' v-if="lifeStyle.length!=0">
 				<view class='last-view-item' v-for="(item) in lifeStyle" :key="item.type">
 					<view class='last-view-item-top'>{{lifeEnum[item.type]}}</view>
 					<view class='last-view-item-bottom'>{{item.brf}}</view>
@@ -181,12 +193,12 @@
 				</view>
 			</view>
 		</view>
-		<!-- </scroll-view> -->
 	</view>
 </template>
 
 <script>
 	import config from '../../uitl/config'
+	import Voice from '../../uitl/QS-baiduyy'
 	import {
 		getPosition,
 		getWeaterInfo,
@@ -215,6 +227,7 @@
 		components: {
 			myicon
 		},
+
 		data() {
 			return {
 				bgImgUrl: '/static/images/cloud.jpg',
@@ -243,28 +256,125 @@
 				snow_ins: null
 			}
 		},
-		onLoad() {
+		onLoad(e) {
+			console.log(e, '页面参数')
 			uni.getSystemInfo({
 				success: (res) => {
 					console.log(res, '设备');
 					this.width = res.windowWidth;
 					this.scole = res.windowWidth / 375;
-					// this.canvas_instance = uni.createCanvasContext('animation');
 				},
 			})
 			this.getPosition()
 
 		},
 		onShow() {
+			// uni.showShareMenu({
+			// 	title: '自定义分享标题',
+			// 	path: '/index/index',
+			// 	templateId: '1jjfm3h2igf156j38l'
+			// })
+		},
+		onShareAppMessage(res) {
+			return {
+				// title: '分享一个好玩的小程序...',
+				// desc: '天气预报实况,天气预报温度,24小时天气预报,近期天气概况,空气指数,穿衣以及出行建议',
+				templateId: '1jjfm3h2igf156j38l'
+			}
 		},
 		methods: {
+			login(e) {
+				console.log(e)
+				uni.login({
+					success: (res) => {
+						console.log("login", JSON.stringify(res));
+					},
+					fail: (res) => {
+						console.log(res, 'fail')
+					}
+				})
+			},
+			getPhoneNumber(e) {
+				console.log(e.detail.errMsg);
+				console.log(e.detail.iv);
+				console.log(e.detail.encryptedData);
+			},
+			doTTS() {
+				let ttsText = ''
+				let lifeStyle = this.lifeStyle
+				let lifeEnum = this.lifeEnum
+				lifeStyle.forEach((item) => {
+					ttsText += lifeEnum[item.type] + ',' + item.brf + ','
+					// + item.txt
+				})
+
+				console.log('音频开始播放了', ttsText)
+
+				Voice({
+					voiceSet: {
+						tex: ttsText
+					},
+					audioSet: {
+						volume: 1
+					},
+					audioCallback: {
+						onPlay: () => {
+							console.log('开始播放了')
+						}
+					},
+					lineUp: true, // 加入语音队列
+					returnAudio: false // 返回音频对象
+				})
+			},
+			handeleUpdate() {
+				uni.showModal({
+					title: "版本更新",
+					content: '有新的版本发布，\n检测到您当前为Wifi连接，是否立即进行新版本下载？',
+					confirmText: '立即更新',
+					cancelText: '稍后进行',
+					success: function(res) {
+						if (res.confirm) {
+							uni.showToast({
+								icon: "none",
+								mask: true,
+								title: '有新的版本发布，\n检测到您目前为Wifi连接，\n程序已启动自动更新。新版本下载完成后将自动弹出安装程序',
+								duration: 5000,
+							});
+							//设置 最新版本apk的下载链接
+							var downloadApkUrl = 'http://m.test.yyhealth.com/a/com.yyhealth.strawberry_1.4.1_141.apk';
+							var dtask = plus.downloader.createDownload(downloadApkUrl, {}, function(d, status) {
+								// 下载完成  
+								if (status == 200) {
+									plus.runtime.install(plus.io.convertLocalFileSystemURL(d.filename), {}, {}, function(error) {
+										uni.showToast({
+											title: '安装失败',
+											duration: 1500
+										});
+									})
+								} else {
+									uni.showToast({
+										title: '更新失败',
+										duration: 1500
+									});
+								}
+							});
+							dtask.start();
+						} else if (res.cancel) {
+							console.log('稍后更新');
+						}
+					}
+				});
+			},
 			getPosition: function() {
 				console.log(255);
+				let getType = "wgs84"
+				//#ifndef H5
+				getType = 'gcj02'
+				//#endif
+				console.log(getType, 'getType')
 				uni.getLocation({
-					// #ifdef MP-WEIXIN
-					// type: 'wgs84',
+					// type: getType,
 					type: 'gcj02',
-					// #endif
 					success: this.updateLocation,
 					fail: err => {
 						console.log(err, 'uni.getLocation')
@@ -309,6 +419,7 @@
 			},
 
 			chooseLocation: function() {
+				console.log(666)
 				uni.chooseLocation({
 					success: res => {
 						let {
@@ -323,8 +434,8 @@
 
 						} else {
 							// this.updateLocation(res)
-							this.getLocation(latitude,longitude);
-							console.log(res,'选择地址 ');
+							this.getLocation(latitude, longitude);
+							console.log(res, '选择地址 ');
 							// this.getData(lat, lon);
 						}
 					}
@@ -332,25 +443,29 @@
 			},
 
 			getLocation: function(lat, lon) {
+				console.log(lat, lon, 'lat, lon', 406)
 				uni.showLoading({
 					title: "定位中",
 					mask: true
-				})				
+				})
 				getPosition(lat, lon, (res) => {
 					console.log(res, 'formatted_addresses')
 					if (res.statusCode == 200) {
 						let response = res.data.result
+						console.log(response)
 						let addr = response.formatted_addresses.recommend || response.rough
 						this.position = addr;
 						uni.hideLoading()
 						this.getData(lat, lon);
 					}
 				}, (err => {
-					console.log(err)
+					console.log(err, '421')
 					uni.hideLoading()
 				}))
-				// this.position = name;
-				// this.getData(lat, lon);
+				// #ifdef H5
+				this.getData(lat, lon);
+				this.position = name;
+				// #endif	 
 			},
 			getWeather: function(lat, lon) {
 				if (!lat || !lon) {
@@ -518,6 +633,24 @@
 		box-sizing: border-box;
 		position: relative;
 		z-index: 10000;
+	}
+
+	.toUpdate {
+		margin-top: 15rpx;
+		height: 50rpx;
+		line-height: 50rpx;
+		widht: 200rpx;
+		position: fixed;
+		top: 0rpx;
+		right: 0rpx;
+		text-align: center;
+		color: rgba(236, 240, 241, 1.0);
+		font-size: 28rpx;
+		z-index: 9999999;
+		background-color: rgba(0, 0, 0, .6);
+		padding: 0 10rpx 0 20rpx;
+		border-radius: 25rpx 0 0 25rpx;
+
 	}
 
 	.city,

@@ -1,0 +1,9 @@
+{
+  "setting": {
+    "es6": true,
+    "postcss": true,
+    "minified": true
+  },
+  "appid": "tt316447d9ae4ef47d",
+  "projectname": "布丁天气"
+}
